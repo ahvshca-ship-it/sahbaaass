@@ -5,61 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sahba | اعرض منتجك وشارك في السحوبات</title>
-
-  <meta
-    name="description"
-    content="Sahba - منصة لعرض المنتجات والمشاركة في العروض والسحوبات"
-  >
+  <title>Sahba</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    :root {
-      --dark: #111827;
-      --dark-2: #1f2937;
-      --gold: #f59e0b;
-      --gold-light: #fff7df;
-      --white: #ffffff;
-      --gray: #f7f8fa;
-      --text: #111827;
-      --muted: #667085;
-      --border: #e5e7eb;
-      --green: #16a34a;
-    }
-
-    body {
-      font-family: Arial, "Tahoma", sans-serif;
-      background: var(--gray);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
     html {
       scroll-behavior: smooth;
     }
 
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+    }
+
     a {
       text-decoration: none;
-      color: inherit;
     }
 
-    button,
-    input,
-    textarea,
-    select {
-      font-family: inherit;
-    }
-
-    /* ================= HEADER ================= */
+    /* ===== HEADER ===== */
 
     header {
-      background: var(--dark);
+      background: #111827;
       color: white;
       padding: 16px 7%;
       display: flex;
@@ -68,70 +41,64 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
     }
 
     .logo {
+      color: #f59e0b;
       font-size: 30px;
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: -.5px;
+      font-weight: bold;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
 
     nav a {
-      color: #ffffff;
-      margin: 0 8px;
+      color: white;
+      padding: 8px 10px;
       font-size: 15px;
-      transition: .2s;
     }
 
     nav a:hover {
-      color: var(--gold);
+      color: #f59e0b;
     }
 
     .login-btn {
-      border: 1px solid rgba(245,158,11,.7);
-      padding: 8px 16px;
+      border: 1px solid #f59e0b;
       border-radius: 9px;
-      color: var(--gold) !important;
+      color: #f59e0b !important;
+      padding: 8px 17px !important;
     }
 
     .login-btn:hover {
-      background: rgba(245,158,11,.08);
+      background: #f59e0b;
+      color: #111827 !important;
     }
 
-    /* ================= HERO ================= */
+    /* ===== HERO ===== */
 
     .hero {
-      padding: 85px 7%;
+      padding: 90px 7%;
       text-align: center;
-
       background:
         radial-gradient(
           circle at top right,
-          rgba(245,158,11,.16),
+          rgba(245,158,11,.18),
           transparent 35%
         ),
-        linear-gradient(
-          135deg,
-          #fff7df,
-          #ffffff
-        );
+        linear-gradient(135deg, #fff7df, #ffffff);
     }
 
-    .hero-badge {
+    .badge {
       display: inline-block;
       background: white;
-      border: 1px solid #f4d58a;
       color: #9a6700;
-      padding: 7px 14px;
-      border-radius: 50px;
+      border: 1px solid #f2d58a;
+      padding: 6px 15px;
+      border-radius: 30px;
       font-size: 14px;
       font-weight: bold;
       margin-bottom: 18px;
@@ -140,85 +107,71 @@
     .hero h1 {
       font-size: clamp(38px, 6vw, 58px);
       line-height: 1.2;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .hero h1 span {
-      color: var(--gold);
+      color: #f59e0b;
     }
 
     .hero p {
-      font-size: 20px;
-      color: var(--muted);
-      margin-bottom: 30px;
+      color: #667085;
+      font-size: 19px;
       max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    button {
-      border: none;
-      padding: 13px 24px;
-      border-radius: 11px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: .2s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
+      margin: 0 auto 30px;
     }
 
     .main-btn {
-      background: var(--gold);
-      color: var(--dark);
-      box-shadow: 0 7px 20px rgba(245,158,11,.2);
+      display: inline-block;
+      background: #f59e0b;
+      color: #111827;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 11px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .2s;
     }
 
     .main-btn:hover {
       background: #fbbf24;
+      transform: translateY(-2px);
     }
 
-    .hero-note {
-      margin-top: 18px;
-      color: #98a2b3;
-      font-size: 13px;
-    }
-
-    /* ================= STATS ================= */
+    /* ===== STATS ===== */
 
     .stats {
       max-width: 1000px;
       margin: -30px auto 0;
+      padding: 0 20px;
       position: relative;
+
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      padding: 0 20px;
     }
 
     .stat {
       background: white;
-      padding: 22px;
+      border: 1px solid #e5e7eb;
       border-radius: 16px;
+      padding: 22px;
       text-align: center;
-      box-shadow: 0 8px 30px rgba(0,0,0,.07);
-      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(0,0,0,.07);
     }
 
     .stat strong {
       display: block;
-      font-size: 25px;
-      color: var(--dark);
+      font-size: 24px;
     }
 
     .stat span {
-      color: var(--muted);
+      color: #667085;
       font-size: 13px;
     }
 
-    /* ================= SECTIONS ================= */
+    /* ===== SECTIONS ===== */
 
     section {
       padding: 65px 7%;
@@ -226,33 +179,34 @@
 
     .title {
       text-align: center;
-      margin-bottom: 10px;
       font-size: 32px;
+      margin-bottom: 8px;
     }
 
     .subtitle {
       text-align: center;
-      color: var(--muted);
+      color: #667085;
       margin-bottom: 35px;
     }
 
-    /* ================= CARDS ================= */
+    /* ===== CARDS ===== */
 
     .cards {
+      max-width: 1200px;
+      margin: auto;
+
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
-      max-width: 1200px;
-      margin: auto;
     }
 
     .card {
       background: white;
       border-radius: 20px;
       overflow: hidden;
+      border: 1px solid #e5e7eb;
       box-shadow: 0 6px 25px rgba(0,0,0,.07);
-      border: 1px solid var(--border);
-      transition: .25s;
+      transition: .2s;
     }
 
     .card:hover {
@@ -260,16 +214,12 @@
       box-shadow: 0 15px 35px rgba(0,0,0,.1);
     }
 
-    .image {
+    .product-image {
       height: 200px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(
-        135deg,
-        #eef0f3,
-        #f8f9fb
-      );
+      background: #eef0f3;
       font-size: 75px;
     }
 
@@ -280,8 +230,8 @@
     .tag {
       display: inline-block;
       background: #ecfdf3;
-      color: var(--green);
-      padding: 4px 9px;
+      color: #15803d;
+      padding: 4px 10px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: bold;
@@ -289,30 +239,28 @@
     }
 
     .content h3 {
-      margin-bottom: 6px;
       font-size: 20px;
+      margin-bottom: 5px;
     }
 
     .description {
-      color: var(--muted);
+      color: #667085;
       font-size: 14px;
-      margin-bottom: 13px;
     }
 
     .price {
       font-size: 22px;
-      font-weight: 900;
+      font-weight: bold;
       margin: 15px 0;
-      color: var(--dark);
     }
 
-    .price span {
+    .price small {
+      color: #667085;
       font-size: 13px;
-      color: var(--muted);
       font-weight: normal;
     }
 
-    .ticket-row {
+    .ticket-info {
       display: flex;
       justify-content: space-between;
       font-size: 13px;
@@ -320,38 +268,49 @@
     }
 
     .remaining {
-      color: var(--green);
+      color: #15803d;
       font-weight: bold;
     }
 
     .progress {
       height: 8px;
       background: #e5e7eb;
-      border-radius: 10px;
+      border-radius: 20px;
       overflow: hidden;
       margin-bottom: 15px;
     }
 
     .progress div {
       height: 100%;
-      background: var(--gold);
-      border-radius: 10px;
+      background: #f59e0b;
+      border-radius: 20px;
     }
 
     .draw-date {
-      background: var(--gold-light);
-      border-radius: 10px;
+      background: #fff7df;
+      color: #7a5200;
       padding: 9px 12px;
+      border-radius: 10px;
       font-size: 13px;
       margin-bottom: 15px;
-      color: #7a5200;
     }
 
-    .card button {
+    .card-btn {
+      display: block;
       width: 100%;
+      text-align: center;
+      background: #f59e0b;
+      color: #111827;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
     }
 
-    /* ================= HOW ================= */
+    .card-btn:hover {
+      background: #fbbf24;
+    }
+
+    /* ===== HOW IT WORKS ===== */
 
     .how {
       background: white;
@@ -360,6 +319,7 @@
     .steps {
       max-width: 1000px;
       margin: auto;
+
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
@@ -368,23 +328,25 @@
     .step {
       text-align: center;
       padding: 28px 20px;
-      border: 1px solid var(--border);
+      border: 1px solid #e5e7eb;
       border-radius: 18px;
-      background: #fff;
     }
 
     .step-number {
       width: 52px;
       height: 52px;
       margin: 0 auto 15px;
+
       display: flex;
-      align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      background: var(--gold-light);
+      align-items: center;
+
+      background: #fff7df;
       color: #9a6700;
-      font-weight: 900;
-      font-size: 19px;
+      border-radius: 50%;
+
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .step h3 {
@@ -392,35 +354,31 @@
     }
 
     .step p {
-      color: var(--muted);
+      color: #667085;
       font-size: 14px;
     }
 
-    /* ================= SELL ================= */
-
-    .sell-section {
-      background: #f7f8fa;
-    }
+    /* ===== SELL ===== */
 
     .sell {
-      background: #fff;
       max-width: 700px;
       margin: auto;
+      background: white;
       padding: 32px;
       border-radius: 22px;
+      border: 1px solid #e5e7eb;
       box-shadow: 0 7px 30px rgba(0,0,0,.06);
-      border: 1px solid var(--border);
     }
 
     .sell-intro {
       text-align: center;
-      color: var(--muted);
+      color: #667085;
       margin-bottom: 25px;
     }
 
     label {
-      font-weight: bold;
       display: block;
+      font-weight: bold;
       margin-top: 10px;
     }
 
@@ -429,9 +387,11 @@
     select {
       width: 100%;
       padding: 13px;
-      margin: 8px 0 14px;
+      margin: 8px 0 15px;
+
       border: 1px solid #d0d5dd;
       border-radius: 10px;
+
       font-size: 16px;
       outline: none;
       background: white;
@@ -440,7 +400,7 @@
     input:focus,
     textarea:focus,
     select:focus {
-      border-color: var(--gold);
+      border-color: #f59e0b;
       box-shadow: 0 0 0 3px rgba(245,158,11,.12);
     }
 
@@ -449,15 +409,16 @@
       resize: vertical;
     }
 
-    .sell button {
+    .sell-btn {
       width: 100%;
-      margin-top: 8px;
+      border: none;
+      margin-top: 5px;
     }
 
-    /* ================= FOOTER ================= */
+    /* ===== FOOTER ===== */
 
     footer {
-      background: var(--dark);
+      background: #111827;
       color: white;
       text-align: center;
       padding: 35px 20px;
@@ -465,7 +426,7 @@
 
     footer .logo {
       display: inline-block;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
     }
 
     footer p {
@@ -479,17 +440,17 @@
 
     .footer-links a {
       color: #d0d5dd;
-      margin: 0 8px;
       font-size: 13px;
+      margin: 0 8px;
     }
 
     .footer-links a:hover {
-      color: var(--gold);
+      color: #f59e0b;
     }
 
-    /* ================= MOBILE ================= */
+    /* ===== MOBILE ===== */
 
-    @media(max-width: 800px) {
+    @media (max-width: 800px) {
 
       header {
         padding: 14px 5%;
@@ -521,555 +482,505 @@
 
       .stats {
         grid-template-columns: 1fr;
-        margin: -20px auto 0;
-        padding: 0 5%;
       }
 
-      .cards,
-      .steps {
+      .cards {
         grid-template-columns: 1fr;
       }
 
-      .title {
-        font-size: 28px;
+      .steps {
+        grid-template-columns: 1fr;
       }
 
       .sell {
         padding: 22px;
       }
 
+      .title {
+        font-size: 28px;
+      }
     }
 
   </style>
 </head>
 
-
 <body>
 
 
-<!-- ================= HEADER ================= -->
+  <!-- HEADER -->
 
-<header>
+  <header>
 
-  <a href="index.html" class="logo">
-    Sahba
-  </a>
-
-  <nav>
-
-    <a href="#draws">
-      السحوبات
+    <a href="index.html" class="logo">
+      Sahba
     </a>
 
-    <a href="#how">
-      كيف تعمل؟
-    </a>
+    <nav>
 
-    <a href="#sell">
+      <a href="#draws">
+        السحوبات
+      </a>
+
+      <a href="#how">
+        كيف تعمل؟
+      </a>
+
+      <a href="#sell">
+        اعرض منتجك
+      </a>
+
+      <!-- تسجيل الدخول -->
+      <a href="login.html" class="login-btn">
+        تسجيل الدخول
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="badge">
+      ✨ مرحبًا بك في Sahba
+    </div>
+
+    <h1>
+      أي حاجة عندك عايز تبيعها؟
+      <br>
+      <span>دخلها Sahba.</span>
+    </h1>
+
+    <p>
+      اعرض منتجك ووصلّه لناس أكتر من خلال منصة Sahba.
+    </p>
+
+    <a href="#sell" class="main-btn">
       اعرض منتجك
     </a>
 
-    <!-- تم ربط الزر بصفحة تسجيل الدخول -->
-
-    <a href="https://ahvshca-ship-it.github.io/sahbaaass/login.html" class="login-btn">
-      تسجيل الدخول
-    </a>
-
-  </nav>
-
-</header>
+  </section>
 
 
-<!-- ================= HERO ================= -->
+  <!-- STATS -->
 
-<section class="hero">
+  <div class="stats">
 
-  <div class="hero-badge">
-    ✨ مرحبًا بك في Sahba
-  </div>
-
-  <h1>
-    أي حاجة عندك عايز تبيعها؟
-    <br>
-    <span>دخلها Sahba.</span>
-  </h1>
-
-  <p>
-    اعرض منتجك، وصله لناس أكتر،
-    وخلي تجربتك مع Sahba أسهل وأبسط.
-  </p>
-
-  <button
-    class="main-btn"
-    onclick="document.getElementById('sell').scrollIntoView()"
-  >
-    اعرض منتجك
-  </button>
-
-  <div class="hero-note">
-    منصة جديدة • بسيطة • سريعة
-  </div>
-
-</section>
-
-
-<!-- ================= STATS ================= -->
-
-<div class="stats">
-
-  <div class="stat">
-    <strong>110</strong>
-    <span>تذكرة في العرض</span>
-  </div>
-
-  <div class="stat">
-    <strong>30 جنيه</strong>
-    <span>سعر التذكرة</span>
-  </div>
-
-  <div class="stat">
-    <strong>كل جمعة</strong>
-    <span>موعد السحب</span>
-  </div>
-
-</div>
-
-
-<!-- ================= DRAWS ================= -->
-
-<section id="draws">
-
-  <h2 class="title">
-    السحوبات الحالية
-  </h2>
-
-  <p class="subtitle">
-    شوف العروض المتاحة واختار العرض المناسب
-  </p>
-
-
-  <div class="cards">
-
-
-    <!-- CARD 1 -->
-
-    <div class="card">
-
-      <div class="image">
-        📱
-      </div>
-
-      <div class="content">
-
-        <span class="tag">
-          متاح الآن
-        </span>
-
-        <h3>
-          Samsung Galaxy
-        </h3>
-
-        <p class="description">
-          هاتف بحالة ممتازة وجاهز للعرض.
-        </p>
-
-        <div class="price">
-          30 جنيه
-          <span>
-            / التذكرة
-          </span>
-        </div>
-
-        <div class="ticket-row">
-
-          <span>
-            75 من 110 تذكرة
-          </span>
-
-          <span class="remaining">
-            35 متبقي
-          </span>
-
-        </div>
-
-        <div class="progress">
-          <div style="width:68%"></div>
-        </div>
-
-        <div class="draw-date">
-          📅 السحب القادم: الجمعة
-        </div>
-
-        <button
-          class="main-btn"
-          onclick="enterDraw('Samsung Galaxy')"
-        >
-          ادخل السحب
-        </button>
-
-      </div>
-
+    <div class="stat">
+      <strong>110</strong>
+      <span>تذكرة في العرض</span>
     </div>
 
-
-    <!-- CARD 2 -->
-
-    <div class="card">
-
-      <div class="image">
-        ⌚
-      </div>
-
-      <div class="content">
-
-        <span class="tag">
-          متاح الآن
-        </span>
-
-        <h3>
-          Smart Watch
-        </h3>
-
-        <p class="description">
-          ساعة ذكية جديدة بتصميم مميز.
-        </p>
-
-        <div class="price">
-          25 جنيه
-          <span>
-            / التذكرة
-          </span>
-        </div>
-
-        <div class="ticket-row">
-
-          <span>
-            42 من 110 تذكرة
-          </span>
-
-          <span class="remaining">
-            68 متبقي
-          </span>
-
-        </div>
-
-        <div class="progress">
-          <div style="width:38%"></div>
-        </div>
-
-        <div class="draw-date">
-          📅 السحب القادم: الجمعة
-        </div>
-
-        <button
-          class="main-btn"
-          onclick="enterDraw('Smart Watch')"
-        >
-          ادخل السحب
-        </button>
-
-      </div>
-
+    <div class="stat">
+      <strong>30 جنيه</strong>
+      <span>سعر التذكرة</span>
     </div>
 
-
-    <!-- CARD 3 -->
-
-    <div class="card">
-
-      <div class="image">
-        🎧
-      </div>
-
-      <div class="content">
-
-        <span class="tag">
-          متاح الآن
-        </span>
-
-        <h3>
-          Wireless Headphones
-        </h3>
-
-        <p class="description">
-          سماعة لاسلكية بجودة ممتازة.
-        </p>
-
-        <div class="price">
-          20 جنيه
-          <span>
-            / التذكرة
-          </span>
-        </div>
-
-        <div class="ticket-row">
-
-          <span>
-            90 من 110 تذكرة
-          </span>
-
-          <span class="remaining">
-            20 متبقي
-          </span>
-
-        </div>
-
-        <div class="progress">
-          <div style="width:82%"></div>
-        </div>
-
-        <div class="draw-date">
-          📅 السحب القادم: الجمعة
-        </div>
-
-        <button
-          class="main-btn"
-          onclick="enterDraw('Wireless Headphones')"
-        >
-          ادخل السحب
-        </button>
-
-      </div>
-
+    <div class="stat">
+      <strong>كل جمعة</strong>
+      <span>موعد السحب</span>
     </div>
-
 
   </div>
 
-</section>
 
+  <!-- DRAWS -->
 
-<!-- ================= HOW IT WORKS ================= -->
+  <section id="draws">
 
-<section class="how" id="how">
+    <h2 class="title">
+      السحوبات الحالية
+    </h2>
 
-  <h2 class="title">
-    كيف تعمل Sahba؟
-  </h2>
-
-  <p class="subtitle">
-    خطوات بسيطة لفهم طريقة استخدام المنصة
-  </p>
-
-
-  <div class="steps">
-
-
-    <div class="step">
-
-      <div class="step-number">
-        1
-      </div>
-
-      <h3>
-        اختار العرض
-      </h3>
-
-      <p>
-        تصفح المنتجات والعروض الموجودة على Sahba.
-      </p>
-
-    </div>
-
-
-    <div class="step">
-
-      <div class="step-number">
-        2
-      </div>
-
-      <h3>
-        شارك
-      </h3>
-
-      <p>
-        اختر العرض المناسب واتبع خطوات المشاركة.
-      </p>
-
-    </div>
-
-
-    <div class="step">
-
-      <div class="step-number">
-        3
-      </div>
-
-      <h3>
-        تابع النتيجة
-      </h3>
-
-      <p>
-        تابع حالة العرض والنتيجة من خلال الموقع.
-      </p>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- ================= SELL ================= -->
-
-<section id="sell" class="sell-section">
-
-  <h2 class="title">
-    اعرض منتجك على Sahba
-  </h2>
-
-  <p class="subtitle">
-    عندك منتج وعايز توصله لناس أكتر؟
-  </p>
-
-
-  <div class="sell">
-
-    <p class="sell-intro">
-      املأ البيانات التالية وسيتم مراجعة المنتج قبل نشره.
+    <p class="subtitle">
+      العروض المتاحة حاليًا
     </p>
 
 
-    <label>
-      اسم المنتج
-    </label>
-
-    <input
-      type="text"
-      placeholder="مثال: iPhone 13"
-    >
+    <div class="cards">
 
 
-    <label>
-      الفئة
-    </label>
+      <!-- PRODUCT 1 -->
 
-    <select>
+      <div class="card">
 
-      <option>
-        موبايل
-      </option>
+        <div class="product-image">
+          📱
+        </div>
 
-      <option>
-        لابتوب
-      </option>
+        <div class="content">
 
-      <option>
-        ساعة
-      </option>
+          <span class="tag">
+            متاح الآن
+          </span>
 
-      <option>
-        سماعة
-      </option>
+          <h3>
+            Samsung Galaxy
+          </h3>
 
-      <option>
-        تلفزيون
-      </option>
+          <p class="description">
+            هاتف بحالة ممتازة.
+          </p>
 
-      <option>
-        أخرى
-      </option>
+          <div class="price">
+            30 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
 
-    </select>
+          <div class="ticket-info">
+            <span>
+              75 من 110
+            </span>
 
+            <span class="remaining">
+              35 متبقي
+            </span>
+          </div>
 
-    <label>
-      وصف المنتج
-    </label>
+          <div class="progress">
+            <div style="width:68%;"></div>
+          </div>
 
-    <textarea
-      placeholder="اكتب مواصفات وحالة المنتج..."
-    ></textarea>
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
 
+          <a href="draw.html" class="card-btn">
+            ادخل السحب
+          </a>
 
-    <label>
-      السعر المطلوب
-    </label>
+        </div>
 
-    <input
-      type="number"
-      placeholder="مثال: 3000"
-    >
-
-
-    <label>
-      رقم الهاتف
-    </label>
-
-    <input
-      type="tel"
-      placeholder="مثال: 01xxxxxxxxx"
-    >
+      </div>
 
 
-    <button
-      class="main-btn"
-      onclick="submitProduct()"
-    >
-      إرسال المنتج للمراجعة
-    </button>
+      <!-- PRODUCT 2 -->
 
-  </div>
+      <div class="card">
 
-</section>
+        <div class="product-image">
+          ⌚
+        </div>
 
+        <div class="content">
 
-<!-- ================= FOOTER ================= -->
+          <span class="tag">
+            متاح الآن
+          </span>
 
-<footer>
+          <h3>
+            Smart Watch
+          </h3>
 
-  <div class="logo">
-    Sahba
-  </div>
+          <p class="description">
+            ساعة ذكية بتصميم مميز.
+          </p>
 
-  <p>
-    أي حاجة عندك عايز تبيعها، دخلها Sahba.
-  </p>
+          <div class="price">
+            25 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
 
-  <div class="footer-links">
+          <div class="ticket-info">
+            <span>
+              42 من 110
+            </span>
 
-    <a href="#">
-      الشروط والأحكام
-    </a>
+            <span class="remaining">
+              68 متبقي
+            </span>
+          </div>
 
-    <a href="#">
-      سياسة الخصوصية
-    </a>
+          <div class="progress">
+            <div style="width:38%;"></div>
+          </div>
 
-    <a href="#">
-      تواصل معنا
-    </a>
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
 
-  </div>
+          <a href="draw.html" class="card-btn">
+            ادخل السحب
+          </a>
 
-</footer>
+        </div>
 
-
-<!-- ================= JAVASCRIPT ================= -->
-
-<script>
-
-  function enterDraw(product) {
-
-    alert(
-      "صفحة " +
-      product +
-      " سيتم تجهيزها في الخطوة القادمة."
-    );
-
-  }
+      </div>
 
 
-  function submitProduct() {
+      <!-- PRODUCT 3 -->
 
-    alert(
-      "تم إرسال المنتج للمراجعة بنجاح."
-    );
+      <div class="card">
 
-  }
+        <div class="product-image">
+          🎧
+        </div>
 
-</script>
+        <div class="content">
+
+          <span class="tag">
+            متاح الآن
+          </span>
+
+          <h3>
+            Wireless Headphones
+          </h3>
+
+          <p class="description">
+            سماعة لاسلكية بجودة ممتازة.
+          </p>
+
+          <div class="price">
+            20 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+          <div class="ticket-info">
+            <span>
+              90 من 110
+            </span>
+
+            <span class="remaining">
+              20 متبقي
+            </span>
+          </div>
+
+          <div class="progress">
+            <div style="width:82%;"></div>
+          </div>
+
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
+
+          <a href="draw.html" class="card-btn">
+            ادخل السحب
+          </a>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+
+  <section class="how" id="how">
+
+    <h2 class="title">
+      كيف تعمل Sahba؟
+    </h2>
+
+    <p class="subtitle">
+      خطوات بسيطة لاستخدام الموقع
+    </p>
+
+
+    <div class="steps">
+
+
+      <div class="step">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <h3>
+          اختار العرض
+        </h3>
+
+        <p>
+          تصفح المنتجات والعروض الموجودة على Sahba.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <h3>
+          شارك
+        </h3>
+
+        <p>
+          اختر العرض المناسب واتبع خطوات المشاركة.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          3
+        </div>
+
+        <h3>
+          تابع النتيجة
+        </h3>
+
+        <p>
+          تابع حالة العرض والنتيجة من خلال الموقع.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- SELL -->
+
+  <section id="sell">
+
+    <h2 class="title">
+      اعرض منتجك على Sahba
+    </h2>
+
+    <p class="subtitle">
+      عندك منتج وعايز تعرضه؟
+    </p>
+
+
+    <div class="sell">
+
+      <p class="sell-intro">
+        اكتب بيانات المنتج وسيتم مراجعته قبل النشر.
+      </p>
+
+
+      <label>
+        اسم المنتج
+      </label>
+
+      <input
+        type="text"
+        placeholder="مثال: iPhone 13"
+      >
+
+
+      <label>
+        الفئة
+      </label>
+
+      <select>
+
+        <option>
+          موبايل
+        </option>
+
+        <option>
+          لابتوب
+        </option>
+
+        <option>
+          ساعة
+        </option>
+
+        <option>
+          سماعة
+        </option>
+
+        <option>
+          تلفزيون
+        </option>
+
+        <option>
+          أخرى
+        </option>
+
+      </select>
+
+
+      <label>
+        وصف المنتج
+      </label>
+
+      <textarea
+        placeholder="اكتب مواصفات وحالة المنتج..."
+      ></textarea>
+
+
+      <label>
+        السعر المطلوب
+      </label>
+
+      <input
+        type="number"
+        placeholder="مثال: 3000"
+      >
+
+
+      <label>
+        رقم الهاتف
+      </label>
+
+      <input
+        type="tel"
+        placeholder="01xxxxxxxxx"
+      >
+
+
+      <button
+        type="button"
+        class="main-btn sell-btn"
+        onclick="alert('تم إرسال المنتج للمراجعة')"
+      >
+        إرسال المنتج للمراجعة
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba
+    </p>
+
+    <div class="footer-links">
+
+      <a href="#">
+        الشروط والأحكام
+      </a>
+
+      <a href="#">
+        سياسة الخصوصية
+      </a>
+
+      <a href="#">
+        تواصل معنا
+      </a>
+
+    </div>
+
+  </footer>
 
 
 </body>
