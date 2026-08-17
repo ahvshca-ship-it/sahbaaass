@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تأكيد الرقم | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --dark: #111827;
+      --gold: #f59e0b;
+      --gold-light: #fff7df;
+      --gray: #f7f8fa;
+      --text: #111827;
+      --muted: #667085;
+      --border: #d0d5dd;
+      --green: #16a34a;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.12),
+          transparent 35%
+        ),
+        var(--gray);
+
+      color: var(--text);
+
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      background: var(--dark);
+
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: var(--gold);
+
+      font-size: 30px;
+
+      font-weight: 900;
+
+      text-decoration: none;
+    }
+
+    .back {
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 15px;
+    }
+
+    .back:hover {
+      color: var(--gold);
+    }
+
+    /* MAIN */
+
+    main {
+      flex: 1;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 45px 20px;
+    }
+
+    .verify-box {
+      width: 100%;
+
+      max-width: 470px;
+
+      background: white;
+
+      padding: 35px;
+
+      border-radius: 22px;
+
+      border: 1px solid #e5e7eb;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.08);
+
+      text-align: center;
+    }
+
+    .whatsapp-icon {
+      width: 72px;
+
+      height: 72px;
+
+      margin: 0 auto 18px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      border-radius: 50%;
+
+      background: #dcfce7;
+
+      font-size: 38px;
+    }
+
+    h1 {
+      font-size: 27px;
+
+      margin-bottom: 9px;
+    }
+
+    .description {
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.8;
+
+      margin-bottom: 10px;
+    }
+
+    .phone {
+      display: inline-block;
+
+      color: var(--dark);
+
+      background: var(--gold-light);
+
+      border: 1px solid #f5d98a;
+
+      padding: 7px 14px;
+
+      border-radius: 20px;
+
+      font-weight: bold;
+
+      direction: ltr;
+
+      margin-bottom: 25px;
+    }
+
+    /* OTP */
+
+    .otp-container {
+      direction: ltr;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 9px;
+
+      margin: 20px 0 24px;
+    }
+
+    .otp {
+      width: 50px;
+
+      height: 58px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 11px;
+
+      text-align: center;
+
+      font-size: 25px;
+
+      font-weight: bold;
+
+      outline: none;
+    }
+
+    .otp:focus {
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 0 3px rgba(245,158,11,.13);
+    }
+
+    /* BUTTON */
+
+    .verify-btn {
+      width: 100%;
+
+      border: none;
+
+      background: var(--gold);
+
+      color: var(--dark);
+
+      padding: 14px;
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .verify-btn:hover {
+      background: #fbbf24;
+
+      transform: translateY(-1px);
+    }
+
+    /* TIMER */
+
+    .timer {
+      margin-top: 18px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .timer span {
+      color: var(--dark);
+
+      font-weight: bold;
+    }
+
+    .resend {
+      display: none;
+
+      margin-top: 18px;
+
+      border: none;
+
+      background: transparent;
+
+      color: #9a6700;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    .resend:hover {
+      text-decoration: underline;
+    }
+
+    /* CHANGE NUMBER */
+
+    .change-number {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      text-decoration: none;
+    }
+
+    .change-number:hover {
+      color: #9a6700;
+    }
+
+    /* MESSAGE */
+
+    .message {
+      display: none;
+
+      margin-top: 18px;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      font-size: 14px;
+    }
+
+    .error {
+      background: #fef2f2;
+
+      color: #b91c1c;
+    }
+
+    .success {
+      background: #f0fdf4;
+
+      color: var(--green);
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--dark);
+
+      color: white;
+
+      text-align: center;
+
+      padding: 22px;
+    }
+
+    footer p {
+      color: #98a2b3;
+
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 500px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      .verify-box {
+        padding: 28px 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .otp-container {
+        gap: 6px;
+      }
+
+      .otp {
+        width: 44px;
+
+        height: 54px;
+
+        font-size: 23px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <a href="register.html" class="back">
+      ← تعديل البيانات
+    </a>
+
+  </header>
+
+
+  <!-- VERIFY -->
+
+  <main>
+
+    <div class="verify-box">
+
+
+      <div class="whatsapp-icon">
+        💬
+      </div>
+
+
+      <h1>
+        تأكيد رقم الهاتف
+      </h1>
+
+
+      <p class="description">
+        أرسلنا كود التحقق المكون من 6 أرقام
+        <br>
+        إلى رقم واتساب الخاص بك
+      </p>
+
+
+      <div class="phone" id="phoneDisplay">
+        جاري تحميل الرقم...
+      </div>
+
+
+      <!-- OTP -->
+
+      <div class="otp-container">
+
+        <input
+          class="otp"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          autocomplete="one-time-code"
+          id="otp1"
+        >
+
+        <input
+          class="otp"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          id="otp2"
+        >
+
+        <input
+          class="otp"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          id="otp3"
+        >
+
+        <input
+          class="otp"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          id="otp4"
+        >
+
+        <input
+          class="otp"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          id="otp5"
+        >
+
+        <input
+          class="otp"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          id="otp6"
+        >
+
+      </div>
+
+
+      <!-- VERIFY BUTTON -->
+
+      <button
+        class="verify-btn"
+        onclick="verifyCode()"
+      >
+        تأكيد الحساب
+      </button>
+
+
+      <!-- TIMER -->
+
+      <div class="timer" id="timer">
+        يمكنك طلب كود جديد بعد
+        <span id="seconds">60</span>
+        ثانية
+      </div>
+
+
+      <!-- RESEND -->
+
+      <button
+        class="resend"
+        id="resend"
+        onclick="resendCode()"
+      >
+        إعادة إرسال الكود
+      </button>
+
+
+      <!-- MESSAGE -->
+
+      <div
+        class="message error"
+        id="errorMessage"
+      ></div>
+
+
+      <div
+        class="message success"
+        id="successMessage"
+      ></div>
+
+
+      <!-- CHANGE PHONE -->
+
+      <a
+        href="register.html"
+        class="change-number"
+      >
+        ← تغيير رقم الهاتف
+      </a>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 Sahba — جميع الحقوق محفوظة
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    /* =========================
+       عرض رقم الهاتف
+    ========================= */
+
+    const phone =
+      sessionStorage.getItem("sahba_phone");
+
+
+    if (phone) {
+
+      document.getElementById(
+        "phoneDisplay"
+      ).textContent = phone;
+
+    } else {
+
+      document.getElementById(
+        "phoneDisplay"
+      ).textContent = "لم يتم إدخال رقم";
+
+    }
+
+
+    /* =========================
+       التحكم في خانات OTP
+    ========================= */
+
+    const otpInputs =
+      document.querySelectorAll(".otp");
+
+
+    otpInputs.forEach((input, index) => {
+
+      input.addEventListener("input", function() {
+
+        this.value =
+          this.value.replace(/[^0-9]/g, "");
+
+
+        if (
+          this.value &&
+          index < otpInputs.length - 1
+        ) {
+
+          otpInputs[index + 1].focus();
+
+        }
+
+      });
+
+
+      input.addEventListener("keydown", function(event) {
+
+        if (
+          event.key === "Backspace" &&
+          !this.value &&
+          index > 0
+        ) {
+
+          otpInputs[index - 1].focus();
+
+        }
+
+      });
+
+    });
+
+
+    /* =========================
+       لصق الكود كامل
+    ========================= */
+
+    otpInputs[0].addEventListener(
+      "paste",
+      function(event) {
+
+        event.preventDefault();
+
+        const pasted =
+          event.clipboardData
+            .getData("text")
+            .replace(/\D/g, "")
+            .slice(0, 6);
+
+
+        pasted.split("").forEach(
+          (number, index) => {
+
+            if (otpInputs[index]) {
+
+              otpInputs[index].value =
+                number;
+
+            }
+
+          }
+        );
+
+
+        if (pasted.length === 6) {
+
+          otpInputs[5].focus();
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       العداد
+    ========================= */
+
+    let timeLeft = 60;
+
+    const timer =
+      setInterval(function() {
+
+        timeLeft--;
+
+        document.getElementById(
+          "seconds"
+        ).textContent = timeLeft;
+
+
+        if (timeLeft <= 0) {
+
+          clearInterval(timer);
+
+          document.getElementById(
+            "timer"
+          ).style.display = "none";
+
+          document.getElementById(
+            "resend"
+          ).style.display = "inline-block";
+
+        }
+
+      }, 1000);
+
+
+    /* =========================
+       إعادة إرسال الكود
+    ========================= */
+
+    function resendCode() {
+
+      /*
+        حاليًا تجريبي.
+
+        لاحقًا هنا سيتم استدعاء الـBackend
+        لإرسال OTP جديد إلى WhatsApp.
+      */
+
+      alert(
+        "سيتم إرسال كود جديد إلى واتساب في النسخة المتصلة بالـBackend."
+      );
+
+    }
+
+
+    /* =========================
+       التحقق من الكود
+    ========================= */
+
+    function verifyCode() {
+
+      let code = "";
+
+      otpInputs.forEach(
+        input => {
+          code += input.value;
+        }
+      );
+
+
+      if (code.length !== 6) {
+
+        showError(
+          "من فضلك أدخل كود التحقق المكون من 6 أرقام."
+        );
+
+        return;
+
+      }
+
+
+      /*
+        في النسخة الحالية:
+
+        لا يوجد Backend حتى الآن،
+        لذلك لا يوجد تحقق حقيقي من OTP.
+
+        لاحقًا سيتم إرسال الكود إلى
+        السيرفر للتحقق منه.
+      */
+
+
+      showSuccess(
+        "تم إدخال الكود بنجاح. سيتم تفعيل الحساب بعد ربط النظام بالـBackend."
+      );
+
+
+      /*
+        بعد ربط الـBackend الحقيقي
+        سنستخدم هنا مثلًا:
+
+        window.location.href = "account.html";
+
+      */
+
+    }
+
+
+    /* =========================
+       رسائل الخطأ
+    ========================= */
+
+    function showError(message) {
+
+      const box =
+        document.getElementById(
+          "errorMessage"
+        );
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+
+      document.getElementById(
+        "successMessage"
+      ).style.display = "none";
+
+    }
+
+
+    /* =========================
+       رسائل النجاح
+    ========================= */
+
+    function showSuccess(message) {
+
+      const box =
+        document.getElementById(
+          "successMessage"
+        );
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+
+      document.getElementById(
+        "errorMessage"
+      ).style.display = "none";
+
+    }
+
+  </script>
+
+
+</body>
+</html>
