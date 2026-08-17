@@ -86,7 +86,6 @@
 
     nav a {
       color: #ffffff;
-      text-decoration: none;
       margin: 0 8px;
       font-size: 15px;
       transition: .2s;
@@ -101,6 +100,10 @@
       padding: 8px 16px;
       border-radius: 9px;
       color: var(--gold) !important;
+    }
+
+    .login-btn:hover {
+      background: rgba(245,158,11,.08);
     }
 
     /* ================= HERO ================= */
@@ -183,24 +186,6 @@
       font-size: 13px;
     }
 
-    /* ================= SECTIONS ================= */
-
-    section {
-      padding: 65px 7%;
-    }
-
-    .title {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 32px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: var(--muted);
-      margin-bottom: 35px;
-    }
-
     /* ================= STATS ================= */
 
     .stats {
@@ -210,6 +195,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
+      padding: 0 20px;
     }
 
     .stat {
@@ -230,6 +216,24 @@
     .stat span {
       color: var(--muted);
       font-size: 13px;
+    }
+
+    /* ================= SECTIONS ================= */
+
+    section {
+      padding: 65px 7%;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 35px;
     }
 
     /* ================= CARDS ================= */
@@ -261,12 +265,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background:
-        linear-gradient(
-          135deg,
-          #eef0f3,
-          #f8f9fb
-        );
+      background: linear-gradient(
+        135deg,
+        #eef0f3,
+        #f8f9fb
+      );
       font-size: 75px;
     }
 
@@ -480,6 +483,10 @@
       font-size: 13px;
     }
 
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
     /* ================= MOBILE ================= */
 
     @media(max-width: 800px) {
@@ -514,7 +521,8 @@
 
       .stats {
         grid-template-columns: 1fr;
-        margin: -20px 5% 0;
+        margin: -20px auto 0;
+        padding: 0 5%;
       }
 
       .cards,
@@ -529,6 +537,7 @@
       .sell {
         padding: 22px;
       }
+
     }
 
   </style>
@@ -542,9 +551,9 @@
 
 <header>
 
-  <div class="logo">
+  <a href="index.html" class="logo">
     Sahba
-  </div>
+  </a>
 
   <nav>
 
@@ -560,7 +569,9 @@
       اعرض منتجك
     </a>
 
-    <a href="#" class="login-btn">
+    <!-- تم ربط الزر بصفحة تسجيل الدخول -->
+
+    <a href="login.html" class="login-btn">
       تسجيل الدخول
     </a>
 
@@ -1042,9 +1053,9 @@
   function enterDraw(product) {
 
     alert(
-      "هتدخل على صفحة " +
+      "صفحة " +
       product +
-      " لاختيار التذاكر في الخطوة القادمة."
+      " سيتم تجهيزها في الخطوة القادمة."
     );
 
   }
