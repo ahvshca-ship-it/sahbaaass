@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>إنشاء حساب | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --dark: #111827;
+      --gold: #f59e0b;
+      --gold-light: #fff7df;
+      --gray: #f7f8fa;
+      --text: #111827;
+      --muted: #667085;
+      --border: #d0d5dd;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.12),
+          transparent 35%
+        ),
+        var(--gray);
+
+      color: var(--text);
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+
+    header {
+      background: var(--dark);
+      color: white;
+
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .back {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back:hover {
+      color: var(--gold);
+    }
+
+    /* ===== MAIN ===== */
+
+    main {
+      flex: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 45px 20px;
+    }
+
+    .register-box {
+      width: 100%;
+      max-width: 470px;
+
+      background: white;
+
+      padding: 34px;
+
+      border-radius: 22px;
+
+      border: 1px solid #e5e7eb;
+
+      box-shadow: 0 15px 45px rgba(0,0,0,.08);
+    }
+
+    .register-logo {
+      text-align: center;
+
+      color: var(--gold);
+
+      font-size: 38px;
+
+      font-weight: 900;
+
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      text-align: center;
+
+      font-size: 26px;
+
+      margin-bottom: 8px;
+    }
+
+    .description {
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      margin-bottom: 27px;
+    }
+
+    /* ===== FORM ===== */
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 14px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      outline: none;
+
+      transition: .2s;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 0 3px rgba(245,158,11,.12);
+    }
+
+    .password-box {
+      position: relative;
+    }
+
+    .password-box input {
+      padding-left: 55px;
+    }
+
+    .show-password {
+      position: absolute;
+
+      left: 9px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      border: none;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      cursor: pointer;
+
+      padding: 5px;
+    }
+
+    /* ===== TERMS ===== */
+
+    .terms {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 8px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      margin: 18px 0;
+    }
+
+    .terms input {
+      width: auto;
+
+      margin-top: 4px;
+    }
+
+    .terms a {
+      color: #9a6700;
+
+      font-weight: bold;
+
+      text-decoration: none;
+    }
+
+    /* ===== BUTTON ===== */
+
+    .register-btn {
+      width: 100%;
+
+      border: none;
+
+      background: var(--gold);
+
+      color: var(--dark);
+
+      padding: 14px;
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .register-btn:hover {
+      background: #fbbf24;
+
+      transform: translateY(-1px);
+    }
+
+    /* ===== DIVIDER ===== */
+
+    .divider {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      color: #98a2b3;
+
+      font-size: 13px;
+
+      margin: 24px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #e5e7eb;
+    }
+
+    /* ===== LOGIN LINK ===== */
+
+    .login {
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .login a {
+      color: #9a6700;
+
+      font-weight: bold;
+
+      text-decoration: none;
+    }
+
+    .login a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
+
+    footer {
+      background: var(--dark);
+
+      color: white;
+
+      text-align: center;
+
+      padding: 22px;
+    }
+
+    footer p {
+      color: #98a2b3;
+
+      font-size: 13px;
+    }
+
+    /* ===== MOBILE ===== */
+
+    @media(max-width: 500px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      .register-box {
+        padding: 27px 20px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <a href="index.html" class="back">
+      ← العودة للرئيسية
+    </a>
+
+  </header>
+
+
+  <!-- REGISTER -->
+
+  <main>
+
+    <div class="register-box">
+
+
+      <div class="register-logo">
+        Sahba
+      </div>
+
+
+      <h1>
+        إنشاء حساب جديد
+      </h1>
+
+
+      <p class="description">
+        أنشئ حسابك وابدأ استخدام Sahba
+      </p>
+
+
+      <form onsubmit="registerUser(event)">
+
+
+        <!-- NAME -->
+
+        <div class="input-group">
+
+          <label for="name">
+            الاسم بالكامل
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            placeholder="مثال: محمد أحمد"
+            required
+          >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="input-group">
+
+          <label for="phone">
+            رقم الهاتف
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            placeholder="01xxxxxxxxx"
+            maxlength="11"
+            required
+          >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="input-group">
+
+          <label for="password">
+            كلمة المرور
+          </label>
+
+          <div class="password-box">
+
+            <input
+              id="password"
+              type="password"
+              placeholder="6 أحرف على الأقل"
+              minlength="6"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              onclick="togglePassword('password', this)"
+            >
+              إظهار
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <div class="input-group">
+
+          <label for="confirmPassword">
+            تأكيد كلمة المرور
+          </label>
+
+          <div class="password-box">
+
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="أعد كتابة كلمة المرور"
+              minlength="6"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              onclick="togglePassword('confirmPassword', this)"
+            >
+              إظهار
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- TERMS -->
+
+        <label class="terms">
+
+          <input
+            type="checkbox"
+            id="terms"
+            required
+          >
+
+          <span>
+            أوافق على
+            <a href="#">
+              الشروط والأحكام
+            </a>
+            وسياسة الخصوصية.
+          </span>
+
+        </label>
+
+
+        <!-- BUTTON -->
+
+        <button
+          type="submit"
+          class="register-btn"
+        >
+          إنشاء الحساب
+        </button>
+
+
+      </form>
+
+
+      <div class="divider">
+        أو
+      </div>
+
+
+      <div class="login">
+
+        لديك حساب بالفعل؟
+
+        <a href="login.html">
+          تسجيل الدخول
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 Sahba — جميع الحقوق محفوظة
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    function togglePassword(id, button) {
+
+      const input =
+        document.getElementById(id);
+
+      if (input.type === "password") {
+
+        input.type = "text";
+
+        button.textContent = "إخفاء";
+
+      } else {
+
+        input.type = "password";
+
+        button.textContent = "إظهار";
+
+      }
+
+    }
+
+
+    function registerUser(event) {
+
+      event.preventDefault();
+
+      const password =
+        document.getElementById("password").value;
+
+      const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+      if (password !== confirmPassword) {
+
+        alert("كلمتا المرور غير متطابقتين.");
+
+        return;
+
+      }
+
+
+      alert(
+        "تم استلام بيانات إنشاء الحساب. سيتم ربط التسجيل بقاعدة البيانات في المرحلة القادمة."
+      );
+
+    }
+
+  </script>
+
+
+</body>
+</html>
