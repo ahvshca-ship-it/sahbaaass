@@ -8,7 +8,6 @@
   <title>إنشاء حساب | Sahba</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -28,32 +27,23 @@
     body {
       font-family: Arial, Tahoma, sans-serif;
       background:
-        radial-gradient(
-          circle at top right,
+        radial-gradient(circle at top right,
           rgba(245,158,11,.12),
-          transparent 35%
-        ),
+          transparent 35%),
         var(--gray);
-
       color: var(--text);
       min-height: 100vh;
-
       display: flex;
       flex-direction: column;
     }
 
-    /* ===== HEADER ===== */
-
     header {
       background: var(--dark);
       color: white;
-
       padding: 16px 7%;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       box-shadow: 0 4px 20px rgba(0,0,0,.12);
     }
 
@@ -61,6 +51,7 @@
       color: var(--gold);
       font-size: 30px;
       font-weight: 900;
+      text-decoration: none;
     }
 
     .back {
@@ -73,64 +64,44 @@
       color: var(--gold);
     }
 
-    /* ===== MAIN ===== */
-
     main {
       flex: 1;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       padding: 45px 20px;
     }
 
     .register-box {
       width: 100%;
-      max-width: 470px;
-
+      max-width: 500px;
       background: white;
-
       padding: 34px;
-
       border-radius: 22px;
-
       border: 1px solid #e5e7eb;
-
       box-shadow: 0 15px 45px rgba(0,0,0,.08);
     }
 
     .register-logo {
       text-align: center;
-
       color: var(--gold);
-
       font-size: 38px;
-
       font-weight: 900;
-
       margin-bottom: 5px;
     }
 
     h1 {
       text-align: center;
-
       font-size: 26px;
-
       margin-bottom: 8px;
     }
 
     .description {
       text-align: center;
-
       color: var(--muted);
-
       font-size: 14px;
-
       margin-bottom: 27px;
     }
-
-    /* ===== FORM ===== */
 
     .input-group {
       margin-bottom: 16px;
@@ -138,33 +109,31 @@
 
     label {
       display: block;
-
       font-weight: bold;
-
       margin-bottom: 7px;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
-
       padding: 14px;
-
       border: 1px solid var(--border);
-
       border-radius: 11px;
-
       font-size: 16px;
-
       outline: none;
-
-      transition: .2s;
+      background: white;
     }
 
-    input:focus {
+    input:focus,
+    select:focus {
       border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(245,158,11,.12);
+    }
 
-      box-shadow:
-        0 0 0 3px rgba(245,158,11,.12);
+    .phone-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
     }
 
     .password-box {
@@ -172,161 +141,102 @@
     }
 
     .password-box input {
-      padding-left: 55px;
+      padding-left: 60px;
     }
 
     .show-password {
       position: absolute;
-
       left: 9px;
       top: 50%;
-
       transform: translateY(-50%);
-
       border: none;
-
       background: transparent;
-
       color: var(--muted);
-
       font-size: 13px;
-
       cursor: pointer;
-
       padding: 5px;
     }
 
-    /* ===== TERMS ===== */
-
     .terms {
       display: flex;
-
       align-items: flex-start;
-
       gap: 8px;
-
       color: var(--muted);
-
       font-size: 13px;
-
       margin: 18px 0;
     }
 
     .terms input {
       width: auto;
-
       margin-top: 4px;
     }
 
     .terms a {
       color: #9a6700;
-
       font-weight: bold;
-
       text-decoration: none;
     }
 
-    /* ===== BUTTON ===== */
-
     .register-btn {
       width: 100%;
-
       border: none;
-
       background: var(--gold);
-
       color: var(--dark);
-
       padding: 14px;
-
       border-radius: 11px;
-
       font-size: 16px;
-
       font-weight: 900;
-
       cursor: pointer;
-
       transition: .2s;
     }
 
     .register-btn:hover {
       background: #fbbf24;
-
       transform: translateY(-1px);
     }
 
-    /* ===== DIVIDER ===== */
-
     .divider {
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       color: #98a2b3;
-
       font-size: 13px;
-
       margin: 24px 0;
     }
 
     .divider::before,
     .divider::after {
       content: "";
-
       flex: 1;
-
       height: 1px;
-
       background: #e5e7eb;
     }
 
-    /* ===== LOGIN LINK ===== */
-
     .login {
       text-align: center;
-
       color: var(--muted);
-
       font-size: 14px;
     }
 
     .login a {
       color: #9a6700;
-
       font-weight: bold;
-
       text-decoration: none;
     }
 
-    .login a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== FOOTER ===== */
-
     footer {
       background: var(--dark);
-
       color: white;
-
       text-align: center;
-
       padding: 22px;
     }
 
     footer p {
       color: #98a2b3;
-
       font-size: 13px;
     }
 
-    /* ===== MOBILE ===== */
-
-    @media(max-width: 500px) {
-
+    @media(max-width:500px) {
       header {
         padding: 14px 5%;
       }
@@ -342,16 +252,11 @@
       h1 {
         font-size: 23px;
       }
-
     }
-
   </style>
 </head>
 
 <body>
-
-
-  <!-- HEADER -->
 
   <header>
 
@@ -366,32 +271,26 @@
   </header>
 
 
-  <!-- REGISTER -->
-
   <main>
 
     <div class="register-box">
-
 
       <div class="register-logo">
         Sahba
       </div>
 
-
       <h1>
         إنشاء حساب جديد
       </h1>
 
-
       <p class="description">
-        أنشئ حسابك وابدأ استخدام Sahba
+        أدخل بياناتك لإنشاء حسابك على Sahba
       </p>
 
 
       <form onsubmit="registerUser(event)">
 
-
-        <!-- NAME -->
+        <!-- الاسم -->
 
         <div class="input-group">
 
@@ -403,18 +302,19 @@
             id="name"
             type="text"
             placeholder="مثال: محمد أحمد"
+            autocomplete="name"
             required
           >
 
         </div>
 
 
-        <!-- PHONE -->
+        <!-- رقم الواتساب -->
 
         <div class="input-group">
 
           <label for="phone">
-            رقم الهاتف
+            رقم الهاتف / واتساب
           </label>
 
           <input
@@ -422,13 +322,84 @@
             type="tel"
             placeholder="01xxxxxxxxx"
             maxlength="11"
+            inputmode="numeric"
+            autocomplete="tel"
+            required
+          >
+
+          <div class="phone-note">
+            سيتم استخدام الرقم لإرسال كود التحقق عبر واتساب.
+          </div>
+
+        </div>
+
+
+        <!-- المحافظة -->
+
+        <div class="input-group">
+
+          <label for="governorate">
+            المحافظة
+          </label>
+
+          <select id="governorate" required>
+
+            <option value="">
+              اختر المحافظة
+            </option>
+
+            <option>القاهرة</option>
+            <option>الجيزة</option>
+            <option>القليوبية</option>
+            <option>الإسكندرية</option>
+            <option>البحيرة</option>
+            <option>مطروح</option>
+            <option>دمياط</option>
+            <option>الدقهلية</option>
+            <option>الشرقية</option>
+            <option>الغربية</option>
+            <option>المنوفية</option>
+            <option>كفر الشيخ</option>
+            <option>بورسعيد</option>
+            <option>الإسماعيلية</option>
+            <option>السويس</option>
+            <option>شمال سيناء</option>
+            <option>جنوب سيناء</option>
+            <option>الفيوم</option>
+            <option>بني سويف</option>
+            <option>المنيا</option>
+            <option>أسيوط</option>
+            <option>سوهاج</option>
+            <option>قنا</option>
+            <option>الأقصر</option>
+            <option>أسوان</option>
+            <option>الوادي الجديد</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- العنوان -->
+
+        <div class="input-group">
+
+          <label for="address">
+            العنوان بالتفصيل
+          </label>
+
+          <input
+            id="address"
+            type="text"
+            placeholder="المنطقة، الشارع، رقم العقار..."
+            autocomplete="street-address"
             required
           >
 
         </div>
 
 
-        <!-- PASSWORD -->
+        <!-- كلمة المرور -->
 
         <div class="input-group">
 
@@ -443,6 +414,7 @@
               type="password"
               placeholder="6 أحرف على الأقل"
               minlength="6"
+              autocomplete="new-password"
               required
             >
 
@@ -459,7 +431,7 @@
         </div>
 
 
-        <!-- CONFIRM PASSWORD -->
+        <!-- تأكيد كلمة المرور -->
 
         <div class="input-group">
 
@@ -474,6 +446,7 @@
               type="password"
               placeholder="أعد كتابة كلمة المرور"
               minlength="6"
+              autocomplete="new-password"
               required
             >
 
@@ -490,7 +463,7 @@
         </div>
 
 
-        <!-- TERMS -->
+        <!-- الشروط -->
 
         <label class="terms">
 
@@ -511,15 +484,12 @@
         </label>
 
 
-        <!-- BUTTON -->
-
         <button
           type="submit"
           class="register-btn"
         >
-          إنشاء الحساب
+          متابعة والتحقق من واتساب
         </button>
-
 
       </form>
 
@@ -539,13 +509,10 @@
 
       </div>
 
-
     </div>
 
   </main>
 
-
-  <!-- FOOTER -->
 
   <footer>
 
@@ -560,19 +527,16 @@
 
     function togglePassword(id, button) {
 
-      const input =
-        document.getElementById(id);
+      const input = document.getElementById(id);
 
       if (input.type === "password") {
 
         input.type = "text";
-
         button.textContent = "إخفاء";
 
       } else {
 
         input.type = "password";
-
         button.textContent = "إظهار";
 
       }
@@ -584,11 +548,23 @@
 
       event.preventDefault();
 
+      const phone =
+        document.getElementById("phone").value.trim();
+
       const password =
         document.getElementById("password").value;
 
       const confirmPassword =
         document.getElementById("confirmPassword").value;
+
+
+      if (!/^01[0-9]{9}$/.test(phone)) {
+
+        alert("من فضلك أدخل رقم موبايل مصري صحيح.");
+
+        return;
+
+      }
 
 
       if (password !== confirmPassword) {
@@ -600,14 +576,25 @@
       }
 
 
-      alert(
-        "تم استلام بيانات إنشاء الحساب. سيتم ربط التسجيل بقاعدة البيانات في المرحلة القادمة."
+      /*
+        في المرحلة الحالية:
+        نحفظ البيانات مؤقتًا للانتقال إلى صفحة OTP.
+
+        لاحقًا سيتم استبدال هذا الجزء
+        بطلب حقيقي إلى الـBackend لإرسال OTP
+        عبر WhatsApp.
+      */
+
+      sessionStorage.setItem(
+        "sahba_phone",
+        phone
       );
+
+      window.location.href = "verify.html";
 
     }
 
   </script>
-
 
 </body>
 </html>
