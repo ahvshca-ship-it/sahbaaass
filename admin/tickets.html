@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>إدارة التذاكر | Sahba Admin</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --dark: #111827;
+      --gold: #f59e0b;
+      --gold-light: #fff7df;
+      --gray: #f7f8fa;
+      --text: #111827;
+      --muted: #667085;
+      --border: #e5e7eb;
+      --green: #15803d;
+      --red: #dc2626;
+      --blue: #2563eb;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: var(--gray);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    header {
+      height: 70px;
+      padding: 0 5%;
+
+      background: var(--dark);
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .admin-name {
+      color: #d0d5dd;
+      font-size: 13px;
+    }
+
+    .logout-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid #4b5563;
+
+      padding: 8px 13px;
+      border-radius: 8px;
+
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .logout-btn:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    aside {
+      width: 240px;
+      flex-shrink: 0;
+
+      background: white;
+      border-left: 1px solid var(--border);
+
+      padding: 25px 15px;
+    }
+
+    .sidebar-title {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: bold;
+      margin: 0 10px 10px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      color: #344054;
+
+      padding: 11px 12px;
+      margin-bottom: 5px;
+
+      border-radius: 9px;
+
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: var(--gold-light);
+      color: #9a6700;
+    }
+
+    .sidebar-link.active {
+      font-weight: bold;
+    }
+
+    .icon {
+      width: 22px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    main {
+      flex: 1;
+      min-width: 0;
+      padding: 35px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .page-header h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: white;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      padding: 18px;
+
+      box-shadow: 0 4px 15px rgba(0,0,0,.04);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .blue {
+      color: var(--blue);
+    }
+
+    .red {
+      color: var(--red);
+    }
+
+    .tickets-box {
+      background: white;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      padding: 20px;
+
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    }
+
+    .tickets-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .tickets-title {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .search {
+      width: 300px;
+
+      padding: 10px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      outline: none;
+      font-size: 13px;
+    }
+
+    .search:focus {
+      border-color: var(--gold);
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    th {
+      background: #f9fafb;
+      color: var(--muted);
+
+      font-size: 12px;
+      font-weight: bold;
+
+      text-align: right;
+
+      padding: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 15px 13px;
+
+      border-bottom: 1px solid var(--border);
+
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #fcfcfd;
+    }
+
+    .ticket-number {
+      color: #9a6700;
+      font-weight: bold;
+    }
+
+    .user-name {
+      font-weight: bold;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status {
+      display: inline-block;
+
+      padding: 5px 10px;
+      border-radius: 20px;
+
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .status.valid {
+      background: #ecfdf3;
+      color: var(--green);
+    }
+
+    .status.used {
+      background: #f3f4f6;
+      color: var(--muted);
+    }
+
+    .status.refunded {
+      background: #fef2f2;
+      color: var(--red);
+    }
+
+    .view-btn {
+      border: 1px solid var(--border);
+      background: white;
+
+      padding: 7px 11px;
+
+      border-radius: 7px;
+
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .view-btn:hover {
+      border-color: var(--gold);
+      color: #9a6700;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 35px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+
+      background: rgba(17,24,39,.55);
+
+      z-index: 2000;
+
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 480px;
+
+      background: white;
+
+      border-radius: 18px;
+      padding: 25px;
+
+      margin: 50px auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 22px;
+    }
+
+    .modal-header h2 {
+      font-size: 21px;
+    }
+
+    .close {
+      width: 34px;
+      height: 34px;
+
+      border: none;
+      background: #f3f4f6;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .details {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+
+      background: #f9fafb;
+
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    .detail span:first-child {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .detail span:last-child {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    @media(max-width: 1050px) {
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+
+    @media(max-width: 750px) {
+
+      .layout {
+        display: block;
+      }
+
+      aside {
+        width: 100%;
+
+        border-left: none;
+        border-bottom: 1px solid var(--border);
+
+        padding: 10px;
+
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+      }
+
+      .sidebar-title {
+        display: none;
+      }
+
+      .sidebar-link {
+        flex-shrink: 0;
+        margin: 0;
+      }
+
+      main {
+        padding: 25px 15px;
+      }
+
+      .page-header {
+        flex-direction: column;
+      }
+
+      .tickets-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+    }
+
+    @media(max-width: 500px) {
+
+      .stats {
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 14px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <a href="admin.html" class="logo">
+    Sahba
+  </a>
+
+  <div class="header-right">
+
+    <span class="admin-name">
+      مدير النظام
+    </span>
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      تسجيل الخروج
+    </button>
+
+  </div>
+
+</header>
+
+
+<div class="layout">
+
+
+  <aside>
+
+    <div class="sidebar-title">
+      الإدارة
+    </div>
+
+    <a href="admin.html" class="sidebar-link">
+      <span class="icon">▦</span>
+      الرئيسية
+    </a>
+
+    <a href="users.html" class="sidebar-link">
+      <span class="icon">♟</span>
+      المستخدمون
+    </a>
+
+    <a href="products.html" class="sidebar-link">
+      <span class="icon">▣</span>
+      المنتجات
+    </a>
+
+    <a href="draws.html" class="sidebar-link">
+      <span class="icon">↻</span>
+      السحوبات
+    </a>
+
+    <a href="tickets.html" class="sidebar-link active">
+      <span class="icon">▤</span>
+      التذاكر
+    </a>
+
+    <a href="deposits.html" class="sidebar-link">
+      <span class="icon">＋</span>
+      الإيداعات
+    </a>
+
+    <a href="withdrawals.html" class="sidebar-link">
+      <span class="icon">−</span>
+      السحوبات المالية
+    </a>
+
+    <a href="results.html" class="sidebar-link">
+      <span class="icon">✓</span>
+      النتائج
+    </a>
+
+    <a href="notifications.html" class="sidebar-link">
+      <span class="icon">●</span>
+      الإشعارات
+    </a>
+
+    <a href="settings.html" class="sidebar-link">
+      <span class="icon">⚙</span>
+      الإعدادات
+    </a>
+
+  </aside>
+
+
+  <main>
+
+
+    <div class="page-header">
+
+      <div>
+
+        <h1>
+          إدارة التذاكر
+        </h1>
+
+        <p>
+          متابعة جميع التذاكر المباعة وربطها بالمستخدمين والسحوبات.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          إجمالي التذاكر
+        </div>
+
+        <div class="stat-value">
+          8,420
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          تذاكر صالحة
+        </div>
+
+        <div class="stat-value green">
+          6,850
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          مستخدمة في سحوبات
+        </div>
+
+        <div class="stat-value blue">
+          1,420
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          مستردة
+        </div>
+
+        <div class="stat-value red">
+          150
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="tickets-box">
+
+
+      <div class="tickets-top">
+
+        <div class="tickets-title">
+          جميع التذاكر
+        </div>
+
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="ابحث برقم التذكرة أو اسم المستخدم..."
+          oninput="searchTickets()"
+        >
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                رقم التذكرة
+              </th>
+
+              <th>
+                المستخدم
+              </th>
+
+              <th>
+                المنتج
+              </th>
+
+              <th>
+                السحب
+              </th>
+
+              <th>
+                السعر
+              </th>
+
+              <th>
+                تاريخ الشراء
+              </th>
+
+              <th>
+                الحالة
+              </th>
+
+              <th>
+                التفاصيل
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="ticketsTable">
+
+
+            <tr data-search="A-075 محمد أحمد Samsung Galaxy">
+
+              <td>
+                <span class="ticket-number">
+                  #A-075
+                </span>
+              </td>
+
+              <td>
+                <span class="user-name">
+                  محمد أحمد
+                </span>
+              </td>
+
+              <td>
+                Samsung Galaxy
+              </td>
+
+              <td>
+                #1048
+              </td>
+
+              <td>
+                50 ج.م
+              </td>
+
+              <td>
+                <span class="muted">
+                  18 أغسطس 2026
+                </span>
+              </td>
+
+              <td>
+                <span class="status valid">
+                  صالحة
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="view-btn"
+                  onclick="viewTicket('A-075')"
+                >
+                  عرض
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <tr data-search="B-042 أحمد محمود Smart Watch">
+
+              <td>
+                <span class="ticket-number">
+                  #B-042
+                </span>
+              </td>
+
+              <td>
+                <span class="user-name">
+                  أحمد محمود
+                </span>
+              </td>
+
+              <td>
+                Smart Watch
+              </td>
+
+              <td>
+                #1047
+              </td>
+
+              <td>
+                30 ج.م
+              </td>
+
+              <td>
+                <span class="muted">
+                  17 أغسطس 2026
+                </span>
+              </td>
+
+              <td>
+                <span class="status valid">
+                  صالحة
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="view-btn"
+                  onclick="viewTicket('B-042')"
+                >
+                  عرض
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <tr data-search="C-090 كريم علي Wireless Headphones">
+
+              <td>
+                <span class="ticket-number">
+                  #C-090
+                </span>
+              </td>
+
+              <td>
+                <span class="user-name">
+                  كريم علي
+                </span>
+              </td>
+
+              <td>
+                Wireless Headphones
+              </td>
+
+              <td>
+                #1046
+              </td>
+
+              <td>
+                20 ج.م
+              </td>
+
+              <td>
+                <span class="muted">
+                  14 أغسطس 2026
+                </span>
+              </td>
+
+              <td>
+                <span class="status used">
+                  مستخدمة
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="view-btn"
+                  onclick="viewTicket('C-090')"
+                >
+                  عرض
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <tr data-search="D-018 عمر حسن Laptop">
+
+              <td>
+                <span class="ticket-number">
+                  #D-018
+                </span>
+              </td>
+
+              <td>
+                <span class="user-name">
+                  عمر حسن
+                </span>
+              </td>
+
+              <td>
+                Laptop
+              </td>
+
+              <td>
+                #1045
+              </td>
+
+              <td>
+                100 ج.م
+              </td>
+
+              <td>
+                <span class="muted">
+                  24 يوليو 2026
+                </span>
+              </td>
+
+              <td>
+                <span class="status used">
+                  مستخدمة
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="view-btn"
+                  onclick="viewTicket('D-018')"
+                >
+                  عرض
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <tr data-search="E-121 خالد حسن Samsung Galaxy">
+
+              <td>
+                <span class="ticket-number">
+                  #E-121
+                </span>
+              </td>
+
+              <td>
+                <span class="user-name">
+                  خالد حسن
+                </span>
+              </td>
+
+              <td>
+                Samsung Galaxy
+              </td>
+
+              <td>
+                #1048
+              </td>
+
+              <td>
+                50 ج.م
+              </td>
+
+              <td>
+                <span class="muted">
+                  18 أغسطس 2026
+                </span>
+              </td>
+
+              <td>
+                <span class="status refunded">
+                  مستردة
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="view-btn"
+                  onclick="viewTicket('E-121')"
+                >
+                  عرض
+                </button>
+
+              </td>
+
+            </tr>
+
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <div id="empty" class="empty">
+        لا توجد تذاكر مطابقة للبحث.
+      </div>
+
+
+    </div>
+
+
+  </main>
+
+</div>
+
+
+<div class="modal" id="ticketModal">
+
+  <div class="modal-box">
+
+
+    <div class="modal-header">
+
+      <h2>
+        تفاصيل التذكرة
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="details">
+
+      <div class="detail">
+        <span>رقم التذكرة</span>
+        <span id="ticketNumber">-</span>
+      </div>
+
+      <div class="detail">
+        <span>المستخدم</span>
+        <span id="ticketUser">-</span>
+      </div>
+
+      <div class="detail">
+        <span>المنتج</span>
+        <span id="ticketProduct">-</span>
+      </div>
+
+      <div class="detail">
+        <span>رقم السحب</span>
+        <span id="ticketDraw">-</span>
+      </div>
+
+      <div class="detail">
+        <span>السعر</span>
+        <span id="ticketPrice">-</span>
+      </div>
+
+      <div class="detail">
+        <span>تاريخ الشراء</span>
+        <span id="ticketDate">-</span>
+      </div>
+
+      <div class="detail">
+        <span>الحالة</span>
+        <span id="ticketStatus">-</span>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<script>
+
+  const tickets = {
+
+    "A-075": {
+      user: "محمد أحمد",
+      product: "Samsung Galaxy",
+      draw: "#1048",
+      price: "50 ج.م",
+      date: "18 أغسطس 2026",
+      status: "صالحة"
+    },
+
+    "B-042": {
+      user: "أحمد محمود",
+      product: "Smart Watch",
+      draw: "#1047",
+      price: "30 ج.م",
+      date: "17 أغسطس 2026",
+      status: "صالحة"
+    },
+
+    "C-090": {
+      user: "كريم علي",
+      product: "Wireless Headphones",
+      draw: "#1046",
+      price: "20 ج.م",
+      date: "14 أغسطس 2026",
+      status: "مستخدمة"
+    },
+
+    "D-018": {
+      user: "عمر حسن",
+      product: "Laptop",
+      draw: "#1045",
+      price: "100 ج.م",
+      date: "24 يوليو 2026",
+      status: "مستخدمة"
+    },
+
+    "E-121": {
+      user: "خالد حسن",
+      product: "Samsung Galaxy",
+      draw: "#1048",
+      price: "50 ج.م",
+      date: "18 أغسطس 2026",
+      status: "مستردة"
+    }
+
+  };
+
+
+  function searchTickets() {
+
+    const search =
+      document
+        .getElementById("search")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const rows =
+      document.querySelectorAll("#ticketsTable tr");
+
+    let visible = 0;
+
+    rows.forEach(row => {
+
+      const text =
+        row
+          .getAttribute("data-search")
+          .toLowerCase();
+
+      if (text.includes(search)) {
+
+        row.style.display = "";
+        visible++;
+
+      } else {
+
+        row.style.display = "none";
+
+      }
+
+    });
+
+    document.getElementById("empty").style.display =
+      visible === 0 ? "block" : "none";
+
+  }
+
+
+  function viewTicket(number) {
+
+    const ticket =
+      tickets[number];
+
+    if (!ticket) {
+      return;
+    }
+
+    document.getElementById("ticketNumber").textContent =
+      "#" + number;
+
+    document.getElementById("ticketUser").textContent =
+      ticket.user;
+
+    document.getElementById("ticketProduct").textContent =
+      ticket.product;
+
+    document.getElementById("ticketDraw").textContent =
+      ticket.draw;
+
+    document.getElementById("ticketPrice").textContent =
+      ticket.price;
+
+    document.getElementById("ticketDate").textContent =
+      ticket.date;
+
+    document.getElementById("ticketStatus").textContent =
+      ticket.status;
+
+    docume
