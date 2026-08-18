@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>عرض منتجك | Sahba</title>
+  <title>عرض منتج | Sahba</title>
 
   <style>
 
@@ -81,23 +81,9 @@
     ========================= */
 
     main {
-      max-width: 900px;
+      max-width: 850px;
       margin: auto;
       padding: 50px 20px 70px;
-    }
-
-    .back {
-      display: inline-block;
-
-      color: #667085;
-
-      font-size: 14px;
-
-      margin-bottom: 20px;
-    }
-
-    .back:hover {
-      color: #9a6700;
     }
 
     .page-title {
@@ -109,14 +95,15 @@
     .page-subtitle {
       text-align: center;
       color: #667085;
+      font-size: 14px;
       margin-bottom: 32px;
     }
 
     /* =========================
-       FORM CARD
+       FORM BOX
     ========================= */
 
-    .form-card {
+    .form-box {
       background: white;
 
       border: 1px solid #e5e7eb;
@@ -129,31 +116,17 @@
     }
 
     .section-title {
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
+      font-size: 19px;
+      margin-bottom: 18px;
 
-    .section-description {
-      color: #667085;
-      font-size: 13px;
-      margin-bottom: 22px;
-    }
+      padding-bottom: 12px;
 
-    .form-section {
-      padding-bottom: 28px;
-      margin-bottom: 28px;
       border-bottom: 1px solid #eaecf0;
     }
 
-    .form-section:last-of-type {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 5px;
+    .section {
+      margin-bottom: 30px;
     }
-
-    /* =========================
-       FORM
-    ========================= */
 
     label {
       display: block;
@@ -166,7 +139,7 @@
     }
 
     .required {
-      color: #d92d20;
+      color: #b91c1c;
     }
 
     input,
@@ -174,7 +147,7 @@
     select {
       width: 100%;
 
-      padding: 13px 14px;
+      padding: 13px;
 
       margin-bottom: 17px;
 
@@ -184,15 +157,11 @@
 
       background: white;
 
-      color: #111827;
-
       font-family: inherit;
 
       font-size: 15px;
 
       outline: none;
-
-      transition: .2s;
     }
 
     input:focus,
@@ -205,30 +174,12 @@
     }
 
     textarea {
-      min-height: 130px;
+      min-height: 140px;
       resize: vertical;
     }
 
-    .row {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 15px;
-    }
-
-    .hint {
-      color: #98a2b3;
-
-      font-size: 12px;
-
-      margin-top: -10px;
-
-      margin-bottom: 15px;
-    }
-
     /* =========================
-       IMAGE UPLOAD
+       UPLOAD
     ========================= */
 
     .upload-box {
@@ -240,7 +191,7 @@
 
       text-align: center;
 
-      cursor: pointer;
+      margin-bottom: 18px;
 
       transition: .2s;
     }
@@ -256,13 +207,14 @@
 
       margin: 0 auto 12px;
 
-      border-radius: 12px;
+      border-radius: 50%;
 
       background: #fff7df;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
     }
 
@@ -281,29 +233,45 @@
       stroke-linejoin: round;
     }
 
-    .upload-box strong {
-      display: block;
-
-      font-size: 14px;
-
-      margin-bottom: 3px;
+    .upload-box h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
     }
 
-    .upload-box span {
-      color: #98a2b3;
-
+    .upload-box p {
+      color: #667085;
       font-size: 12px;
+      margin-bottom: 15px;
     }
 
-    #productImages {
+    .file-label {
+      display: inline-block;
+
+      background: #f3f4f6;
+
+      color: #111827;
+
+      padding: 9px 15px;
+
+      border-radius: 9px;
+
+      font-size: 13px;
+
+      cursor: pointer;
+    }
+
+    .file-label:hover {
+      background: #e5e7eb;
+    }
+
+    #images {
       display: none;
     }
 
-    #fileName {
+    #file-name {
       color: #15803d;
       font-size: 12px;
-      margin-top: 8px;
-      display: none;
+      margin-top: 10px;
     }
 
     /* =========================
@@ -315,36 +283,41 @@
 
       border: 1px solid #f2d58a;
 
-      border-radius: 12px;
+      color: #7a5200;
 
       padding: 14px 16px;
 
-      color: #7a5200;
+      border-radius: 11px;
 
       font-size: 13px;
 
       margin-bottom: 25px;
     }
 
+    .info-box strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
     /* =========================
        CHECKBOX
     ========================= */
 
-    .agree {
+    .terms {
       display: flex;
 
       align-items: flex-start;
 
       gap: 9px;
 
-      margin: 18px 0 22px;
+      margin: 5px 0 20px;
 
       font-size: 13px;
 
       color: #667085;
     }
 
-    .agree input {
+    .terms input {
       width: auto;
 
       margin: 4px 0 0;
@@ -352,9 +325,8 @@
       accent-color: #f59e0b;
     }
 
-    .agree a {
+    .terms a {
       color: #9a6700;
-
       font-weight: bold;
     }
 
@@ -375,9 +347,11 @@
 
       border-radius: 11px;
 
+      font-family: inherit;
+
       font-size: 16px;
 
-      font-weight: bold;
+      font-weight: 900;
 
       cursor: pointer;
 
@@ -390,6 +364,12 @@
       transform: translateY(-1px);
     }
 
+    .submit-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     /* =========================
        MESSAGE
     ========================= */
@@ -399,7 +379,7 @@
 
       margin-top: 18px;
 
-      padding: 13px;
+      padding: 12px;
 
       border-radius: 10px;
 
@@ -410,18 +390,12 @@
 
     .success {
       background: #ecfdf3;
-
       color: #15803d;
-
-      border: 1px solid #bbf7d0;
     }
 
     .error {
       background: #fef2f2;
-
       color: #b91c1c;
-
-      border: 1px solid #fecaca;
     }
 
     /* =========================
@@ -452,7 +426,7 @@
        MOBILE
     ========================= */
 
-    @media (max-width: 650px) {
+    @media (max-width: 700px) {
 
       header {
         padding: 14px 5%;
@@ -470,17 +444,12 @@
         padding: 35px 15px 55px;
       }
 
+      .form-box {
+        padding: 23px 18px;
+      }
+
       .page-title {
         font-size: 27px;
-      }
-
-      .form-card {
-        padding: 22px 18px;
-      }
-
-      .row {
-        grid-template-columns: 1fr;
-        gap: 0;
       }
 
     }
@@ -513,6 +482,10 @@
         تذاكري
       </a>
 
+      <a href="my-products.html">
+        منتجاتي
+      </a>
+
       <a href="account.html">
         حسابي
       </a>
@@ -532,40 +505,31 @@
 
   <main>
 
-
-    <a href="index.html" class="back">
-      → العودة للرئيسية
-    </a>
-
-
     <h1 class="page-title">
       اعرض منتجك على Sahba
     </h1>
 
     <p class="page-subtitle">
-      أدخل بيانات المنتج وسيتم مراجعته قبل نشره.
+      أرسل بيانات منتجك وسيتم مراجعته قبل نشره.
     </p>
 
 
-    <div class="form-card">
+    <div class="form-box">
 
 
-      <!-- PRODUCT INFO -->
+      <!-- =========================
+           PRODUCT INFORMATION
+      ========================= -->
 
-      <div class="form-section">
+      <div class="section">
 
         <h2 class="section-title">
           بيانات المنتج
         </h2>
 
-        <p class="section-description">
-          اكتب معلومات واضحة ودقيقة عن المنتج.
-        </p>
-
 
         <label>
-          اسم المنتج
-          <span class="required">*</span>
+          اسم المنتج <span class="required">*</span>
         </label>
 
         <input
@@ -575,119 +539,91 @@
         >
 
 
-        <div class="row">
+        <label>
+          الفئة <span class="required">*</span>
+        </label>
 
+        <select id="category">
 
-          <div>
+          <option value="">
+            اختر الفئة
+          </option>
 
-            <label>
-              الفئة
-              <span class="required">*</span>
-            </label>
+          <option>
+            موبايل
+          </option>
 
-            <select id="category">
+          <option>
+            لابتوب
+          </option>
 
-              <option value="">
-                اختر الفئة
-              </option>
+          <option>
+            تابلت
+          </option>
 
-              <option>
-                موبايلات
-              </option>
+          <option>
+            ساعة
+          </option>
 
-              <option>
-                لابتوبات
-              </option>
+          <option>
+            سماعة
+          </option>
 
-              <option>
-                ساعات
-              </option>
+          <option>
+            تلفزيون
+          </option>
 
-              <option>
-                سماعات
-              </option>
+          <option>
+            ألعاب
+          </option>
 
-              <option>
-                أجهزة منزلية
-              </option>
+          <option>
+            أجهزة منزلية
+          </option>
 
-              <option>
-                أخرى
-              </option>
+          <option>
+            أخرى
+          </option>
 
-            </select>
-
-          </div>
-
-
-          <div>
-
-            <label>
-              حالة المنتج
-              <span class="required">*</span>
-            </label>
-
-            <select id="condition">
-
-              <option value="">
-                اختر الحالة
-              </option>
-
-              <option>
-                جديد
-              </option>
-
-              <option>
-                كالجديد
-              </option>
-
-              <option>
-                مستعمل - ممتاز
-              </option>
-
-              <option>
-                مستعمل - جيد
-              </option>
-
-            </select>
-
-          </div>
-
-
-        </div>
+        </select>
 
 
         <label>
-          وصف المنتج
-          <span class="required">*</span>
+          وصف المنتج <span class="required">*</span>
         </label>
 
         <textarea
           id="description"
-          placeholder="اكتب المواصفات، الحالة، المميزات وأي تفاصيل مهمة..."
+          placeholder="اكتب مواصفات المنتج وحالته بالتفصيل..."
         ></textarea>
 
+
+        <label>
+          السعر المطلوب <span class="required">*</span>
+        </label>
+
+        <input
+          type="number"
+          id="price"
+          min="1"
+          placeholder="مثال: 10000"
+        >
 
       </div>
 
 
-      <!-- IMAGES -->
+      <!-- =========================
+           IMAGES
+      ========================= -->
 
-      <div class="form-section">
+      <div class="section">
 
         <h2 class="section-title">
           صور المنتج
         </h2>
 
-        <p class="section-description">
-          أضف صورًا واضحة للمنتج من أكثر من زاوية.
-        </p>
 
-
-        <label
-          for="productImages"
-          class="upload-box"
-        >
+        <div class="upload-box">
 
           <div class="upload-icon">
 
@@ -702,150 +638,73 @@
               ></rect>
 
               <circle
-                cx="8"
+                cx="8.5"
                 cy="9"
                 r="1.5"
               ></circle>
 
-              <path
-                d="M21 15l-5-5L5 20"
-              ></path>
+              <path d="M21 15l-5-5L5 20"></path>
 
             </svg>
 
           </div>
 
-          <strong>
-            اضغط لاختيار صور المنتج
-          </strong>
 
-          <span>
-            JPG أو PNG — يفضل صور واضحة
-          </span>
+          <h3>
+            أضف صور المنتج
+          </h3>
 
-          <div id="fileName"></div>
-
-        </label>
+          <p>
+            يفضل إضافة صور واضحة للمنتج من أكثر من زاوية.
+          </p>
 
 
-        <input
-          type="file"
-          id="productImages"
-          accept="image/*"
-          multiple
-        >
+          <label
+            for="images"
+            class="file-label"
+          >
+            اختيار الصور
+          </label>
 
-      </div>
+          <input
+            type="file"
+            id="images"
+            accept="image/*"
+            multiple
+          >
 
-
-      <!-- DRAW SETTINGS -->
-
-      <div class="form-section">
-
-        <h2 class="section-title">
-          إعدادات العرض
-        </h2>
-
-        <p class="section-description">
-          حدد السعر والإعدادات المطلوبة للعرض.
-        </p>
-
-
-        <div class="row">
-
-
-          <div>
-
-            <label>
-              السعر المطلوب للمنتج
-              <span class="required">*</span>
-            </label>
-
-            <input
-              type="number"
-              id="productPrice"
-              placeholder="مثال: 5000"
-              min="1"
-            >
-
-          </div>
-
-
-          <div>
-
-            <label>
-              سعر التذكرة
-              <span class="required">*</span>
-            </label>
-
-            <input
-              type="number"
-              id="ticketPrice"
-              placeholder="مثال: 30"
-              min="1"
-            >
-
-          </div>
-
-
-        </div>
-
-
-        <label>
-          عدد التذاكر
-          <span class="required">*</span>
-        </label>
-
-        <input
-          type="number"
-          id="ticketCount"
-          placeholder="مثال: 110"
-          min="1"
-        >
-
-        <p class="hint">
-          عدد التذاكر التي سيتم طرحها للمشاركة في السحب.
-        </p>
-
-
-        <div class="info-box">
-
-          ملاحظة: سيتم مراجعة بيانات المنتج والصور قبل نشر العرض.
-          قد يتم التواصل معك للتأكد من بعض التفاصيل.
+          <div id="file-name"></div>
 
         </div>
 
       </div>
 
 
-      <!-- CONTACT -->
+      <!-- =========================
+           CONTACT
+      ========================= -->
 
-      <div class="form-section">
+      <div class="section">
 
         <h2 class="section-title">
           بيانات التواصل
         </h2>
 
-        <p class="section-description">
-          سيتم استخدام البيانات للتواصل معك بخصوص المنتج.
-        </p>
-
 
         <label>
-          رقم الهاتف
-          <span class="required">*</span>
+          رقم الهاتف <span class="required">*</span>
         </label>
 
         <input
           type="tel"
           id="phone"
           placeholder="01xxxxxxxxx"
+          inputmode="numeric"
         >
 
 
         <label>
-          العنوان
-          <span class="required">*</span>
+          العنوان <span class="required">*</span>
         </label>
 
         <input
@@ -857,13 +716,32 @@
       </div>
 
 
-      <!-- AGREEMENT -->
+      <!-- =========================
+           ADMIN NOTICE
+      ========================= -->
 
-      <label class="agree">
+      <div class="info-box">
+
+        <strong>
+          ملاحظة مهمة
+        </strong>
+
+        سعر التذكرة وعدد التذاكر وموعد السحب
+        يتم تحديدهم بواسطة إدارة Sahba بعد مراجعة المنتج.
+        لا يمكن لصاحب المنتج تحديدهم أو تعديلهم.
+
+      </div>
+
+
+      <!-- =========================
+           TERMS
+      ========================= -->
+
+      <label class="terms">
 
         <input
           type="checkbox"
-          id="agree"
+          id="terms"
         >
 
         <span>
@@ -871,15 +749,18 @@
           <a href="#">
             الشروط والأحكام
           </a>
-          الخاصة بعرض المنتجات على Sahba.
+          وأقر بأن بيانات المنتج صحيحة.
         </span>
 
       </label>
 
 
-      <!-- SUBMIT -->
+      <!-- =========================
+           SUBMIT
+      ========================= -->
 
       <button
+        type="button"
         class="submit-btn"
         onclick="submitProduct()"
       >
@@ -888,19 +769,20 @@
 
 
       <div
+        class="message success"
+        id="successMessage"
+      >
+        تم إرسال المنتج بنجاح للمراجعة.
+      </div>
+
+
+      <div
         class="message error"
         id="errorMessage"
       ></div>
 
 
-      <div
-        class="message success"
-        id="successMessage"
-      ></div>
-
-
     </div>
-
 
   </main>
 
@@ -928,31 +810,28 @@
        اختيار الصور
     ========================= */
 
-    const imageInput =
-      document.getElementById("productImages");
+    document
+      .getElementById("images")
+      .addEventListener("change", function() {
 
-    const fileName =
-      document.getElementById("fileName");
+        const fileName =
+          document.getElementById("file-name");
 
+        if (this.files.length === 0) {
 
-    imageInput.addEventListener("change", function() {
+          fileName.textContent = "";
 
-      if (this.files.length > 0) {
+          return;
 
-        fileName.style.display = "block";
+        }
+
 
         fileName.textContent =
           "تم اختيار " +
           this.files.length +
           " صورة";
 
-      } else {
-
-        fileName.style.display = "none";
-
-      }
-
-    });
+      });
 
 
     /* =========================
@@ -967,20 +846,11 @@
       const category =
         document.getElementById("category").value;
 
-      const condition =
-        document.getElementById("condition").value;
-
       const description =
         document.getElementById("description").value.trim();
 
-      const productPrice =
-        document.getElementById("productPrice").value;
-
-      const ticketPrice =
-        document.getElementById("ticketPrice").value;
-
-      const ticketCount =
-        document.getElementById("ticketCount").value;
+      const price =
+        document.getElementById("price").value;
 
       const phone =
         document.getElementById("phone").value.trim();
@@ -988,13 +858,17 @@
       const address =
         document.getElementById("address").value.trim();
 
-      const agree =
-        document.getElementById("agree").checked;
+      const terms =
+        document.getElementById("terms").checked;
+
+
+      hideMessages();
 
 
       if (!name) {
 
         showError("من فضلك اكتب اسم المنتج.");
+
         return;
 
       }
@@ -1003,14 +877,7 @@
       if (!category) {
 
         showError("من فضلك اختر فئة المنتج.");
-        return;
 
-      }
-
-
-      if (!condition) {
-
-        showError("من فضلك اختر حالة المنتج.");
         return;
 
       }
@@ -1019,30 +886,16 @@
       if (!description) {
 
         showError("من فضلك اكتب وصف المنتج.");
+
         return;
 
       }
 
 
-      if (!productPrice || productPrice <= 0) {
+      if (!price || Number(price) <= 0) {
 
-        showError("من فضلك أدخل السعر المطلوب.");
-        return;
+        showError("من فضلك اكتب السعر المطلوب بشكل صحيح.");
 
-      }
-
-
-      if (!ticketPrice || ticketPrice <= 0) {
-
-        showError("من فضلك أدخل سعر التذكرة.");
-        return;
-
-      }
-
-
-      if (!ticketCount || ticketCount <= 0) {
-
-        showError("من فضلك أدخل عدد التذاكر.");
         return;
 
       }
@@ -1050,7 +903,8 @@
 
       if (!phone) {
 
-        showError("من فضلك أدخل رقم الهاتف.");
+        showError("من فضلك اكتب رقم الهاتف.");
+
         return;
 
       }
@@ -1058,17 +912,16 @@
 
       if (!address) {
 
-        showError("من فضلك أدخل العنوان.");
+        showError("من فضلك اكتب العنوان.");
+
         return;
 
       }
 
 
-      if (!agree) {
+      if (!terms) {
 
-        showError(
-          "يجب الموافقة على الشروط والأحكام."
-        );
+        showError("يجب الموافقة على الشروط والأحكام.");
 
         return;
 
@@ -1076,76 +929,116 @@
 
 
       /*
-        مؤقتًا فقط.
+        حاليًا لا يوجد Backend.
 
-        بعد ربط الـBackend سيتم إرسال
-        البيانات والصور إلى السيرفر.
+        لذلك سنحفظ البيانات مؤقتًا
+        في LocalStorage فقط للمعاينة.
+
+        عند ربط الموقع بالـBackend
+        سيتم استبدال هذا الجزء بطلب API.
       */
 
 
-      showSuccess(
-        "تم إرسال المنتج للمراجعة بنجاح. سيتم مراجعته قبل النشر."
+      const product = {
+
+        name: name,
+
+        category: category,
+
+        description: description,
+
+        price: price,
+
+        phone: phone,
+
+        address: address,
+
+        status: "pending",
+
+        createdAt: new Date().toISOString()
+
+      };
+
+
+      localStorage.setItem(
+        "sahba_last_product",
+        JSON.stringify(product)
       );
 
+
+      showSuccess(
+        "تم إرسال المنتج للمراجعة بنجاح."
+      );
+
+
+      document
+        .querySelector(".submit-btn")
+        .disabled = true;
+
+
+      setTimeout(function() {
+
+        window.location.href =
+          "my-products.html";
+
+      }, 1500);
+
+    }
+
+
+    /* =========================
+       رسائل الخطأ
+    ========================= */
+
+    function showError(message) {
+
+      const box =
+        document.getElementById("errorMessage");
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+      document
+        .getElementById("successMessage")
+        .style.display = "none";
+
+    }
+
+
+    /* =========================
+       رسالة النجاح
+    ========================= */
+
+    function showSuccess(message) {
+
+      const box =
+        document.getElementById("successMessage");
+
+      box.textContent = message;
+
+      box.style.display = "block";
 
       document
         .getElementById("errorMessage")
         .style.display = "none";
 
-
     }
 
 
     /* =========================
-       ERROR
+       إخفاء الرسائل
     ========================= */
 
-    function showError(message) {
+    function hideMessages() {
 
-      const error =
-        document.getElementById("errorMessage");
+      document
+        .getElementById("errorMessage")
+        .style.display = "none";
 
-      const success =
-        document.getElementById("successMessage");
-
-
-      error.textContent = message;
-
-      error.style.display = "block";
-
-      success.style.display = "none";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-
-
-    /* =========================
-       SUCCESS
-    ========================= */
-
-    function showSuccess(message) {
-
-      const success =
-        document.getElementById("successMessage");
-
-      const error =
-        document.getElementById("errorMessage");
-
-
-      success.textContent = message;
-
-      success.style.display = "block";
-
-      error.style.display = "none";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      document
+        .getElementById("successMessage")
+        .style.display = "none";
 
     }
 
