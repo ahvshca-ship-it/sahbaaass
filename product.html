@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تفاصيل المنتج | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      color: white;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+    .wallet-btn {
+      border: 1px solid #f59e0b;
+      border-radius: 9px;
+      color: #f59e0b !important;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 45px 20px 70px;
+    }
+
+    .back {
+      display: inline-block;
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .back:hover {
+      color: #9a6700;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    /* =========================
+       IMAGE
+    ========================= */
+
+    .gallery {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 7px 28px rgba(0,0,0,.06);
+    }
+
+    .main-image {
+      height: 430px;
+      background: #eef0f3;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main-image svg {
+      width: 130px;
+      height: 130px;
+      fill: none;
+      stroke: #475467;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .gallery-info {
+      padding: 18px;
+      color: #667085;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* =========================
+       DETAILS
+    ========================= */
+
+    .details {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 7px 28px rgba(0,0,0,.06);
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .available {
+      background: #ecfdf3;
+      color: #15803d;
+    }
+
+    .pending {
+      background: #fff7df;
+      color: #9a6700;
+    }
+
+    .finished {
+      background: #f2f4f7;
+      color: #667085;
+    }
+
+    .category {
+      color: #667085;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      font-size: 31px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       PRICE
+    ========================= */
+
+    .price-box {
+      background: #fff7df;
+      border: 1px solid #f2d58a;
+      border-radius: 13px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .price-box span {
+      display: block;
+      color: #7a5200;
+      font-size: 12px;
+    }
+
+    .price-box strong {
+      font-size: 25px;
+    }
+
+    /* =========================
+       TICKET INFO
+    ========================= */
+
+    .ticket-box {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 17px;
+      margin-bottom: 18px;
+    }
+
+    .ticket-title {
+      font-weight: bold;
+      margin-bottom: 13px;
+    }
+
+    .ticket-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .ticket-item {
+      background: #f7f8fa;
+      padding: 11px;
+      border-radius: 9px;
+      text-align: center;
+    }
+
+    .ticket-item span {
+      display: block;
+      color: #667085;
+      font-size: 11px;
+    }
+
+    .ticket-item strong {
+      font-size: 15px;
+    }
+
+    .remaining {
+      color: #15803d;
+    }
+
+    /* =========================
+       PROGRESS
+    ========================= */
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .progress-info span:last-child {
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress div {
+      height: 100%;
+      width: 68%;
+      background: #f59e0b;
+      border-radius: 20px;
+    }
+
+    /* =========================
+       DRAW DATE
+    ========================= */
+
+    .draw-date {
+      background: #f7f8fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 11px;
+      padding: 11px 13px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .draw-date strong {
+      color: #111827;
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .main-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+
+      border: none;
+      background: #f59e0b;
+      color: #111827;
+
+      padding: 14px;
+      border-radius: 11px;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .main-btn:hover {
+      background: #fbbf24;
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       NOTE
+    ========================= */
+
+    .note {
+      color: #98a2b3;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* =========================
+       DESCRIPTION SECTION
+    ========================= */
+
+    .full-section {
+      margin-top: 25px;
+
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+
+      padding: 25px;
+
+      box-shadow: 0 6px 22px rgba(0,0,0,.05);
+    }
+
+    .full-section h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .full-section p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer .logo {
+      display: inline-block;
+      margin-bottom: 7px;
+    }
+
+    footer p {
+      color: #98a2b3;
+      font-size: 13px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      nav a:not(.wallet-btn) {
+        display: none;
+      }
+
+      main {
+        padding: 30px 15px 55px;
+      }
+
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .main-image {
+        height: 300px;
+      }
+
+      .details {
+        padding: 22px 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+    }
+
+    @media (max-width: 450px) {
+
+      .ticket-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <nav>
+
+      <a href="draws.html">
+        السحوبات
+      </a>
+
+      <a href="tickets.html">
+        تذاكري
+      </a>
+
+      <a href="my-products.html">
+        منتجاتي
+      </a>
+
+      <a href="account.html">
+        حسابي
+      </a>
+
+      <a href="wallet.html" class="wallet-btn">
+        المحفظة
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+    <a href="index.html" class="back">
+      ← العودة للرئيسية
+    </a>
+
+
+    <div class="product-layout">
+
+
+      <!-- =========================
+           GALLERY
+      ========================= -->
+
+      <div class="gallery">
+
+        <div class="main-image">
+
+          <svg viewBox="0 0 24 24">
+
+            <rect
+              x="6"
+              y="2"
+              width="12"
+              height="20"
+              rx="2"
+            ></rect>
+
+            <path d="M9 5h6"></path>
+
+            <circle
+              cx="12"
+              cy="18"
+              r="1"
+            ></circle>
+
+          </svg>
+
+        </div>
+
+        <div class="gallery-info">
+          صور المنتج
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           DETAILS
+      ========================= -->
+
+      <div class="details">
+
+
+        <span class="status available">
+          متاح الآن
+        </span>
+
+
+        <div class="category">
+          موبايل
+        </div>
+
+
+        <h1>
+          Samsung Galaxy
+        </h1>
+
+
+        <p class="description">
+          هاتف بحالة ممتازة، استخدام خفيف ويعمل بشكل جيد.
+        </p>
+
+
+        <!-- PRICE -->
+
+        <div class="price-box">
+
+          <span>
+            السعر المطلوب للمنتج
+          </span>
+
+          <strong>
+            3,500 جنيه
+          </strong>
+
+        </div>
+
+
+        <!-- TICKET -->
+
+        <div class="ticket-box">
+
+          <div class="ticket-title">
+            تفاصيل السحب
+          </div>
+
+
+          <div class="ticket-grid">
+
+
+            <div class="ticket-item">
+
+              <span>
+                سعر التذكرة
+              </span>
+
+              <strong>
+                30 جنيه
+              </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+              <span>
+                إجمالي التذاكر
+              </span>
+
+              <strong>
+                110
+              </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+              <span>
+                المتبقي
+              </span>
+
+              <strong class="remaining">
+                35
+              </strong>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-info">
+
+          <span>
+            تم بيع 75 من 110
+          </span>
+
+          <span>
+            35 متبقي
+          </span>
+
+        </div>
+
+
+        <div class="progress">
+
+          <div></div>
+
+        </div>
+
+
+        <!-- DRAW DATE -->
+
+        <div class="draw-date">
+
+          السحب القادم:
+          <strong>
+            الجمعة 21 أغسطس 2026
+          </strong>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <a
+          href="draw.html"
+          class="main-btn"
+        >
+          ادخل السحب
+        </a>
+
+
+        <p class="note">
+          سعر التذكرة وعدد التذاكر وموعد السحب تحددها إدارة Sahba.
+        </p>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         DESCRIPTION
+    ========================= -->
+
+    <div class="full-section">
+
+      <h2>
+        وصف المنتج
+      </h2>
+
+      <p>
+        Samsung Galaxy بحالة ممتازة، الجهاز يعمل بكفاءة
+        وجميع الوظائف الأساسية تعمل بشكل طبيعي.
+        المنتج يتم عرضه من خلال نظام Sahba بعد مراجعة الإدارة.
+      </p>
+
+    </div>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba — جميع الحقوق محفوظة © 2026
+    </p>
+
+  </footer>
+
+
+</body>
+
+</html>
