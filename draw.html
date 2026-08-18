@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تفاصيل السحب | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111827;
+      color: white;
+
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      color: white;
+      padding: 8px 10px;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+    .wallet-btn {
+      border: 1px solid #f59e0b;
+      border-radius: 9px;
+      color: #f59e0b !important;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 50px 20px 70px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      color: #667085;
+      font-size: 14px;
+
+      margin-bottom: 25px;
+    }
+
+    .back-link:hover {
+      color: #9a6700;
+    }
+
+    /* =========================
+       DRAW LAYOUT
+    ========================= */
+
+    .draw-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    /* =========================
+       PRODUCT
+    ========================= */
+
+    .product-card {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+
+      overflow: hidden;
+
+      box-shadow: 0 7px 30px rgba(0,0,0,.06);
+    }
+
+    .product-image {
+      height: 380px;
+
+      background: #eef0f3;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-image svg {
+      width: 130px;
+      height: 130px;
+
+      fill: none;
+      stroke: #475467;
+
+      stroke-width: 1.2;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .product-content {
+      padding: 25px;
+    }
+
+    .tag {
+      display: inline-block;
+
+      background: #ecfdf3;
+      color: #15803d;
+
+      padding: 5px 11px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      margin-bottom: 10px;
+    }
+
+    .product-content h1 {
+      font-size: 29px;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .details {
+      border-top: 1px solid #eaecf0;
+      padding-top: 18px;
+
+      display: grid;
+      gap: 13px;
+    }
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+
+      font-size: 14px;
+    }
+
+    .detail span:first-child {
+      color: #667085;
+    }
+
+    .detail strong {
+      text-align: left;
+    }
+
+    /* =========================
+       PURCHASE CARD
+    ========================= */
+
+    .purchase-card {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+
+      padding: 28px;
+
+      box-shadow: 0 7px 30px rgba(0,0,0,.06);
+
+      position: sticky;
+      top: 95px;
+    }
+
+    .purchase-title {
+      font-size: 21px;
+      margin-bottom: 20px;
+    }
+
+    /* PRICE */
+
+    .ticket-price {
+      background: #fff7df;
+
+      border: 1px solid #f2d58a;
+
+      border-radius: 14px;
+
+      padding: 17px;
+
+      margin-bottom: 20px;
+
+      text-align: center;
+    }
+
+    .ticket-price span {
+      display: block;
+
+      color: #7a5200;
+
+      font-size: 13px;
+
+      margin-bottom: 4px;
+    }
+
+    .ticket-price strong {
+      font-size: 29px;
+    }
+
+    /* PROGRESS */
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+
+      font-size: 13px;
+
+      margin-bottom: 7px;
+    }
+
+    .remaining {
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    .progress {
+      height: 9px;
+
+      background: #e5e7eb;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      margin-bottom: 25px;
+    }
+
+    .progress div {
+      height: 100%;
+
+      width: 68%;
+
+      background: #f59e0b;
+
+      border-radius: 20px;
+    }
+
+    /* QUANTITY */
+
+    .label {
+      display: block;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      margin-bottom: 8px;
+    }
+
+    .quantity {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      border: 1px solid #d0d5dd;
+
+      border-radius: 11px;
+
+      overflow: hidden;
+
+      margin-bottom: 20px;
+    }
+
+    .quantity button {
+      width: 48px;
+      height: 48px;
+
+      border: none;
+
+      background: #f7f8fa;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+      color: #111827;
+    }
+
+    .quantity button:hover {
+      background: #fff7df;
+    }
+
+    .quantity input {
+      width: 100%;
+
+      height: 48px;
+
+      border: none;
+
+      outline: none;
+
+      text-align: center;
+
+      font-size: 18px;
+
+      font-weight: bold;
+    }
+
+    /* TOTAL */
+
+    .total {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 16px 0;
+
+      border-top: 1px solid #eaecf0;
+      border-bottom: 1px solid #eaecf0;
+
+      margin-bottom: 20px;
+    }
+
+    .total span {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .total strong {
+      font-size: 24px;
+    }
+
+    /* BUTTON */
+
+    .join-btn {
+      width: 100%;
+
+      border: none;
+
+      background: #f59e0b;
+
+      color: #111827;
+
+      padding: 14px;
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .join-btn:hover {
+      background: #fbbf24;
+      transform: translateY(-1px);
+    }
+
+    /* INFO */
+
+    .notice {
+      margin-top: 15px;
+
+      background: #f7f8fa;
+
+      border: 1px solid #eaecf0;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      color: #667085;
+
+      font-size: 12px;
+
+      text-align: center;
+    }
+
+    /* MESSAGE */
+
+    .message {
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+    .error {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #111827;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 30px 20px;
+    }
+
+    footer .logo {
+      display: inline-block;
+      margin-bottom: 7px;
+    }
+
+    footer p {
+      color: #98a2b3;
+      font-size: 13px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      nav a:not(.wallet-btn) {
+        display: none;
+      }
+
+      main {
+        padding: 35px 15px 55px;
+      }
+
+      .draw-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .purchase-card {
+        position: static;
+      }
+
+      .product-image {
+        height: 300px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <nav>
+
+      <a href="draws.html">
+        السحوبات
+      </a>
+
+      <a href="account.html">
+        حسابي
+      </a>
+
+      <a href="wallet.html" class="wallet-btn">
+        المحفظة
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+
+    <a href="draws.html" class="back-link">
+      → العودة إلى السحوبات
+    </a>
+
+
+    <div class="draw-layout">
+
+
+      <!-- =========================
+           PRODUCT
+      ========================= -->
+
+      <div class="product-card">
+
+
+        <div class="product-image">
+
+          <!-- SVG PRODUCT ICON -->
+
+          <svg viewBox="0 0 24 24">
+
+            <rect
+              x="6"
+              y="2"
+              width="12"
+              height="20"
+              rx="2"
+            ></rect>
+
+            <path d="M9 5h6"></path>
+
+            <circle
+              cx="12"
+              cy="18"
+              r="1"
+            ></circle>
+
+          </svg>
+
+        </div>
+
+
+        <div class="product-content">
+
+          <span class="tag">
+            متاح الآن
+          </span>
+
+          <h1>
+            Samsung Galaxy
+          </h1>
+
+          <p class="description">
+            هاتف Samsung بحالة ممتازة، مناسب للاستخدام اليومي
+            ويأتي بمواصفات مميزة.
+          </p>
+
+
+          <div class="details">
+
+
+            <div class="detail">
+
+              <span>
+                صاحب المنتج
+              </span>
+
+              <strong>
+                Sahba User
+              </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+              <span>
+                إجمالي التذاكر
+              </span>
+
+              <strong>
+                110 تذكرة
+              </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+              <span>
+                التذاكر المباعة
+              </span>
+
+              <strong>
+                75 تذكرة
+              </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+              <span>
+                موعد السحب
+              </span>
+
+              <strong>
+                الجمعة
+              </strong>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           PURCHASE
+      ========================= -->
+
+      <div class="purchase-card">
+
+
+        <h2 class="purchase-title">
+          ادخل السحب
+        </h2>
+
+
+        <!-- PRICE -->
+
+        <div class="ticket-price">
+
+          <span>
+            سعر التذكرة
+          </span>
+
+          <strong>
+            30 جنيه
+          </strong>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="ticket-header">
+
+          <span>
+            تم بيع 75 من 110
+          </span>
+
+          <span class="remaining">
+            35 متبقي
+          </span>
+
+        </div>
+
+
+        <div class="progress">
+
+          <div></div>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <label class="label">
+          عدد التذاكر
+        </label>
+
+
+        <div class="quantity">
+
+          <button
+            type="button"
+            onclick="changeQuantity(-1)"
+          >
+            −
+          </button>
+
+
+          <input
+            type="number"
+            id="quantity"
+            value="1"
+            min="1"
+            max="35"
+            readonly
+          >
+
+
+          <button
+            type="button"
+            onclick="changeQuantity(1)"
+          >
+            +
+          </button>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="total">
+
+          <span>
+            الإجمالي
+          </span>
+
+          <strong id="total">
+            30 جنيه
+          </strong>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+          type="button"
+          class="join-btn"
+          onclick="joinDraw()"
+        >
+          شراء التذاكر
+        </button>
+
+
+        <!-- MESSAGE -->
+
+        <div
+          class="message error"
+          id="message"
+        ></div>
+
+
+        <!-- NOTICE -->
+
+        <div class="notice">
+          سيتم خصم قيمة التذاكر من رصيد محفظتك
+          بعد تأكيد عملية الشراء.
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba — جميع الحقوق محفوظة © 2026
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    const ticketPrice = 30;
+
+    const maxTickets = 35;
+
+
+    /* =========================
+       تغيير عدد التذاكر
+    ========================= */
+
+    function changeQuantity(change) {
+
+      const input =
+        document.getElementById("quantity");
+
+      let quantity =
+        Number(input.value);
+
+      quantity += change;
+
+
+      if (quantity < 1) {
+        quantity = 1;
+      }
+
+
+      if (quantity > maxTickets) {
+        quantity = maxTickets;
+      }
+
+
+      input.value = quantity;
+
+
+      updateTotal();
+
+    }
+
+
+    /* =========================
+       حساب الإجمالي
+    ========================= */
+
+    function updateTotal() {
+
+      const quantity =
+        Number(
+          document.getElementById("quantity").value
+        );
+
+
+      const total =
+        quantity * ticketPrice;
+
+
+      document.getElementById(
+        "total"
+      ).textContent =
+        total + " جنيه";
+
+    }
+
+
+    /* =========================
+       شراء التذاكر
+    ========================= */
+
+    function joinDraw() {
+
+      const quantity =
+        Number(
+          document.getElementById("quantity").value
+        );
+
+
+      if (
+        !quantity ||
+        quantity < 1
+      ) {
+
+        showMessage(
+          "من فضلك اختر عدد التذاكر."
+        );
+
+        return;
+
+      }
+
+
+      /*
+        حاليًا Frontend فقط.
+
+        بعد ربط Backend:
+        - التأكد من تسجيل الدخول
+        - التأكد من الرصيد
+        - خصم المبلغ
+        - إنشاء التذاكر
+        - حفظ العملية
+        - الانتقال إلى tickets.html
+      */
+
+
+      window.location.href =
+        "tickets.html";
+
+    }
+
+
+    /* =========================
+       رسالة الخطأ
+    ========================= */
+
+    function showMessage(message) {
+
+      const box =
+        document.getElementById("message");
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
