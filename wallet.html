@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>المحفظة | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+
+    /* ===== HEADER ===== */
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    nav a {
+      color: white;
+      padding: 8px 10px;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+    .account-btn {
+      border: 1px solid #f59e0b;
+      border-radius: 9px;
+      color: #f59e0b !important;
+      padding: 8px 17px !important;
+    }
+
+    .account-btn:hover {
+      background: #f59e0b;
+      color: #111827 !important;
+    }
+
+
+    /* ===== PAGE HEADER ===== */
+
+    .page-header {
+      padding: 60px 7% 45px;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.16),
+          transparent 35%
+        ),
+        linear-gradient(135deg, #fff7df, #ffffff);
+    }
+
+    .badge {
+      display: inline-block;
+
+      background: white;
+      color: #9a6700;
+
+      border: 1px solid #f2d58a;
+
+      padding: 6px 15px;
+
+      border-radius: 30px;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      margin-bottom: 15px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 45px);
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: #667085;
+      font-size: 16px;
+    }
+
+
+    /* ===== MAIN ===== */
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 45px 20px 70px;
+    }
+
+
+    /* ===== BALANCE ===== */
+
+    .balance-card {
+      background: #111827;
+      color: white;
+
+      border-radius: 22px;
+
+      padding: 30px;
+
+      box-shadow: 0 12px 35px rgba(0,0,0,.12);
+
+      margin-bottom: 25px;
+    }
+
+    .balance-label {
+      color: #d0d5dd;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .balance {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .balance strong {
+      color: #f59e0b;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .balance span {
+      color: #d0d5dd;
+      font-size: 15px;
+    }
+
+    .balance-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .balance-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      font-weight: bold;
+      font-size: 14px;
+
+      transition: .2s;
+    }
+
+    .deposit-btn {
+      background: #f59e0b;
+      color: #111827;
+    }
+
+    .deposit-btn:hover {
+      background: #fbbf24;
+      transform: translateY(-1px);
+    }
+
+    .withdraw-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid #667085;
+    }
+
+    .withdraw-btn:hover {
+      border-color: #f59e0b;
+      color: #f59e0b;
+    }
+
+
+    /* ===== ICON ===== */
+
+    .icon {
+      width: 18px;
+      height: 18px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+    }
+
+    .icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+
+    /* ===== SECTION TITLE ===== */
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      color: #667085;
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+
+
+    /* ===== QUICK ACTIONS ===== */
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+
+      margin-bottom: 40px;
+    }
+
+    .quick-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      background: white;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+
+      padding: 20px;
+
+      color: #111827;
+
+      box-shadow: 0 6px 20px rgba(0,0,0,.05);
+
+      transition: .2s;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-3px);
+      border-color: #f2d58a;
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+
+    .quick-icon {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #fff7df;
+
+      color: #9a6700;
+
+      border-radius: 12px;
+
+      flex-shrink: 0;
+    }
+
+    .quick-icon svg {
+      width: 23px;
+      height: 23px;
+
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .quick-card h3 {
+      font-size: 17px;
+      margin-bottom: 3px;
+    }
+
+    .quick-card p {
+      color: #667085;
+      font-size: 12px;
+    }
+
+
+    /* ===== TRANSACTIONS ===== */
+
+    .transactions {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow: 0 7px 25px rgba(0,0,0,.05);
+    }
+
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 18px 22px;
+
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .transaction:last-child {
+      border-bottom: none;
+    }
+
+    .transaction-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .transaction-icon {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #f7f8fa;
+
+      border-radius: 10px;
+
+      color: #667085;
+    }
+
+    .transaction-icon svg {
+      width: 19px;
+      height: 19px;
+
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .transaction-info h4 {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .transaction-info span {
+      color: #98a2b3;
+      font-size: 11px;
+    }
+
+    .amount {
+      font-size: 14px;
+      font-weight: bold;
+      direction: ltr;
+    }
+
+    .positive {
+      color: #15803d;
+    }
+
+    .negative {
+      color: #dc2626;
+    }
+
+
+    /* ===== FOOTER ===== */
+
+    footer {
+      background: #111827;
+      color: white;
+
+      text-align: center;
+
+      padding: 35px 20px;
+    }
+
+    footer .logo {
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      color: #98a2b3;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: #d0d5dd;
+      font-size: 13px;
+      margin: 0 8px;
+    }
+
+    .footer-links a:hover {
+      color: #f59e0b;
+    }
+
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      nav a:not(.account-btn) {
+        display: none;
+      }
+
+      .page-header {
+        padding: 50px 5% 35px;
+      }
+
+      main {
+        padding: 35px 15px 55px;
+      }
+
+      .balance-card {
+        padding: 24px 20px;
+      }
+
+      .balance strong {
+        font-size: 36px;
+      }
+
+      .quick-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .transaction {
+        padding: 16px;
+      }
+
+      .section-title {
+        font-size: 25px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <nav>
+
+      <a href="account.html">
+        حسابي
+      </a>
+
+      <a href="notifications.html">
+        الإشعارات
+      </a>
+
+      <a href="account.html" class="account-btn">
+        ← حسابي
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- PAGE HEADER -->
+
+  <section class="page-header">
+
+    <div class="badge">
+      محفظة Sahba
+    </div>
+
+    <h1>
+      المحفظة
+    </h1>
+
+    <p>
+      تابع رصيدك وعملياتك المالية بسهولة.
+    </p>
+
+  </section>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <!-- BALANCE -->
+
+    <div class="balance-card">
+
+      <div class="balance-label">
+        الرصيد الحالي
+      </div>
+
+      <div class="balance">
+
+        <strong>
+          0.00
+        </strong>
+
+        <span>
+          جنيه
+        </span>
+
+      </div>
+
+
+      <div class="balance-actions">
+
+
+        <a
+          href="deposit.html"
+          class="balance-btn deposit-btn"
+        >
+
+          <span class="icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+          </span>
+
+          إيداع
+
+
+        </a>
+
+
+        <a
+          href="withdraw.html"
+          class="balance-btn withdraw-btn"
+        >
+
+          <span class="icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h14"></path>
+            </svg>
+          </span>
+
+          سحب
+
+
+        </a>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <h2 class="section-title">
+      خدمات المحفظة
+    </h2>
+
+    <p class="section-subtitle">
+      إدارة أموالك والعمليات الخاصة بحسابك.
+    </p>
+
+
+    <div class="quick-actions">
+
+
+      <a
+        href="deposit.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v16"></path>
+            <path d="M5 12h14"></path>
+            <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h3>
+            إيداع رصيد
+          </h3>
+
+          <p>
+            إضافة أموال إلى محفظتك.
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a
+        href="withdraw.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="5" width="16" height="14" rx="2"></rect>
+            <path d="M8 12h8"></path>
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h3>
+            سحب رصيد
+          </h3>
+
+          <p>
+            طلب سحب الأموال من محفظتك.
+          </p>
+
+        </div>
+
+      </a>
+
+
+    </div>
+
+
+    <!-- TRANSACTIONS -->
+
+    <h2 class="section-title">
+      آخر العمليات
+    </h2>
+
+    <p class="section-subtitle">
+      سجل مختصر لآخر العمليات على المحفظة.
+    </p>
+
+
+    <div class="transactions">
+
+
+      <div class="transaction">
+
+        <div class="transaction-info">
+
+          <div class="transaction-icon">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M12 6v12"></path>
+              <path d="M8 10l4-4 4 4"></path>
+            </svg>
+
+          </div>
+
+          <div>
+
+            <h4>
+              إيداع رصيد
+            </h4>
+
+            <span>
+              لا توجد عمليات حتى الآن
+            </span>
+
+          </div>
+
+        </div>
+
+        <span class="amount positive">
+          + 0.00 جنيه
+        </span>
+
+      </div>
+
+
+      <div class="transaction">
+
+        <div class="transaction-info">
+
+          <div class="transaction-icon">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M12 18V6"></path>
+              <path d="M8 14l4 4 4-4"></path>
+            </svg>
+
+          </div>
+
+          <div>
+
+            <h4>
+              سحب رصيد
+            </h4>
+
+            <span>
+              لا توجد عمليات حتى الآن
+            </span>
+
+          </div>
+
+        </div>
+
+        <span class="amount negative">
+          - 0.00 جنيه
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba
+    </p>
+
+    <div class="footer-links">
+
+      <a href="#">
+        الشروط والأحكام
+      </a>
+
+      <a href="#">
+        سياسة الخصوصية
+      </a>
+
+      <a href="#">
+        تواصل معنا
+      </a>
+
+    </div>
+
+  </footer>
+
+
+</body>
+</html>
