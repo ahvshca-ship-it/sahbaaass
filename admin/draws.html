@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>إدارة السحوبات | Sahba Admin</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --dark: #111827;
+      --gold: #f59e0b;
+      --gold-light: #fff7df;
+      --gray: #f7f8fa;
+      --text: #111827;
+      --muted: #667085;
+      --border: #e5e7eb;
+      --green: #15803d;
+      --red: #dc2626;
+      --blue: #2563eb;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: var(--gray);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      height: 70px;
+      padding: 0 5%;
+
+      background: var(--dark);
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .admin-name {
+      color: #d0d5dd;
+      font-size: 13px;
+    }
+
+    .logout-btn {
+      background: transparent;
+      color: white;
+
+      border: 1px solid #4b5563;
+
+      padding: 8px 13px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .logout-btn:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ================= LAYOUT ================= */
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    /* ================= SIDEBAR ================= */
+
+    aside {
+      width: 240px;
+      flex-shrink: 0;
+
+      background: white;
+      border-left: 1px solid var(--border);
+
+      padding: 25px 15px;
+    }
+
+    .sidebar-title {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: bold;
+
+      margin: 0 10px 10px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      color: #344054;
+
+      padding: 11px 12px;
+
+      margin-bottom: 5px;
+
+      border-radius: 9px;
+
+      font-size: 14px;
+
+      transition: .2s;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: var(--gold-light);
+      color: #9a6700;
+    }
+
+    .sidebar-link.active {
+      font-weight: bold;
+    }
+
+    .icon {
+      width: 22px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    /* ================= MAIN ================= */
+
+    main {
+      flex: 1;
+      min-width: 0;
+
+      padding: 35px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      gap: 20px;
+
+      margin-bottom: 25px;
+    }
+
+    .page-header h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .add-btn {
+      border: none;
+
+      background: var(--gold);
+      color: var(--dark);
+
+      padding: 11px 18px;
+
+      border-radius: 9px;
+
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: #fbbf24;
+    }
+
+    /* ================= STATS ================= */
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: white;
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      padding: 18px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,.04);
+    }
+
+    .stat-label {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .blue {
+      color: var(--blue);
+    }
+
+    .red {
+      color: var(--red);
+    }
+
+    /* ================= DRAW BOX ================= */
+
+    .draws-box {
+      background: white;
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 20px;
+
+      box-shadow:
+        0 5px 20px rgba(0,0,0,.05);
+    }
+
+    .draws-top {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .draws-title {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .search {
+      width: 270px;
+
+      padding: 10px 12px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 9px;
+
+      outline: none;
+
+      font-size: 13px;
+    }
+
+    .search:focus {
+      border-color: var(--gold);
+    }
+
+    /* ================= DRAW CARDS ================= */
+
+    .draws {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+    .draw-card {
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+
+      padding: 20px;
+
+      transition: .2s;
+    }
+
+    .draw-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.07);
+    }
+
+    .draw-top {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 17px;
+    }
+
+    .draw-number {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .status {
+      padding: 5px 10px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .status.pending {
+      background: #eff6ff;
+      color: var(--blue);
+    }
+
+    .status.active {
+      background: #ecfdf3;
+      color: var(--green);
+    }
+
+    .status.finished {
+      background: #fff7df;
+      color: #9a6700;
+    }
+
+    .status.cancelled {
+      background: #fef2f2;
+      color: var(--red);
+    }
+
+    .draw-product {
+      background: #f9fafb;
+
+      border-radius: 11px;
+
+      padding: 13px;
+
+      margin-bottom: 15px;
+    }
+
+    .draw-product-name {
+      font-size: 17px;
+      font-weight: bold;
+
+      margin-bottom: 4px;
+    }
+
+    .draw-product-type {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .draw-details {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 9px;
+
+      margin-bottom: 15px;
+    }
+
+    .detail {
+      border: 1px solid var(--border);
+
+      border-radius: 9px;
+
+      padding: 10px;
+    }
+
+    .detail-label {
+      color: var(--muted);
+
+      font-size: 10px;
+
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .progress-box {
+      margin-bottom: 16px;
+    }
+
+    .progress-info {
+      display: flex;
+
+      justify-content: space-between;
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      margin-bottom: 6px;
+    }
+
+    .progress {
+      height: 7px;
+
+      background: #eef0f3;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+
+      height: 100%;
+
+      background: var(--gold);
+
+      border-radius: inherit;
+    }
+
+    .draw-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .action-btn {
+      flex: 1;
+
+      border: 1px solid var(--border);
+
+      background: white;
+
+      padding: 9px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 12px;
+    }
+
+    .action-btn:hover {
+      border-color: var(--gold);
+      color: #9a6700;
+    }
+
+    .action-btn.draw {
+      background: var(--gold);
+
+      border-color: var(--gold);
+
+      color: var(--dark);
+
+      font-weight: bold;
+    }
+
+    .action-btn.draw:hover {
+      background: #fbbf24;
+    }
+
+    .action-btn.delete:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ================= MODAL ================= */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(17,24,39,.55);
+
+      z-index: 2000;
+
+      padding: 20px;
+
+      overflow-y: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 570px;
+
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 25px;
+
+      margin: 40px auto;
+    }
+
+    .modal-header {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 22px;
+    }
+
+    .modal-header h2 {
+      font-size: 21px;
+    }
+
+    .close {
+      width: 34px;
+      height: 34px;
+
+      border: none;
+
+      background: #f3f4f6;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+
+      padding: 12px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 9px;
+
+      outline: none;
+
+      font-family: inherit;
+
+      font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 0 3px rgba(245,158,11,.10);
+    }
+
+    .form-row {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 12px;
+    }
+
+    .save-btn {
+      width: 100%;
+
+      border: none;
+
+      background: var(--gold);
+
+      color: var(--dark);
+
+      padding: 13px;
+
+      border-radius: 9px;
+
+      font-weight: bold;
+
+      font-size: 15px;
+
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background: #fbbf24;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width: 1050px) {
+
+      .stats {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .draws {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media(max-width: 750px) {
+
+      .layout {
+        display: block;
+      }
+
+      aside {
+        width: 100%;
+
+        border-left: none;
+
+        border-bottom: 1px solid var(--border);
+
+        padding: 10px;
+
+        display: flex;
+
+        overflow-x: auto;
+
+        gap: 5px;
+      }
+
+      .sidebar-title {
+        display: none;
+      }
+
+      .sidebar-link {
+        flex-shrink: 0;
+        margin: 0;
+      }
+
+      main {
+        padding: 25px 15px;
+      }
+
+      .page-header {
+        flex-direction: column;
+      }
+
+      .add-btn {
+        width: 100%;
+      }
+
+      .draws-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+    }
+
+    @media(max-width: 500px) {
+
+      .stats {
+        grid-template-columns:
+          repeat(2, 1fr);
+
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 14px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .draw-actions {
+        flex-wrap: wrap;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <a href="admin.html" class="logo">
+    Sahba
+  </a>
+
+  <div class="header-right">
+
+    <span class="admin-name">
+      مدير النظام
+    </span>
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      تسجيل الخروج
+    </button>
+
+  </div>
+
+</header>
+
+
+<div class="layout">
+
+
+  <!-- ================= SIDEBAR ================= -->
+
+  <aside>
+
+    <div class="sidebar-title">
+      الإدارة
+    </div>
+
+    <a href="admin.html" class="sidebar-link">
+      <span class="icon">▦</span>
+      الرئيسية
+    </a>
+
+    <a href="users.html" class="sidebar-link">
+      <span class="icon">♟</span>
+      المستخدمون
+    </a>
+
+    <a href="products.html" class="sidebar-link">
+      <span class="icon">▣</span>
+      المنتجات
+    </a>
+
+    <a href="draws.html" class="sidebar-link active">
+      <span class="icon">↻</span>
+      السحوبات
+    </a>
+
+    <a href="tickets.html" class="sidebar-link">
+      <span class="icon">▤</span>
+      التذاكر
+    </a>
+
+    <a href="deposits.html" class="sidebar-link">
+      <span class="icon">＋</span>
+      الإيداعات
+    </a>
+
+    <a href="withdrawals.html" class="sidebar-link">
+      <span class="icon">−</span>
+      السحوبات المالية
+    </a>
+
+    <a href="results.html" class="sidebar-link">
+      <span class="icon">✓</span>
+      النتائج
+    </a>
+
+    <a href="notifications.html" class="sidebar-link">
+      <span class="icon">●</span>
+      الإشعارات
+    </a>
+
+    <a href="settings.html" class="sidebar-link">
+      <span class="icon">⚙</span>
+      الإعدادات
+    </a>
+
+  </aside>
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main>
+
+
+    <div class="page-header">
+
+      <div>
+
+        <h1>
+          إدارة السحوبات
+        </h1>
+
+        <p>
+          إنشاء ومتابعة السحوبات والتحكم في مواعيدها وحالتها.
+        </p>
+
+      </div>
+
+      <button
+        class="add-btn"
+        onclick="openModal()"
+      >
+        + إنشاء سحب
+      </button>
+
+    </div>
+
+
+    <!-- ================= STATS ================= -->
+
+    <div class="stats">
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          إجمالي السحوبات
+        </div>
+
+        <div class="stat-value">
+          1048
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          سحوبات نشطة
+        </div>
+
+        <div class="stat-value green">
+          3
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          في الانتظار
+        </div>
+
+        <div class="stat-value blue">
+          5
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          مكتملة
+        </div>
+
+        <div class="stat-value">
+          1040
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================= DRAWS ================= -->
+
+    <div class="draws-box">
+
+
+      <div class="draws-top">
+
+        <div class="draws-title">
+          آخر السحوبات
+        </div>
+
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="ابحث برقم السحب أو المنتج..."
+          oninput="searchDraws()"
+        >
+
+      </div>
+
+
+      <div class="draws" id="draws">
+
+
+        <!-- DRAW 1 -->
+
+        <div
+          class="draw-card"
+          data-search="1048 Samsung Galaxy"
+        >
+
+          <div class="draw-top">
+
+            <span class="draw-number">
+              سحب #1048
+            </span>
+
+            <span class="status active">
+              نشط
+            </span>
+
+          </div>
+
+
+          <div class="draw-product">
+
+            <div class="draw-product-name">
+              Samsung Galaxy
+            </div>
+
+            <div class="draw-product-type">
+              سحب الجمعة
+            </div>
+
+          </div>
+
+
+          <div class="draw-details">
+
+            <div class="detail">
+
+              <div class="detail-label">
+                موعد السحب
+              </div>
+
+              <div class="detail-value">
+                21 أغسطس 2026
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                الساعة
+              </div>
+
+              <div class="detail-value">
+                09:00 م
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                سعر التذكرة
+              </div>
+
+              <div class="detail-value">
+                50 ج.م
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                التذاكر
+              </div>
+
+              <div class="detail-value">
+                750 / 1000
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="progress-box">
+
+            <div class="progress-info">
+
+              <span>
+                نسبة بيع التذاكر
+              </span>
+
+              <span>
+                75%
+              </span>
+
+            </div>
+
+            <div class="progress">
+              <span style="width:75%"></span>
+            </div>
+
+          </div>
+
+
+          <div class="draw-actions">
+
+            <button
+              class="action-btn"
+              onclick="editDraw(1048)"
+            >
+              تعديل
+            </button>
+
+            <button
+              class="action-btn draw"
+              onclick="runDraw(1048)"
+            >
+              إجراء السحب
+            </button>
+
+            <button
+              class="action-btn delete"
+              onclick="deleteDraw(1048)"
+            >
+              حذف
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- DRAW 2 -->
+
+        <div
+          class="draw-card"
+          data-search="1047 Smart Watch"
+        >
+
+          <div class="draw-top">
+
+            <span class="draw-number">
+              سحب #1047
+            </span>
+
+            <span class="status pending">
+              في الانتظار
+            </span>
+
+          </div>
+
+
+          <div class="draw-product">
+
+            <div class="draw-product-name">
+              Smart Watch
+            </div>
+
+            <div class="draw-product-type">
+              سحب الجمعة
+            </div>
+
+          </div>
+
+
+          <div class="draw-details">
+
+            <div class="detail">
+
+              <div class="detail-label">
+                موعد السحب
+              </div>
+
+              <div class="detail-value">
+                28 أغسطس 2026
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                الساعة
+              </div>
+
+              <div class="detail-value">
+                09:00 م
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                سعر التذكرة
+              </div>
+
+              <div class="detail-value">
+                30 ج.م
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                التذاكر
+              </div>
+
+              <div class="detail-value">
+                420 / 500
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="progress-box">
+
+            <div class="progress-info">
+
+              <span>
+                نسبة بيع التذاكر
+              </span>
+
+              <span>
+                84%
+              </span>
+
+            </div>
+
+            <div class="progress">
+              <span style="width:84%"></span>
+            </div>
+
+          </div>
+
+
+          <div class="draw-actions">
+
+            <button
+              class="action-btn"
+              onclick="editDraw(1047)"
+            >
+              تعديل
+            </button>
+
+            <button
+              class="action-btn draw"
+              onclick="runDraw(1047)"
+            >
+              إجراء السحب
+            </button>
+
+            <button
+              class="action-btn delete"
+              onclick="deleteDraw(1047)"
+            >
+              حذف
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- DRAW 3 -->
+
+        <div
+          class="draw-card"
+          data-search="1046 Wireless Headphones"
+        >
+
+          <div class="draw-top">
+
+            <span class="draw-number">
+              سحب #1046
+            </span>
+
+            <span class="status finished">
+              مكتمل
+            </span>
+
+          </div>
+
+
+          <div class="draw-product">
+
+            <div class="draw-product-name">
+              Wireless Headphones
+            </div>
+
+            <div class="draw-product-type">
+              سحب الجمعة
+            </div>
+
+          </div>
+
+
+          <div class="draw-details">
+
+            <div class="detail">
+
+              <div class="detail-label">
+                موعد السحب
+              </div>
+
+              <div class="detail-value">
+                14 أغسطس 2026
+              </div>
+
+            </div>
+
+            <div class="detail">
+
+              <div class="detail-label">
+                الساعة
+              </div>
+
+              <div class="detail-value">
+                09:00 م
