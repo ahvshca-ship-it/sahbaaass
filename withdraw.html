@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>سحب الرصيد | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* HEADER */
+
+    header {
+      background: #111827;
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .back {
+      color: white;
+      font-size: 15px;
+    }
+
+    .back:hover {
+      color: #f59e0b;
+    }
+
+    /* MAIN */
+
+    main {
+      flex: 1;
+      padding: 55px 20px;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    .withdraw-wrapper {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    /* TITLE */
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .page-title h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .page-title p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    /* BALANCE */
+
+    .balance-card {
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(245,158,11,.18),
+          transparent 45%
+        ),
+        #111827;
+
+      color: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 20px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    .balance-label {
+      color: #98a2b3;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .balance {
+      font-size: 34px;
+      font-weight: bold;
+      color: #f59e0b;
+      direction: ltr;
+      text-align: right;
+    }
+
+    /* CARD */
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 30px;
+
+      box-shadow: 0 7px 30px rgba(0,0,0,.06);
+    }
+
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    /* METHODS */
+
+    .methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .method {
+      border: 1px solid #d0d5dd;
+      border-radius: 12px;
+
+      padding: 15px;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      transition: .2s;
+    }
+
+    .method:hover {
+      border-color: #f59e0b;
+    }
+
+    .method.active {
+      border-color: #f59e0b;
+      background: #fffaf0;
+    }
+
+    .method-icon {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 11px;
+
+      background: #fff7df;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+    }
+
+    .method-icon svg {
+      width: 22px;
+      height: 22px;
+
+      fill: none;
+      stroke: #9a6700;
+
+      stroke-width: 1.7;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .method strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .method small {
+      color: #667085;
+      font-size: 12px;
+    }
+
+    /* INPUTS */
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 13px;
+
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+
+      font-size: 16px;
+      outline: none;
+
+      margin-bottom: 18px;
+    }
+
+    input:focus {
+      border-color: #f59e0b;
+
+      box-shadow:
+        0 0 0 3px rgba(245,158,11,.12);
+    }
+
+    /* INFO */
+
+    .info {
+      background: #fff7df;
+      color: #7a5200;
+
+      border: 1px solid #f2d58a;
+
+      padding: 13px;
+
+      border-radius: 11px;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+      margin-bottom: 20px;
+    }
+
+    /* BUTTON */
+
+    .withdraw-btn {
+      width: 100%;
+
+      border: none;
+
+      background: #f59e0b;
+
+      color: #111827;
+
+      padding: 14px;
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .withdraw-btn:hover {
+      background: #fbbf24;
+      transform: translateY(-1px);
+    }
+
+    /* MESSAGE */
+
+    .message {
+      display: none;
+
+      margin-top: 18px;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      font-size: 14px;
+    }
+
+    .error {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .success {
+      background: #f0fdf4;
+      color: #15803d;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #111827;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 25px;
+    }
+
+    footer p {
+      color: #98a2b3;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      main {
+        padding: 40px 15px;
+      }
+
+      .page-title h1 {
+        font-size: 27px;
+      }
+
+      .card {
+        padding: 22px 18px;
+      }
+
+      .methods {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <a href="wallet.html" class="back">
+      ← العودة للمحفظة
+    </a>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+    <div class="withdraw-wrapper">
+
+
+      <!-- TITLE -->
+
+      <div class="page-title">
+
+        <h1>
+          سحب الرصيد
+        </h1>
+
+        <p>
+          اختر طريقة السحب وأدخل البيانات المطلوبة
+        </p>
+
+      </div>
+
+
+      <!-- BALANCE -->
+
+      <div class="balance-card">
+
+        <div class="balance-label">
+          الرصيد المتاح للسحب
+        </div>
+
+        <div class="balance">
+          0.00 ج
+        </div>
+
+      </div>
+
+
+      <!-- CARD -->
+
+      <div class="card">
+
+
+        <h2 class="section-title">
+          طريقة السحب
+        </h2>
+
+
+        <!-- METHODS -->
+
+        <div class="methods">
+
+
+          <!-- VODAFONE CASH -->
+
+          <div
+            class="method active"
+            onclick="selectMethod(this, 'vodafone')"
+          >
+
+            <div class="method-icon">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                ></rect>
+
+                <path d="M3 9h18"></path>
+
+                <path d="M16 13h3"></path>
+
+              </svg>
+
+            </div>
+
+            <div>
+
+              <strong>
+                Vodafone Cash
+              </strong>
+
+              <small>
+                سحب على المحفظة
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <!-- INSTAPAY -->
+
+          <div
+            class="method"
+            onclick="selectMethod(this, 'instapay')"
+          >
+
+            <div class="method-icon">
+
+              <svg viewBox="0 0 24 24">
+
+                <path d="M4 12h15"></path>
+
+                <path d="M14 7l5 5-5 5"></path>
+
+                <path d="M5 7v10"></path>
+
+              </svg>
+
+            </div>
+
+            <div>
+
+              <strong>
+                InstaPay
+              </strong>
+
+              <small>
+                تحويل عبر InstaPay
+              </small>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- VODAFONE -->
+
+        <div id="vodafoneField">
+
+          <label>
+            رقم Vodafone Cash
+          </label>
+
+          <input
+            type="tel"
+            id="vodafonePhone"
+            inputmode="numeric"
+            placeholder="01xxxxxxxxx"
+          >
+
+        </div>
+
+
+        <!-- INSTAPAY -->
+
+        <div
+          id="instapayField"
+          style="display:none;"
+        >
+
+          <label>
+            رقم الموبايل المرتبط بـ InstaPay
+          </label>
+
+          <input
+            type="tel"
+            id="instapayPhone"
+            inputmode="numeric"
+            placeholder="01xxxxxxxxx"
+          >
+
+          <label>
+            عنوان الدفع InstaPay
+          </label>
+
+          <input
+            type="text"
+            id="instapayAddress"
+            placeholder="مثال: name@instapay"
+          >
+
+        </div>
+
+
+        <!-- AMOUNT -->
+
+        <label>
+          المبلغ المطلوب سحبه
+        </label>
+
+        <input
+          type="number"
+          id="amount"
+          min="50"
+          placeholder="مثال: 500"
+        >
+
+
+        <!-- INFO -->
+
+        <div class="info">
+
+          الحد الأدنى للسحب:
+          <strong>50 جنيه</strong>
+
+          <br>
+
+          يتم مراجعة طلب السحب قبل تحويل المبلغ.
+
+          <br>
+
+          تأكد من صحة بيانات التحويل قبل إرسال الطلب.
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+          type="button"
+          class="withdraw-btn"
+          onclick="submitWithdraw()"
+        >
+          طلب سحب الرصيد
+        </button>
+
+
+        <!-- ERROR -->
+
+        <div
+          class="message error"
+          id="errorMessage"
+        ></div>
+
+
+        <!-- SUCCESS -->
+
+        <div
+          class="message success"
+          id="successMessage"
+        ></div>
+
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 Sahba — جميع الحقوق محفوظة
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    let selectedMethod = "vodafone";
+
+
+    /* =========================
+       اختيار طريقة السحب
+    ========================= */
+
+    function selectMethod(element, method) {
+
+      document
+        .querySelectorAll(".method")
+        .forEach(item => {
+
+          item.classList.remove("active");
+
+        });
+
+
+      element.classList.add("active");
+
+      selectedMethod = method;
+
+
+      if (method === "vodafone") {
+
+        document.getElementById(
+          "vodafoneField"
+        ).style.display = "block";
+
+        document.getElementById(
+          "instapayField"
+        ).style.display = "none";
+
+      }
+
+
+      if (method === "instapay") {
+
+        document.getElementById(
+          "vodafoneField"
+        ).style.display = "none";
+
+        document.getElementById(
+          "instapayField"
+        ).style.display = "block";
+
+      }
+
+    }
+
+
+    /* =========================
+       إرسال الطلب
+    ========================= */
+
+    function submitWithdraw() {
+
+      const amount =
+        Number(
+          document.getElementById("amount").value
+        );
+
+
+      hideMessages();
+
+
+      if (!amount || amount < 50) {
+
+        showError(
+          "الحد الأدنى للسحب هو 50 جنيه."
+        );
+
+        return;
+
+      }
+
+
+      /* Vodafone Cash */
+
+      if (selectedMethod === "vodafone") {
+
+        const phone =
+          document
+            .getElementById("vodafonePhone")
+            .value
+            .trim();
+
+
+        if (!phone) {
+
+          showError(
+            "من فضلك أدخل رقم Vodafone Cash."
+          );
+
+          return;
+
+        }
+
+
+        if (!/^01[0-9]{9}$/.test(phone)) {
+
+          showError(
+            "من فضلك أدخل رقم محفظة صحيح."
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      /* InstaPay */
+
+      if (selectedMethod === "instapay") {
+
+        const phone =
+          document
+            .getElementById("instapayPhone")
+            .value
+            .trim();
+
+
+        const address =
+          document
+            .getElementById("instapayAddress")
+            .value
+            .trim();
+
+
+        if (!phone || !address) {
+
+          showError(
+            "من فضلك أكمل بيانات InstaPay."
+          );
+
+          return;
+
+        }
+
+
+        if (!/^01[0-9]{9}$/.test(phone)) {
+
+          showError(
+            "من فضلك أدخل رقم موبايل صحيح."
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      showSuccess(
+        "تم إرسال طلب السحب بنجاح، وسيتم مراجعته من الإدارة."
+      );
+
+    }
+
+
+    /* =========================
+       الرسائل
+    ========================= */
+
+    function showError(message) {
+
+      const box =
+        document.getElementById(
+          "errorMessage"
+        );
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+    }
+
+
+    function showSuccess(message) {
+
+      const box =
+        document.getElementById(
+          "successMessage"
+        );
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+    }
+
+
+    function hideMessages() {
+
+      document.getElementById(
+        "errorMessage"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "successMessage"
+      ).style.display = "none";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
