@@ -8,6 +8,7 @@
   <title>Sahba</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -29,18 +30,25 @@
       text-decoration: none;
     }
 
-    /* ===== HEADER ===== */
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       background: #111827;
       color: white;
+
       padding: 16px 7%;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       position: sticky;
       top: 0;
       z-index: 1000;
+
       box-shadow: 0 4px 18px rgba(0,0,0,.12);
     }
 
@@ -69,7 +77,9 @@
     .login-btn {
       border: 1px solid #f59e0b;
       border-radius: 9px;
+
       color: #f59e0b !important;
+
       padding: 8px 17px !important;
     }
 
@@ -78,11 +88,16 @@
       color: #111827 !important;
     }
 
-    /* ===== HERO ===== */
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       padding: 90px 7%;
+
       text-align: center;
+
       background:
         radial-gradient(
           circle at top right,
@@ -94,19 +109,27 @@
 
     .badge {
       display: inline-block;
+
       background: white;
       color: #9a6700;
+
       border: 1px solid #f2d58a;
+
       padding: 6px 15px;
+
       border-radius: 30px;
+
       font-size: 14px;
       font-weight: bold;
+
       margin-bottom: 18px;
     }
 
     .hero h1 {
       font-size: clamp(38px, 6vw, 58px);
+
       line-height: 1.2;
+
       margin-bottom: 20px;
     }
 
@@ -116,62 +139,91 @@
 
     .hero p {
       color: #667085;
+
       font-size: 19px;
+
       max-width: 650px;
+
       margin: 0 auto 30px;
     }
 
     .main-btn {
       display: inline-block;
+
       background: #f59e0b;
       color: #111827;
+
       border: none;
+
       padding: 14px 28px;
+
       border-radius: 11px;
+
       font-size: 16px;
       font-weight: bold;
+
       cursor: pointer;
+
       transition: .2s;
     }
 
     .main-btn:hover {
       background: #fbbf24;
+
       transform: translateY(-2px);
     }
 
-    /* ===== STATS ===== */
+
+    /* =========================
+       STATS
+    ========================= */
 
     .stats {
       max-width: 1000px;
+
       margin: -30px auto 0;
+
       padding: 0 20px;
+
       position: relative;
 
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 15px;
     }
 
     .stat {
       background: white;
+
       border: 1px solid #e5e7eb;
+
       border-radius: 16px;
+
       padding: 22px;
+
       text-align: center;
+
       box-shadow: 0 8px 25px rgba(0,0,0,.07);
     }
 
     .stat strong {
       display: block;
+
       font-size: 24px;
     }
 
     .stat span {
       color: #667085;
+
       font-size: 13px;
     }
 
-    /* ===== SECTIONS ===== */
+
+    /* =========================
+       SECTIONS
+    ========================= */
 
     section {
       padding: 65px 7%;
@@ -179,47 +231,67 @@
 
     .title {
       text-align: center;
+
       font-size: 32px;
+
       margin-bottom: 8px;
     }
 
     .subtitle {
       text-align: center;
+
       color: #667085;
+
       margin-bottom: 35px;
     }
 
-    /* ===== CARDS ===== */
+
+    /* =========================
+       CARDS
+    ========================= */
 
     .cards {
       max-width: 1200px;
+
       margin: auto;
 
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 22px;
     }
 
     .card {
       background: white;
+
       border-radius: 20px;
+
       overflow: hidden;
+
       border: 1px solid #e5e7eb;
+
       box-shadow: 0 6px 25px rgba(0,0,0,.07);
+
       transition: .2s;
     }
 
     .card:hover {
       transform: translateY(-5px);
+
       box-shadow: 0 15px 35px rgba(0,0,0,.1);
     }
 
     .product-image {
       height: 200px;
+
       display: flex;
+
       justify-content: center;
       align-items: center;
+
       background: #eef0f3;
+
       font-size: 75px;
     }
 
@@ -229,80 +301,115 @@
 
     .tag {
       display: inline-block;
+
       background: #ecfdf3;
+
       color: #15803d;
+
       padding: 4px 10px;
+
       border-radius: 20px;
+
       font-size: 12px;
+
       font-weight: bold;
+
       margin-bottom: 10px;
     }
 
     .content h3 {
       font-size: 20px;
+
       margin-bottom: 5px;
     }
 
     .description {
       color: #667085;
+
       font-size: 14px;
     }
 
     .price {
       font-size: 22px;
+
       font-weight: bold;
+
       margin: 15px 0;
     }
 
     .price small {
       color: #667085;
+
       font-size: 13px;
+
       font-weight: normal;
     }
 
     .ticket-info {
       display: flex;
+
       justify-content: space-between;
+
       font-size: 13px;
+
       margin-bottom: 7px;
     }
 
     .remaining {
       color: #15803d;
+
       font-weight: bold;
     }
 
     .progress {
       height: 8px;
+
       background: #e5e7eb;
+
       border-radius: 20px;
+
       overflow: hidden;
+
       margin-bottom: 15px;
     }
 
     .progress div {
       height: 100%;
+
       background: #f59e0b;
+
       border-radius: 20px;
     }
 
     .draw-date {
       background: #fff7df;
+
       color: #7a5200;
+
       padding: 9px 12px;
+
       border-radius: 10px;
+
       font-size: 13px;
+
       margin-bottom: 15px;
     }
 
     .card-btn {
       display: block;
+
       width: 100%;
+
       text-align: center;
+
       background: #f59e0b;
+
       color: #111827;
+
       padding: 12px;
+
       border-radius: 10px;
+
       font-weight: bold;
     }
 
@@ -310,7 +417,10 @@
       background: #fbbf24;
     }
 
-    /* ===== HOW IT WORKS ===== */
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
 
     .how {
       background: white;
@@ -318,34 +428,45 @@
 
     .steps {
       max-width: 1000px;
+
       margin: auto;
 
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 20px;
     }
 
     .step {
       text-align: center;
+
       padding: 28px 20px;
+
       border: 1px solid #e5e7eb;
+
       border-radius: 18px;
     }
 
     .step-number {
       width: 52px;
       height: 52px;
+
       margin: 0 auto 15px;
 
       display: flex;
+
       justify-content: center;
       align-items: center;
 
       background: #fff7df;
+
       color: #9a6700;
+
       border-radius: 50%;
 
       font-size: 20px;
+
       font-weight: bold;
     }
 
@@ -355,82 +476,67 @@
 
     .step p {
       color: #667085;
+
       font-size: 14px;
     }
 
-    /* ===== SELL ===== */
+
+    /* =========================
+       SELL
+    ========================= */
 
     .sell {
       max-width: 700px;
+
       margin: auto;
+
       background: white;
+
       padding: 32px;
+
       border-radius: 22px;
+
       border: 1px solid #e5e7eb;
+
       box-shadow: 0 7px 30px rgba(0,0,0,.06);
+
+      text-align: center;
     }
 
     .sell-intro {
-      text-align: center;
       color: #667085;
+
       margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0 15px;
-
-      border: 1px solid #d0d5dd;
-      border-radius: 10px;
-
-      font-size: 16px;
-      outline: none;
-      background: white;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #f59e0b;
-      box-shadow: 0 0 0 3px rgba(245,158,11,.12);
-    }
-
-    textarea {
-      height: 120px;
-      resize: vertical;
     }
 
     .sell-btn {
       width: 100%;
-      border: none;
-      margin-top: 5px;
     }
 
-    /* ===== FOOTER ===== */
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       background: #111827;
+
       color: white;
+
       text-align: center;
+
       padding: 35px 20px;
     }
 
     footer .logo {
       display: inline-block;
+
       margin-bottom: 8px;
     }
 
     footer p {
       color: #98a2b3;
+
       font-size: 14px;
     }
 
@@ -440,7 +546,9 @@
 
     .footer-links a {
       color: #d0d5dd;
+
       font-size: 13px;
+
       margin: 0 8px;
     }
 
@@ -448,7 +556,10 @@
       color: #f59e0b;
     }
 
-    /* ===== MOBILE ===== */
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 800px) {
 
@@ -499,15 +610,20 @@
       .title {
         font-size: 28px;
       }
+
     }
 
   </style>
+
 </head>
+
 
 <body>
 
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================= -->
 
   <header>
 
@@ -517,7 +633,7 @@
 
     <nav>
 
-      <a href="#draws">
+      <a href="draws.html">
         السحوبات
       </a>
 
@@ -525,13 +641,12 @@
         كيف تعمل؟
       </a>
 
-      <a href="#sell">
+      <a href="sell.html">
         اعرض منتجك
       </a>
 
-      <!-- تسجيل الدخول -->
-     <a href="login.html" class="login-btn" target="_self">
-        تسجيل الدخول
+      <a href="account.html" class="login-btn">
+        حسابي
       </a>
 
     </nav>
@@ -539,7 +654,9 @@
   </header>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
   <section class="hero">
 
@@ -548,45 +665,81 @@
     </div>
 
     <h1>
+
       أي حاجة عندك عايز تبيعها؟
+
       <br>
-      <span>دخلها Sahba.</span>
+
+      <span>
+        دخلها Sahba.
+      </span>
+
     </h1>
 
     <p>
       اعرض منتجك ووصلّه لناس أكتر من خلال منصة Sahba.
     </p>
 
-    <a href="#sell" class="main-btn">
+    <a
+      href="sell.html"
+      class="main-btn"
+    >
       اعرض منتجك
     </a>
 
   </section>
 
 
-  <!-- STATS -->
+  <!-- =========================
+       STATS
+  ========================= -->
 
   <div class="stats">
 
     <div class="stat">
-      <strong>110</strong>
-      <span>تذكرة في العرض</span>
+
+      <strong>
+        110
+      </strong>
+
+      <span>
+        تذكرة في العرض
+      </span>
+
     </div>
 
-    <div class="stat">
-      <strong>30 جنيه</strong>
-      <span>سعر التذكرة</span>
-    </div>
 
     <div class="stat">
-      <strong>كل جمعة</strong>
-      <span>موعد السحب</span>
+
+      <strong>
+        30 جنيه
+      </strong>
+
+      <span>
+        سعر التذكرة
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <strong>
+        كل جمعة
+      </strong>
+
+      <span>
+        موعد السحب
+      </span>
+
     </div>
 
   </div>
 
 
-  <!-- DRAWS -->
+  <!-- =========================
+       DRAWS
+  ========================= -->
 
   <section id="draws">
 
@@ -626,12 +779,14 @@
 
           <div class="price">
             30 جنيه
+
             <small>
               / التذكرة
             </small>
           </div>
 
           <div class="ticket-info">
+
             <span>
               75 من 110
             </span>
@@ -639,18 +794,24 @@
             <span class="remaining">
               35 متبقي
             </span>
+
           </div>
 
           <div class="progress">
+
             <div style="width:68%;"></div>
+
           </div>
 
           <div class="draw-date">
             📅 السحب القادم: الجمعة
           </div>
 
-          <a href="draw.html" class="card-btn">
-            ادخل السحب
+          <a
+            href="draws.html"
+            class="card-btn"
+          >
+            عرض السحب
           </a>
 
         </div>
@@ -682,12 +843,14 @@
 
           <div class="price">
             25 جنيه
+
             <small>
               / التذكرة
             </small>
           </div>
 
           <div class="ticket-info">
+
             <span>
               42 من 110
             </span>
@@ -695,18 +858,24 @@
             <span class="remaining">
               68 متبقي
             </span>
+
           </div>
 
           <div class="progress">
+
             <div style="width:38%;"></div>
+
           </div>
 
           <div class="draw-date">
             📅 السحب القادم: الجمعة
           </div>
 
-          <a href="draw.html" class="card-btn">
-            ادخل السحب
+          <a
+            href="draws.html"
+            class="card-btn"
+          >
+            عرض السحب
           </a>
 
         </div>
@@ -738,12 +907,14 @@
 
           <div class="price">
             20 جنيه
+
             <small>
               / التذكرة
             </small>
           </div>
 
           <div class="ticket-info">
+
             <span>
               90 من 110
             </span>
@@ -751,18 +922,24 @@
             <span class="remaining">
               20 متبقي
             </span>
+
           </div>
 
           <div class="progress">
+
             <div style="width:82%;"></div>
+
           </div>
 
           <div class="draw-date">
             📅 السحب القادم: الجمعة
           </div>
 
-          <a href="draw.html" class="card-btn">
-            ادخل السحب
+          <a
+            href="draws.html"
+            class="card-btn"
+          >
+            عرض السحب
           </a>
 
         </div>
@@ -775,9 +952,14 @@
   </section>
 
 
-  <!-- HOW IT WORKS -->
+  <!-- =========================
+       HOW IT WORKS
+  ========================= -->
 
-  <section class="how" id="how">
+  <section
+    class="how"
+    id="how"
+  >
 
     <h2 class="title">
       كيف تعمل Sahba؟
@@ -847,7 +1029,9 @@
   </section>
 
 
-  <!-- SELL -->
+  <!-- =========================
+       SELL
+  ========================= -->
 
   <section id="sell">
 
@@ -863,96 +1047,25 @@
     <div class="sell">
 
       <p class="sell-intro">
-        اكتب بيانات المنتج وسيتم مراجعته قبل النشر.
+        اعرض منتجك وابدأ في الوصول إلى مستخدمين أكثر.
       </p>
 
 
-      <label>
-        اسم المنتج
-      </label>
-
-      <input
-        type="text"
-        placeholder="مثال: iPhone 13"
-      >
-
-
-      <label>
-        الفئة
-      </label>
-
-      <select>
-
-        <option>
-          موبايل
-        </option>
-
-        <option>
-          لابتوب
-        </option>
-
-        <option>
-          ساعة
-        </option>
-
-        <option>
-          سماعة
-        </option>
-
-        <option>
-          تلفزيون
-        </option>
-
-        <option>
-          أخرى
-        </option>
-
-      </select>
-
-
-      <label>
-        وصف المنتج
-      </label>
-
-      <textarea
-        placeholder="اكتب مواصفات وحالة المنتج..."
-      ></textarea>
-
-
-      <label>
-        السعر المطلوب
-      </label>
-
-      <input
-        type="number"
-        placeholder="مثال: 3000"
-      >
-
-
-      <label>
-        رقم الهاتف
-      </label>
-
-      <input
-        type="tel"
-        placeholder="01xxxxxxxxx"
-      >
-
-
-      <button
-        type="button"
+      <a
+        href="sell.html"
         class="main-btn sell-btn"
-        onclick="alert('تم إرسال المنتج للمراجعة')"
       >
-        إرسال المنتج للمراجعة
-      </button>
+        ابدأ عرض منتجك
+      </a>
 
     </div>
 
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer>
 
@@ -963,6 +1076,7 @@
     <p>
       منصة Sahba
     </p>
+
 
     <div class="footer-links">
 
@@ -975,7 +1089,7 @@
       </a>
 
       <a href="#">
-        تواصل معنا
+        الدعم
       </a>
 
     </div>
@@ -984,4 +1098,5 @@
 
 
 </body>
+
 </html>
