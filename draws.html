@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>السحوبات | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111827;
+      color: white;
+
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      color: white;
+      padding: 8px 10px;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+    .wallet-btn {
+      border: 1px solid #f59e0b;
+      border-radius: 9px;
+      color: #f59e0b !important;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      padding: 65px 7%;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.16),
+          transparent 35%
+        ),
+        linear-gradient(135deg, #fff7df, #ffffff);
+    }
+
+    .badge {
+      display: inline-block;
+
+      background: white;
+      color: #9a6700;
+
+      border: 1px solid #f2d58a;
+
+      padding: 6px 15px;
+
+      border-radius: 30px;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 48px);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: #f59e0b;
+    }
+
+    .hero p {
+      color: #667085;
+      font-size: 17px;
+      max-width: 650px;
+      margin: auto;
+    }
+
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    main {
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 50px 20px 70px;
+    }
+
+
+    /* =========================
+       FILTERS
+    ========================= */
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+
+      margin-bottom: 35px;
+
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid #d0d5dd;
+
+      background: white;
+
+      color: #475467;
+
+      padding: 9px 18px;
+
+      border-radius: 25px;
+
+      font-size: 14px;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .filter-btn:hover {
+      border-color: #f59e0b;
+      color: #9a6700;
+    }
+
+    .filter-btn.active {
+      background: #f59e0b;
+      border-color: #f59e0b;
+      color: #111827;
+      font-weight: bold;
+    }
+
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .draws-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .draw-card {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 6px 25px rgba(0,0,0,.07);
+
+      transition: .2s;
+    }
+
+    .draw-card:hover {
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.10);
+    }
+
+
+    /* PRODUCT IMAGE */
+
+    .product-image {
+      height: 190px;
+
+      background: #eef0f3;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      font-size: 70px;
+    }
+
+
+    /* CARD CONTENT */
+
+    .content {
+      padding: 21px;
+    }
+
+    .tag {
+      display: inline-block;
+
+      background: #ecfdf3;
+
+      color: #15803d;
+
+      padding: 4px 10px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      margin-bottom: 9px;
+    }
+
+    .tag.finished {
+      background: #f2f4f7;
+      color: #667085;
+    }
+
+    .content h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .description {
+      color: #667085;
+      font-size: 14px;
+
+      min-height: 48px;
+    }
+
+
+    /* PRICE */
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+
+      margin: 14px 0;
+    }
+
+    .price small {
+      color: #667085;
+
+      font-size: 13px;
+
+      font-weight: normal;
+    }
+
+
+    /* TICKETS */
+
+    .ticket-info {
+      display: flex;
+
+      justify-content: space-between;
+
+      font-size: 13px;
+
+      margin-bottom: 7px;
+    }
+
+    .remaining {
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    .progress {
+      height: 8px;
+
+      background: #e5e7eb;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      margin-bottom: 15px;
+    }
+
+    .progress div {
+      height: 100%;
+
+      background: #f59e0b;
+
+      border-radius: 20px;
+    }
+
+
+    /* DATE */
+
+    .draw-date {
+      background: #fff7df;
+
+      color: #7a5200;
+
+      padding: 9px 12px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      margin-bottom: 15px;
+    }
+
+
+    /* BUTTON */
+
+    .card-btn {
+      display: block;
+
+      width: 100%;
+
+      text-align: center;
+
+      background: #f59e0b;
+
+      color: #111827;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      font-weight: bold;
+
+      transition: .2s;
+    }
+
+    .card-btn:hover {
+      background: #fbbf24;
+    }
+
+    .card-btn.disabled {
+      background: #e5e7eb;
+      color: #667085;
+      pointer-events: none;
+    }
+
+
+    /* EMPTY */
+
+    .empty {
+      display: none;
+
+      text-align: center;
+
+      padding: 50px 20px;
+
+      background: white;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 18px;
+
+      color: #667085;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #111827;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 30px 20px;
+    }
+
+    footer .logo {
+      display: inline-block;
+      margin-bottom: 7px;
+    }
+
+    footer p {
+      color: #98a2b3;
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      nav a:not(.wallet-btn) {
+        display: none;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      .hero {
+        padding: 50px 5%;
+      }
+
+      .draws-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 550px) {
+
+      main {
+        padding: 35px 15px 55px;
+      }
+
+      .draws-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+
+    <nav>
+
+      <a href="draws.html">
+        السحوبات
+      </a>
+
+      <a href="account.html">
+        حسابي
+      </a>
+
+      <a href="wallet.html" class="wallet-btn">
+        المحفظة
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="badge">
+      سحوبات Sahba
+    </div>
+
+    <h1>
+      اختار السحب
+      <span>المناسب ليك</span>
+    </h1>
+
+    <p>
+      تصفح جميع السحوبات المتاحة، وشوف تفاصيل كل منتج وعدد التذاكر المتبقية.
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+      <button
+        class="filter-btn active"
+        onclick="filterDraws('all', this)"
+      >
+        الكل
+      </button>
+
+      <button
+        class="filter-btn"
+        onclick="filterDraws('available', this)"
+      >
+        متاح الآن
+      </button>
+
+      <button
+        class="filter-btn"
+        onclick="filterDraws('almost', this)"
+      >
+        قرب يكتمل
+      </button>
+
+      <button
+        class="filter-btn"
+        onclick="filterDraws('finished', this)"
+      >
+        مكتمل
+      </button>
+
+    </div>
+
+
+    <!-- DRAW GRID -->
+
+    <div class="draws-grid" id="drawsGrid">
+
+
+      <!-- DRAW 1 -->
+
+      <div
+        class="draw-card"
+        data-status="available"
+      >
+
+        <div class="product-image">
+          📱
+        </div>
+
+
+        <div class="content">
+
+          <span class="tag">
+            متاح الآن
+          </span>
+
+          <h2>
+            Samsung Galaxy
+          </h2>
+
+          <p class="description">
+            هاتف Samsung بحالة ممتازة ومواصفات مميزة.
+          </p>
+
+
+          <div class="price">
+            30 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+
+          <div class="ticket-info">
+
+            <span>
+              75 من 110
+            </span>
+
+            <span class="remaining">
+              35 متبقي
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div style="width:68%;"></div>
+
+          </div>
+
+
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
+
+
+          <a
+            href="draw.html"
+            class="card-btn"
+          >
+            عرض السحب
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DRAW 2 -->
+
+      <div
+        class="draw-card"
+        data-status="available"
+      >
+
+        <div class="product-image">
+          ⌚
+        </div>
+
+
+        <div class="content">
+
+          <span class="tag">
+            متاح الآن
+          </span>
+
+          <h2>
+            Smart Watch
+          </h2>
+
+          <p class="description">
+            ساعة ذكية بتصميم أنيق وإمكانيات متعددة.
+          </p>
+
+
+          <div class="price">
+            25 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+
+          <div class="ticket-info">
+
+            <span>
+              42 من 110
+            </span>
+
+            <span class="remaining">
+              68 متبقي
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div style="width:38%;"></div>
+
+          </div>
+
+
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
+
+
+          <a
+            href="draw.html"
+            class="card-btn"
+          >
+            عرض السحب
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DRAW 3 -->
+
+      <div
+        class="draw-card"
+        data-status="almost"
+      >
+
+        <div class="product-image">
+          🎧
+        </div>
+
+
+        <div class="content">
+
+          <span class="tag">
+            قرب يكتمل
+          </span>
+
+          <h2>
+            Wireless Headphones
+          </h2>
+
+          <p class="description">
+            سماعة لاسلكية بجودة صوت ممتازة وتصميم مريح.
+          </p>
+
+
+          <div class="price">
+            20 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+
+          <div class="ticket-info">
+
+            <span>
+              90 من 110
+            </span>
+
+            <span class="remaining">
+              20 متبقي
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div style="width:82%;"></div>
+
+          </div>
+
+
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
+
+
+          <a
+            href="draw.html"
+            class="card-btn"
+          >
+            عرض السحب
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DRAW 4 -->
+
+      <div
+        class="draw-card"
+        data-status="finished"
+      >
+
+        <div class="product-image">
+          💻
+        </div>
+
+
+        <div class="content">
+
+          <span class="tag finished">
+            مكتمل
+          </span>
+
+          <h2>
+            Lenovo Laptop
+          </h2>
+
+          <p class="description">
+            لابتوب Lenovo بحالة جيدة وتم اكتمال التذاكر.
+          </p>
+
+
+          <div class="price">
+            40 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+
+          <div class="ticket-info">
+
+            <span>
+              110 من 110
+            </span>
+
+            <span>
+              مكتمل
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div style="width:100%;"></div>
+
+          </div>
+
+
+          <div class="draw-date">
+            تم اكتمال السحب
+          </div>
+
+
+          <a
+            href="draw.html"
+            class="card-btn disabled"
+          >
+            السحب مكتمل
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DRAW 5 -->
+
+      <div
+        class="draw-card"
+        data-status="available"
+      >
+
+        <div class="product-image">
+          📷
+        </div>
+
+
+        <div class="content">
+
+          <span class="tag">
+            متاح الآن
+          </span>
+
+          <h2>
+            Digital Camera
+          </h2>
+
+          <p class="description">
+            كاميرا رقمية مناسبة للتصوير اليومي والمحتوى.
+          </p>
+
+
+          <div class="price">
+            35 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+
+          <div class="ticket-info">
+
+            <span>
+              30 من 100
+            </span>
+
+            <span class="remaining">
+              70 متبقي
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div style="width:30%;"></div>
+
+          </div>
+
+
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
+
+
+          <a
+            href="draw.html"
+            class="card-btn"
+          >
+            عرض السحب
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DRAW 6 -->
+
+      <div
+        class="draw-card"
+        data-status="almost"
+      >
+
+        <div class="product-image">
+          🎮
+        </div>
+
+
+        <div class="content">
+
+          <span class="tag">
+            قرب يكتمل
+          </span>
+
+          <h2>
+            Gaming Console
+          </h2>
+
+          <p class="description">
+            جهاز ألعاب بحالة ممتازة مع ملحقاته.
+          </p>
+
+
+          <div class="price">
+            45 جنيه
+            <small>
+              / التذكرة
+            </small>
+          </div>
+
+
+          <div class="ticket-info">
+
+            <span>
+              96 من 100
+            </span>
+
+            <span class="remaining">
+              4 متبقي
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div style="width:96%;"></div>
+
+          </div>
+
+
+          <div class="draw-date">
+            📅 السحب القادم: الجمعة
+          </div>
+
+
+          <a
+            href="draw.html"
+            class="card-btn"
+          >
+            عرض السحب
+          </a>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- EMPTY -->
+
+    <div
+      class="empty"
+      id="empty"
+    >
+      لا توجد سحوبات في هذا القسم حاليًا.
+    </div>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba — جميع الحقوق محفوظة © 2026
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    function filterDraws(status, button) {
+
+      const cards =
+        document.querySelectorAll(".draw-card");
+
+      let visibleCount = 0;
+
+
+      document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+          btn.classList.remove("active");
+
+        });
+
+
+      button.classList.add("active");
+
+
+      cards.forEach(card => {
+
+        const cardStatus =
+          card.dataset.status;
+
+
+        if (
+          status === "all" ||
+          cardStatus === status
+        ) {
+
+          card.style.display = "block";
+
+          visibleCount++;
+
+        } else {
+
+          card.style.display = "none";
+
+        }
+
+      });
+
+
+      document.getElementById(
+        "empty"
+      ).style.display =
+        visibleCount === 0
+          ? "block"
+          : "none";
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
