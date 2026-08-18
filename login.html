@@ -23,10 +23,13 @@
       --text: #111827;
       --muted: #667085;
       --border: #d0d5dd;
+      --red: #b91c1c;
+      --red-light: #fef2f2;
     }
 
     body {
       font-family: Arial, "Tahoma", sans-serif;
+
       background:
         radial-gradient(
           circle at top right,
@@ -36,37 +39,49 @@
         var(--gray);
 
       color: var(--text);
+
       min-height: 100vh;
 
       display: flex;
       flex-direction: column;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     /* ================= HEADER ================= */
 
     header {
       background: var(--dark);
+
       color: white;
 
       padding: 16px 7%;
 
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
-      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+      box-shadow:
+        0 4px 20px rgba(0,0,0,.12);
     }
 
     .logo {
       font-size: 30px;
+
       font-weight: 900;
+
       color: var(--gold);
     }
 
     .back {
       color: white;
-      text-decoration: none;
+
       font-size: 15px;
+
       transition: .2s;
     }
 
@@ -74,13 +89,15 @@
       color: var(--gold);
     }
 
-    /* ================= LOGIN ================= */
+    /* ================= MAIN ================= */
 
     main {
       flex: 1;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       padding: 50px 20px;
@@ -88,6 +105,7 @@
 
     .login-box {
       width: 100%;
+
       max-width: 430px;
 
       background: white;
@@ -106,6 +124,7 @@
       text-align: center;
 
       font-size: 38px;
+
       font-weight: 900;
 
       color: var(--gold);
@@ -128,10 +147,16 @@
 
       font-size: 14px;
 
+      line-height: 1.7;
+
       margin-bottom: 28px;
     }
 
     /* ================= FORM ================= */
+
+    .input-group {
+      margin-bottom: 18px;
+    }
 
     label {
       display: block;
@@ -139,10 +164,6 @@
       font-weight: bold;
 
       margin-bottom: 7px;
-    }
-
-    .input-group {
-      margin-bottom: 18px;
     }
 
     input {
@@ -153,6 +174,8 @@
       border: 1px solid var(--border);
 
       border-radius: 11px;
+
+      font-family: Arial, Tahoma, sans-serif;
 
       font-size: 16px;
 
@@ -168,18 +191,21 @@
         0 0 0 3px rgba(245,158,11,.12);
     }
 
+    /* ================= PASSWORD ================= */
+
     .password-wrapper {
       position: relative;
     }
 
     .password-wrapper input {
-      padding-left: 55px;
+      padding-left: 60px;
     }
 
     .show-password {
       position: absolute;
 
       left: 10px;
+
       top: 50%;
 
       transform: translateY(-50%);
@@ -192,9 +218,15 @@
 
       padding: 5px;
 
+      font-family: Arial, Tahoma, sans-serif;
+
       font-size: 13px;
 
       cursor: pointer;
+    }
+
+    .show-password:hover {
+      color: #9a6700;
     }
 
     /* ================= OPTIONS ================= */
@@ -219,16 +251,28 @@
       gap: 6px;
 
       color: var(--muted);
+
+      font-weight: normal;
+
+      margin: 0;
     }
 
     .remember input {
       width: auto;
+
+      margin: 0;
+
+      accent-color: var(--gold);
     }
 
     .forgot {
       color: #b36b00;
 
-      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
     }
 
     /* ================= BUTTON ================= */
@@ -246,6 +290,8 @@
 
       border-radius: 11px;
 
+      font-family: Arial, Tahoma, sans-serif;
+
       font-size: 16px;
 
       font-weight: 900;
@@ -259,6 +305,38 @@
       background: #fbbf24;
 
       transform: translateY(-1px);
+    }
+
+    .login-btn:disabled {
+      opacity: .65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+    /* ================= MESSAGE ================= */
+
+    .message {
+      display: none;
+
+      margin-top: 16px;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+    .error {
+      background: var(--red-light);
+
+      color: var(--red);
     }
 
     /* ================= DIVIDER ================= */
@@ -302,8 +380,6 @@
       color: #b36b00;
 
       font-weight: bold;
-
-      text-decoration: none;
     }
 
     .register a:hover {
@@ -348,236 +424,432 @@
         font-size: 23px;
       }
 
+      .options {
+        font-size: 12px;
+      }
+
     }
 
   </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ================= HEADER ================= -->
+  <!-- ================= HEADER ================= -->
 
-<header>
+  <header>
 
-  <a href="index.html" class="logo">
-    Sahba
-  </a>
-
-  <a href="index.html" class="back">
-    ← العودة للرئيسية
-  </a>
-
-</header>
-
-
-<!-- ================= LOGIN ================= -->
-
-<main>
-
-  <div class="login-box">
-
-
-    <div class="login-logo">
+    <a
+      href="index.html"
+      class="logo"
+    >
       Sahba
-    </div>
+    </a>
 
 
-    <h1 class="login-title">
-      تسجيل الدخول
-    </h1>
+    <a
+      href="index.html"
+      class="back"
+    >
+      ← العودة للرئيسية
+    </a>
+
+  </header>
 
 
-    <p class="login-description">
-      ادخل حسابك لمتابعة مشاركاتك وتذاكرك
-    </p>
+  <!-- ================= LOGIN ================= -->
+
+  <main>
+
+    <div class="login-box">
 
 
-    <form onsubmit="login(event)">
-
-
-      <!-- PHONE -->
-
-      <div class="input-group">
-
-        <label for="phone">
-          رقم الهاتف
-        </label>
-
-        <input
-          id="phone"
-          type="tel"
-          placeholder="01xxxxxxxxx"
-          maxlength="11"
-          required
-        >
-
+      <div class="login-logo">
+        Sahba
       </div>
 
 
-      <!-- PASSWORD -->
+      <h1 class="login-title">
+        تسجيل الدخول
+      </h1>
 
-      <div class="input-group">
 
-        <label for="password">
-          كلمة المرور
-        </label>
+      <p class="login-description">
+        ادخل حسابك لمتابعة مشاركاتك وتذاكرك
+      </p>
 
-        <div class="password-wrapper">
+
+      <form onsubmit="login(event)">
+
+
+        <!-- PHONE -->
+
+        <div class="input-group">
+
+          <label for="phone">
+            رقم الهاتف
+          </label>
+
 
           <input
-            id="password"
-            type="password"
-            placeholder="••••••••"
+            id="phone"
+            type="tel"
+            placeholder="01xxxxxxxxx"
+            maxlength="11"
+            inputmode="numeric"
+            autocomplete="tel"
             required
           >
 
-          <button
-            type="button"
-            class="show-password"
-            onclick="togglePassword()"
-          >
-            إظهار
-          </button>
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="input-group">
+
+          <label for="password">
+            كلمة المرور
+          </label>
+
+
+          <div class="password-wrapper">
+
+            <input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            >
+
+
+            <button
+              type="button"
+              class="show-password"
+              onclick="togglePassword()"
+            >
+              إظهار
+            </button>
+
+          </div>
 
         </div>
 
+
+        <!-- OPTIONS -->
+
+        <div class="options">
+
+
+          <label class="remember">
+
+            <input
+              type="checkbox"
+              id="remember"
+            >
+
+            تذكرني
+
+          </label>
+
+
+          <a
+            href="forgot-password.html"
+            class="forgot"
+          >
+            نسيت كلمة المرور؟
+          </a>
+
+
+        </div>
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+          type="submit"
+          class="login-btn"
+          id="loginButton"
+        >
+          تسجيل الدخول
+        </button>
+
+
+        <!-- ERROR -->
+
+        <div
+          class="message error"
+          id="errorMessage"
+        ></div>
+
+
+      </form>
+
+
+      <!-- DIVIDER -->
+
+      <div class="divider">
+        أو
       </div>
 
 
-      <!-- OPTIONS -->
+      <!-- REGISTER -->
 
-      <div class="options">
+      <div class="register">
 
-        <label class="remember">
+        ليس لديك حساب؟
 
-          <input
-            type="checkbox"
-            id="remember"
-          >
-
-          تذكرني
-
-        </label>
-
-
-        <a href="#" class="forgot">
-          نسيت كلمة المرور؟
+        <a href="register.html">
+          إنشاء حساب جديد
         </a>
 
       </div>
 
 
-      <!-- LOGIN BUTTON -->
-
-      <button
-        type="submit"
-        class="login-btn"
-      >
-        تسجيل الدخول
-      </button>
-
-
-    </form>
-
-
-    <div class="divider">
-      أو
     </div>
 
-
-    <div class="register">
-
-      ليس لديك حساب؟
-
-      <a href="register.html">
-        إنشاء حساب جديد
-      </a>
-
-    </div>
+  </main>
 
 
-  </div>
+  <!-- ================= FOOTER ================= -->
 
-</main>
+  <footer>
 
+    <p>
+      © 2026 Sahba — جميع الحقوق محفوظة
+    </p>
 
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-  <p>
-    © 2026 Sahba — جميع الحقوق محفوظة
-  </p>
-
-</footer>
+  </footer>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+  <!-- ================= JAVASCRIPT ================= -->
 
-<script>
-
-  function togglePassword() {
-
-    const password =
-      document.getElementById("password");
-
-    const button =
-      document.querySelector(".show-password");
+  <script>
 
 
-    if (password.type === "password") {
+    /* =========================
+       إظهار / إخفاء كلمة المرور
+    ========================= */
 
-      password.type = "text";
+    function togglePassword() {
 
-      button.textContent = "إخفاء";
-
-    } else {
-
-      password.type = "password";
-
-      button.textContent = "إظهار";
-
-    }
-
-  }
+      const password =
+        document.getElementById("password");
 
 
-  function login(event) {
-
-    event.preventDefault();
-
-
-    const phone =
-      document.getElementById("phone").value;
-
-    const password =
-      document.getElementById("password").value;
+      const button =
+        document.querySelector(".show-password");
 
 
-    if (!phone || !password) {
+      if (
+        password.type === "password"
+      ) {
 
-      alert("من فضلك أكمل البيانات.");
+        password.type = "text";
 
-      return;
+        button.textContent = "إخفاء";
+
+      } else {
+
+        password.type = "password";
+
+        button.textContent = "إظهار";
+
+      }
 
     }
 
 
-    /*
-      تسجيل الدخول الحقيقي
-      هنربطه بقاعدة البيانات في مرحلة الـBackend.
-    */
+    /* =========================
+       تسجيل الدخول
+    ========================= */
 
-    alert(
-      "تم إرسال بيانات تسجيل الدخول بنجاح."
-    );
+    function login(event) {
 
-  }
+      event.preventDefault();
 
-</script>
+
+      const phone =
+        document
+          .getElementById("phone")
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+
+      const remember =
+        document
+          .getElementById("remember")
+          .checked;
+
+
+      hideError();
+
+
+      /* التحقق من رقم الهاتف */
+
+      if (
+        !/^01[0-9]{9}$/.test(phone)
+      ) {
+
+        showError(
+          "من فضلك أدخل رقم موبايل مصري صحيح."
+        );
+
+        return;
+
+      }
+
+
+      /* التحقق من كلمة المرور */
+
+      if (!password) {
+
+        showError(
+          "من فضلك أدخل كلمة المرور."
+        );
+
+        return;
+
+      }
+
+
+      /*
+        حفظ رقم الهاتف مؤقتًا.
+
+        سيتم استخدامه داخل account.html
+        وصفحات الحساب الأخرى.
+      */
+
+      sessionStorage.setItem(
+        "sahba_phone",
+        phone
+      );
+
+
+      /*
+        حالة تذكر الدخول.
+
+        مؤقتًا فقط حتى يتم ربط الـBackend.
+      */
+
+      if (remember) {
+
+        localStorage.setItem(
+          "sahba_remember",
+          "true"
+        );
+
+      } else {
+
+        localStorage.removeItem(
+          "sahba_remember"
+        );
+
+      }
+
+
+      /*
+        ============================
+        Backend لاحقًا
+        ============================
+
+        سيتم هنا إرسال:
+
+        phone
+        password
+
+        إلى السيرفر.
+
+        مثال:
+
+        POST /api/auth/login
+
+        ولو البيانات صحيحة:
+
+        window.location.href =
+          "account.html";
+
+        لا يتم اعتبار تسجيل الدخول
+        ناجحًا فعليًا من JavaScript.
+      */
+
+
+      const button =
+        document.getElementById(
+          "loginButton"
+        );
+
+
+      button.disabled = true;
+
+      button.textContent =
+        "جاري تسجيل الدخول...";
+
+
+      /*
+        مؤقتًا للواجهة فقط.
+      */
+
+      setTimeout(
+        function() {
+
+          button.disabled = false;
+
+          button.textContent =
+            "تسجيل الدخول";
+
+
+          showError(
+            "تسجيل الدخول الحقيقي سيتم تفعيله بعد ربط الـBackend."
+          );
+
+        },
+        700
+      );
+
+    }
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    function showError(message) {
+
+      const box =
+        document.getElementById(
+          "errorMessage"
+        );
+
+
+      box.textContent = message;
+
+      box.style.display = "block";
+
+    }
+
+
+    function hideError() {
+
+      document.getElementById(
+        "errorMessage"
+      ).style.display = "none";
+
+    }
+
+  </script>
 
 
 </body>
+
 </html>
