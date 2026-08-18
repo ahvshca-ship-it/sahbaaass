@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تسجيل دخول الأدمن | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --dark: #111827;
+      --gold: #f59e0b;
+      --gold-light: #fff7df;
+      --gray: #f7f8fa;
+      --text: #111827;
+      --muted: #667085;
+      --border: #d0d5dd;
+      --danger: #dc2626;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.14),
+          transparent 35%
+        ),
+        var(--gray);
+
+      color: var(--text);
+
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      background: var(--dark);
+      color: white;
+
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: var(--gold);
+
+      font-size: 30px;
+      font-weight: 900;
+
+      text-decoration: none;
+    }
+
+    .admin-label {
+      color: #d0d5dd;
+
+      font-size: 13px;
+
+      border: 1px solid #374151;
+
+      padding: 7px 12px;
+
+      border-radius: 8px;
+    }
+
+    /* ================= MAIN ================= */
+
+    main {
+      flex: 1;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 45px 20px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 430px;
+
+      background: white;
+
+      padding: 35px;
+
+      border-radius: 22px;
+
+      border: 1px solid #e5e7eb;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.08);
+    }
+
+    .admin-icon {
+      width: 65px;
+      height: 65px;
+
+      margin: 0 auto 18px;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      background: var(--gold-light);
+
+      border: 1px solid #f2d58a;
+
+      border-radius: 18px;
+
+      font-size: 30px;
+    }
+
+    h1 {
+      text-align: center;
+
+      font-size: 25px;
+
+      margin-bottom: 8px;
+    }
+
+    .description {
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+      margin-bottom: 28px;
+    }
+
+    /* ================= FORM ================= */
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 14px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      outline: none;
+
+      background: white;
+
+      transition: .2s;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 0 3px rgba(245,158,11,.12);
+    }
+
+    .password-box {
+      position: relative;
+    }
+
+    .password-box input {
+      padding-left: 60px;
+    }
+
+    .show-password {
+      position: absolute;
+
+      left: 9px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      border: none;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      cursor: pointer;
+
+      padding: 5px;
+    }
+
+    .login-btn {
+      width: 100%;
+
+      border: none;
+
+      background: var(--gold);
+
+      color: var(--dark);
+
+      padding: 14px;
+
+      border-radius: 11px;
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .login-btn:hover {
+      background: #fbbf24;
+
+      transform: translateY(-1px);
+    }
+
+    .security-note {
+      margin-top: 20px;
+
+      padding: 12px;
+
+      background: #f9fafb;
+
+      border: 1px solid #eaecf0;
+
+      border-radius: 10px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+
+      text-align: center;
+    }
+
+    .error {
+      display: none;
+
+      margin-bottom: 15px;
+
+      padding: 11px;
+
+      border-radius: 9px;
+
+      background: #fef2f2;
+
+      border: 1px solid #fecaca;
+
+      color: var(--danger);
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: var(--dark);
+
+      color: white;
+
+      text-align: center;
+
+      padding: 22px;
+    }
+
+    footer p {
+      color: #98a2b3;
+
+      font-size: 13px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width: 500px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      .admin-label {
+        font-size: 12px;
+      }
+
+      .login-box {
+        padding: 27px 20px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <header>
+
+    <a href="../index.html" class="logo">
+      Sahba
+    </a>
+
+    <div class="admin-label">
+      لوحة الإدارة
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <div class="login-box">
+
+
+      <div class="admin-icon">
+        🔐
+      </div>
+
+
+      <h1>
+        تسجيل دخول الإدارة
+      </h1>
+
+
+      <p class="description">
+        أدخل بيانات حساب الإدارة للوصول إلى لوحة التحكم.
+      </p>
+
+
+      <div class="error" id="error">
+        بيانات الدخول غير صحيحة.
+      </div>
+
+
+      <form onsubmit="adminLogin(event)">
+
+
+        <div class="input-group">
+
+          <label for="email">
+            البريد الإلكتروني
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="admin@example.com"
+            autocomplete="username"
+            required
+          >
+
+        </div>
+
+
+        <div class="input-group">
+
+          <label for="password">
+            كلمة المرور
+          </label>
+
+          <div class="password-box">
+
+            <input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              onclick="togglePassword()"
+            >
+              إظهار
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-btn"
+        >
+          دخول لوحة التحكم
+        </button>
+
+
+      </form>
+
+
+      <div class="security-note">
+        الوصول إلى لوحة الإدارة مخصص للحسابات المصرح لها فقط.
+        <br>
+        سيتم تأمين تسجيل الدخول من خلال الـBackend لاحقًا.
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    <p>
+      © 2026 Sahba — لوحة الإدارة
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    function togglePassword() {
+
+      const password =
+        document.getElementById("password");
+
+      const button =
+        document.querySelector(".show-password");
+
+
+      if (password.type === "password") {
+
+        password.type = "text";
+
+        button.textContent = "إخفاء";
+
+      } else {
+
+        password.type = "password";
+
+        button.textContent = "إظهار";
+
+      }
+
+    }
+
+
+    function adminLogin(event) {
+
+      event.preventDefault();
+
+      const error =
+        document.getElementById("error");
+
+      /*
+        مؤقتًا للمعاينة فقط.
+
+        عند ربط الـBackend:
+        سيتم إرسال البريد وكلمة المرور
+        إلى السيرفر للتحقق من صلاحية الأدمن.
+
+        لا نضع بيانات أدمن حقيقية داخل JavaScript.
+      */
+
+      error.style.display = "block";
+
+    }
+
+  </script>
+
+
+</body>
+</html>
