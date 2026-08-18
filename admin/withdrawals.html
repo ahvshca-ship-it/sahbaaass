@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>طلبات السحب | Sahba Admin</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark: #111827;
+  --gold: #f59e0b;
+  --gold-light: #fff7df;
+  --gray: #f7f8fa;
+  --text: #111827;
+  --muted: #667085;
+  --border: #e5e7eb;
+  --green: #15803d;
+  --red: #dc2626;
+  --blue: #2563eb;
+}
+
+body {
+  font-family: Arial, Tahoma, sans-serif;
+  background: var(--gray);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  height: 70px;
+  padding: 0 5%;
+  background: var(--dark);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
+
+.logo {
+  color: var(--gold);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-name {
+  color: #d0d5dd;
+  font-size: 13px;
+}
+
+.logout-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid #4b5563;
+  padding: 8px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.logout-btn:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+aside {
+  width: 240px;
+  flex-shrink: 0;
+
+  background: white;
+  border-left: 1px solid var(--border);
+
+  padding: 25px 15px;
+}
+
+.sidebar-title {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: bold;
+  margin: 0 10px 10px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  color: #344054;
+
+  padding: 11px 12px;
+  margin-bottom: 5px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  transition: .2s;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: var(--gold-light);
+  color: #9a6700;
+}
+
+.sidebar-link.active {
+  font-weight: bold;
+}
+
+.icon {
+  width: 22px;
+  text-align: center;
+  font-size: 17px;
+}
+
+main {
+  flex: 1;
+  min-width: 0;
+  padding: 35px;
+}
+
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+
+  box-shadow: 0 4px 15px rgba(0,0,0,.04);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.green {
+  color: var(--green);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.red {
+  color: var(--red);
+}
+
+.withdrawals-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,.05);
+}
+
+.withdrawals-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.withdrawals-title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.search {
+  width: 300px;
+
+  padding: 10px 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  outline: none;
+  font-size: 13px;
+}
+
+.search:focus {
+  border-color: var(--gold);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th {
+  background: #f9fafb;
+  color: var(--muted);
+
+  font-size: 12px;
+  font-weight: bold;
+
+  text-align: right;
+
+  padding: 13px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 15px 13px;
+
+  border-bottom: 1px solid var(--border);
+
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #fcfcfd;
+}
+
+.transaction-number {
+  color: #9a6700;
+  font-weight: bold;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.amount {
+  font-weight: 900;
+}
+
+.status {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.status.completed {
+  background: #ecfdf3;
+  color: var(--green);
+}
+
+.status.pending {
+  background: #eff6ff;
+  color: var(--blue);
+}
+
+.status.rejected {
+  background: #fef2f2;
+  color: var(--red);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  border: 1px solid var(--border);
+  background: white;
+
+  padding: 7px 10px;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.action-btn:hover {
+  border-color: var(--gold);
+}
+
+.approve-btn:hover {
+  color: var(--green);
+}
+
+.reject-btn:hover {
+  color: var(--red);
+}
+
+.view-btn:hover {
+  color: #9a6700;
+}
+
+.empty {
+  display: none;
+
+  text-align: center;
+
+  padding: 35px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+.modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(17,24,39,.55);
+
+  z-index: 2000;
+
+  padding: 20px;
+
+  overflow-y: auto;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 480px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  margin: 50px auto;
+}
+
+.modal-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 22px;
+}
+
+.modal-header h2 {
+  font-size: 21px;
+}
+
+.close {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  background: #f3f4f6;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+.details {
+  display: grid;
+  gap: 10px;
+}
+
+.detail {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  background: #f9fafb;
+
+  border-radius: 9px;
+
+  padding: 12px;
+}
+
+.detail span:first-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.detail span:last-child {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+@media(max-width: 1050px) {
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media(max-width: 750px) {
+
+  .layout {
+    display: block;
+  }
+
+  aside {
+    width: 100%;
+
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+
+    padding: 10px;
+
+    display: flex;
+    overflow-x: auto;
+
+    gap: 5px;
+  }
+
+  .sidebar-title {
+    display: none;
+  }
+
+  .sidebar-link {
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  main {
+    padding: 25px 15px;
+  }
+
+  .withdrawals-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+}
+
+@media(max-width: 500px) {
+
+  .stats {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+  <a href="admin.html" class="logo">
+    Sahba
+  </a>
+
+  <div class="header-right">
+
+    <span class="admin-name">
+      مدير النظام
+    </span>
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      تسجيل الخروج
+    </button>
+
+  </div>
+
+</header>
+
+
+<div class="layout">
+
+
+<aside>
+
+  <div class="sidebar-title">
+    الإدارة
+  </div>
+
+  <a href="admin.html" class="sidebar-link">
+    <span class="icon">▦</span>
+    الرئيسية
+  </a>
+
+  <a href="users.html" class="sidebar-link">
+    <span class="icon">♟</span>
+    المستخدمون
+  </a>
+
+  <a href="products.html" class="sidebar-link">
+    <span class="icon">▣</span>
+    المنتجات
+  </a>
+
+  <a href="draws.html" class="sidebar-link">
+    <span class="icon">↻</span>
+    السحوبات
+  </a>
+
+  <a href="tickets.html" class="sidebar-link">
+    <span class="icon">▤</span>
+    التذاكر
+  </a>
+
+  <a href="deposits.html" class="sidebar-link">
+    <span class="icon">＋</span>
+    الإيداعات
+  </a>
+
+  <a href="withdrawals.html" class="sidebar-link active">
+    <span class="icon">−</span>
+    السحب المالي
+  </a>
+
+  <a href="results.html" class="sidebar-link">
+    <span class="icon">✓</span>
+    النتائج
+  </a>
+
+  <a href="notifications.html" class="sidebar-link">
+    <span class="icon">●</span>
+    الإشعارات
+  </a>
+
+  <a href="settings.html" class="sidebar-link">
+    <span class="icon">⚙</span>
+    الإعدادات
+  </a>
+
+</aside>
+
+
+<main>
+
+
+<div class="page-header">
+
+  <h1>
+    طلبات السحب
+  </h1>
+
+  <p>
+    مراجعة طلبات سحب الأموال من المستخدمين وإدارتها.
+  </p>
+
+</div>
+
+
+<div class="stats">
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      إجمالي طلبات السحب
+    </div>
+
+    <div class="stat-value">
+      326
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      قيد المراجعة
+    </div>
+
+    <div class="stat-value blue">
+      14
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      تم تحويلها
+    </div>
+
+    <div class="stat-value green">
+      291
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      مرفوضة
+    </div>
+
+    <div class="stat-value red">
+      21
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<div class="withdrawals-box">
+
+
+<div class="withdrawals-top">
+
+  <div class="withdrawals-title">
+    آخر طلبات السحب
+  </div>
+
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="ابحث برقم الطلب أو اسم المستخدم..."
+    oninput="searchWithdrawals()"
+  >
+
+</div>
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+<thead>
+
+<tr>
+
+  <th>
+    رقم الطلب
+  </th>
+
+  <th>
+    المستخدم
+  </th>
+
+  <th>
+    طريقة السحب
+  </th>
+
+  <th>
+    المبلغ
+  </th>
+
+  <th>
+    التاريخ
+  </th>
+
+  <th>
+    الحالة
+  </th>
+
+  <th>
+    الإجراءات
+  </th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="withdrawalsTable">
+
+
+<tr data-search="WTH-1001 محمد أحمد Vodafone Cash">
+
+<td>
+  <span class="transaction-number">
+    #WTH-1001
+  </span>
+</td>
+
+<td>
+  <span class="user-name">
+    محمد أحمد
+  </span>
+</td>
+
+<td>
+  Vodafone Cash
+</td>
+
+<td>
+  <span class="amount">
+    500 ج.م
+  </span>
+</td>
+
+<td>
+  18 أغسطس 2026
+</td>
+
+<td>
+  <span class="status pending">
+    قيد المراجعة
+  </span>
+</td>
+
+<td>
+
+<div class="action-buttons">
+
+<button
+  class="action-btn view-btn"
+  onclick="viewWithdrawal('WTH-1001')"
+>
+عرض
+</button>
+
+<button
+  class="action-btn approve-btn"
+  onclick="approveWithdrawal('WTH-1001')"
+>
+قبول
+</button>
+
+<button
+  class="action-btn reject-btn"
+  onclick="rejectWithdrawal('WTH-1001')"
+>
+رفض
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+
+<tr data-search="WTH-1002 أحمد محمود InstaPay">
+
+<td>
+  <span class="transaction-number">
+    #WTH-1002
+  </span>
+</td>
+
+<td>
+  <span class="user-name">
+    أحمد محمود
+  </span>
+</td>
+
+<td>
+  InstaPay
+</td>
+
+<td>
+  <span class="amount">
+    1,000 ج.م
+  </span>
+</td>
+
+<td>
+  17 أغسطس 2026
+</td>
+
+<td>
+  <span class="status completed">
+    تم التحويل
+  </span>
+</td>
+
+<td>
+
+<button
+  class="action-btn view-btn"
+  onclick="viewWithdrawal('WTH-1002')"
+>
+عرض
+</button>
+
+</td>
+
+</tr>
+
+
+<tr data-search="WTH-1003 كريم علي Vodafone Cash">
+
+<td>
+  <span class="transaction-number">
+    #WTH-1003
+  </span>
+</td>
+
+<td>
+  <span class="user-name">
+    كريم علي
+  </span>
+</td>
+
+<td>
+  Vodafone Cash
+</td>
+
+<td>
+  <span class="amount">
+    250 ج.م
+  </span>
+</td>
+
+<td>
+  16 أغسطس 2026
+</td>
+
+<td>
+  <span class="status pending">
+    قيد المراجعة
+  </span>
+</td>
+
+<td>
+
+<div class="action-buttons">
+
+<button
+  class="action-btn view-btn"
+  onclick="viewWithdrawal('WTH-1003')"
+>
+عرض
+</button>
+
+<button
+  class="action-btn approve-btn"
+  onclick="approveWithdrawal('WTH-1003')"
+>
+قبول
+</button>
+
+<button
+  class="action-btn reject-btn"
+  onclick="rejectWithdrawal('WTH-1003')"
+>
+رفض
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+
+<tr data-search="WTH-1004 عمر حسن InstaPay">
+
+<td>
+  <span class="transaction-number">
+    #WTH-1004
+  </span>
+</td>
+
+<td>
+  <span class="user-name">
+    عمر حسن
+  </span>
+</td>
+
+<td>
+  InstaPay
+</td>
+
+<td>
+  <span class="amount">
+    750 ج.م
+  </span>
+</td>
+
+<td>
+  15 أغسطس 2026
+</td>
+
+<td>
+  <span class="status rejected">
+    مرفوضة
+  </span>
+</td>
+
+<td>
+
+<button
+  class="action-btn view-btn"
+  onclick="viewWithdrawal('WTH-1004')"
+>
+عرض
+</button>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+
+<div id="empty" class="empty">
+  لا توجد طلبات سحب مطابقة للبحث.
+</div>
+
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<div class="modal" id="withdrawalModal">
+
+
+<div class="modal-box">
+
+
+<div class="modal-header">
+
+<h2>
+  تفاصيل طلب السحب
+</h2>
+
+<button
+  class="close"
+  onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+
+<div class="details">
+
+<div class="detail">
+  <span>رقم الطلب</span>
+  <span id="withdrawalNumber">-</span>
+</div>
+
+<div class="detail">
+  <span>المستخدم</span>
+  <span id="withdrawalUser">-</span>
+</div>
+
+<div class="detail">
+  <span>طريقة السحب</span>
+  <span id="withdrawalMethod">-</span>
+</div>
+
+<div class="detail">
+  <span>المبلغ</span>
+  <span id="withdrawalAmount">-</span>
+</div>
+
+<div class="detail">
+  <span>التاريخ</span>
+  <span id="withdrawalDate">-</span>
+</div>
+
+<div class="detail">
+  <span>الحالة</span>
+  <span id="withdrawalStatus">-</span>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+const withdrawals = {
+
+  "WTH-1001": {
+    user: "محمد أحمد",
+    method: "Vodafone Cash",
+    amount: "500 ج.م",
+    date: "18 أغسطس 2026",
+    status: "قيد المراجعة"
+  },
+
+  "WTH-1002": {
+    user: "أحمد محمود",
+    method: "InstaPay",
+    amount: "1,000 ج.م",
+    date: "17 أغسطس 2026",
+    status: "تم التحويل"
+  },
+
+  "WTH-1003": {
+    user: "كريم علي",
+    method: "Vodafone Cash",
+    amount: "250 ج.م",
+    date: "16 أغسطس 2026",
+    status: "قيد المراجعة"
+  },
+
+  "WTH-1004": {
+    user: "عمر حسن",
+    method: "InstaPay",
+    amount: "750 ج.م",
+    date: "15 أغسطس 2026",
+    status: "مرفوضة"
+  }
+
+};
+
+
+function searchWithdrawals() {
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const rows =
+    document.querySelectorAll("#withdrawalsTable tr");
+
+  let visible = 0;
+
+  rows.forEach(row => {
+
+    const text =
+      row
+        .getAttribute("data-search")
+        .toLowerCase();
+
+    if (text.includes(search)) {
+
+      row.style.display = "";
+      visible++;
+
+    } else {
+
+      row.style.display = "none";
+
+    }
+
+  });
+
+  document.getElementById("empty").style.display =
+    visible === 0 ? "block" : "none";
+
+}
+
+
+function viewWithdrawal(number) {
+
+  const withdrawal =
+    withdrawals[number];
+
+  if (!withdrawal) {
+    return;
+  }
+
+  document.getElementById("withdrawalNumber").textContent =
+    "#" + number;
+
+  document.getElementById("withdrawalUser").textContent =
+    withdrawal.user;
+
+  document.getElementById("withdrawalMethod").textContent =
+    withdrawal.method;
+
+  document.getElementById("withdrawalAmount").textContent =
+    withdrawal.amount;
+
+  document.getElementById("withdrawalDate").textContent =
+    withdrawal.date;
+
+  document.getElementById("withdrawalStatus").textContent =
+    withdrawal.status;
+
+  document.getElementById("withdrawalModal").style.display =
+    "block";
+
+}
+
+
+function closeModal() {
+
+  document.getElementById("withdrawalModal").style.display =
+    "none";
+
+}
+
+
+function approveWithdrawal(number) {
+
+  const confirmed =
+    confirm(
+      "هل تريد قبول طلب السحب رقم #" + number + "؟"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  alert(
+    "تم قبول طلب السحب مؤقتًا. سيتم ربط العملية بقاعدة البيانات لاحقًا."
+  );
+
+}
+
+
+function rejectWithdrawal(number) {
+
+  const confirmed =
+    confirm(
+      "هل تريد رفض طلب السحب رقم #" + number + "؟"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  alert(
+    "تم رفض الطلب مؤقتًا. سيتم ربط العملية بقاعدة البيانات لاحقًا."
+  );
+
+}
+
+
+function logout() {
+
+  const confirmed =
+    confirm(
+      "هل تريد تسجيل الخروج من لوحة الإدارة؟"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  window.location.href = "login.html";
+
+}
+
+
+window.onclick = function(event) {
+
+  const modal =
+    document.getElementById("withdrawalModal");
+
+  if (event.target === modal) {
+    closeModal();
+  }
+
+};
+
+</script>
+
+
+</body>
+</html>
