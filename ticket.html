@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تفاصيل التذكرة | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ===== HEADER ===== */
+
+    header {
+      background: #111827;
+      color: white;
+
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      color: white;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+    .wallet-btn {
+      border: 1px solid #f59e0b;
+      border-radius: 9px;
+      color: #f59e0b !important;
+    }
+
+    /* ===== MAIN ===== */
+
+    main {
+      max-width: 850px;
+      margin: auto;
+      padding: 50px 20px 70px;
+    }
+
+    .back {
+      display: inline-block;
+
+      color: #667085;
+
+      font-size: 14px;
+
+      margin-bottom: 22px;
+    }
+
+    .back:hover {
+      color: #9a6700;
+    }
+
+    /* ===== TICKET ===== */
+
+    .ticket-card {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 24px;
+
+      overflow: hidden;
+
+      box-shadow: 0 10px 35px rgba(0,0,0,.07);
+    }
+
+    .ticket-top {
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.16),
+          transparent 35%
+        ),
+        #fff7df;
+
+      padding: 32px;
+
+      text-align: center;
+
+      border-bottom: 1px dashed #d0d5dd;
+    }
+
+    .status {
+      display: inline-block;
+
+      background: #ecfdf3;
+
+      color: #15803d;
+
+      padding: 5px 12px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      margin-bottom: 12px;
+    }
+
+    .ticket-top h1 {
+      font-size: 28px;
+
+      margin-bottom: 4px;
+    }
+
+    .ticket-number {
+      color: #667085;
+
+      font-size: 14px;
+    }
+
+    .ticket-number strong {
+      color: #111827;
+    }
+
+    /* ===== NUMBER ===== */
+
+    .number-box {
+      padding: 32px;
+
+      text-align: center;
+
+      border-bottom: 1px dashed #d0d5dd;
+    }
+
+    .number-label {
+      color: #667085;
+
+      font-size: 13px;
+
+      margin-bottom: 7px;
+    }
+
+    .number {
+      font-size: 42px;
+
+      letter-spacing: 5px;
+
+      font-weight: 900;
+
+      color: #111827;
+
+      direction: ltr;
+    }
+
+    .number-note {
+      color: #98a2b3;
+
+      font-size: 12px;
+
+      margin-top: 5px;
+    }
+
+    /* ===== DETAILS ===== */
+
+    .details {
+      padding: 28px 32px;
+    }
+
+    .details h2 {
+      font-size: 20px;
+
+      margin-bottom: 18px;
+    }
+
+    .detail-list {
+      display: grid;
+
+      gap: 13px;
+    }
+
+    .detail {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding-bottom: 13px;
+
+      border-bottom: 1px solid #f0f1f3;
+
+      font-size: 14px;
+    }
+
+    .detail:last-child {
+      border-bottom: none;
+    }
+
+    .detail span {
+      color: #667085;
+    }
+
+    .detail strong {
+      text-align: left;
+    }
+
+    /* ===== RESULT ===== */
+
+    .result {
+      margin: 0 32px 28px;
+
+      padding: 18px;
+
+      background: #f7f8fa;
+
+      border: 1px solid #eaecf0;
+
+      border-radius: 13px;
+
+      text-align: center;
+    }
+
+    .result-title {
+      color: #667085;
+
+      font-size: 13px;
+
+      margin-bottom: 4px;
+    }
+
+    .result-text {
+      font-weight: bold;
+
+      font-size: 16px;
+    }
+
+    .result-date {
+      color: #667085;
+
+      font-size: 12px;
+
+      margin-top: 3px;
+    }
+
+    /* ===== ACTIONS ===== */
+
+    .actions {
+      display: flex;
+
+      gap: 10px;
+
+      padding: 0 32px 32px;
+    }
+
+    .btn {
+      flex: 1;
+
+      padding: 13px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      font-weight: bold;
+
+      font-size: 14px;
+    }
+
+    .primary {
+      background: #f59e0b;
+
+      color: #111827;
+    }
+
+    .primary:hover {
+      background: #fbbf24;
+    }
+
+    .secondary {
+      background: white;
+
+      color: #111827;
+
+      border: 1px solid #d0d5dd;
+    }
+
+    .secondary:hover {
+      border-color: #f59e0b;
+
+      color: #9a6700;
+    }
+
+    /* ===== NOTICE ===== */
+
+    .notice {
+      margin-top: 20px;
+
+      padding: 15px;
+
+      background: #fff7df;
+
+      border: 1px solid #f2d58a;
+
+      border-radius: 11px;
+
+      color: #7a5200;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+    /* ===== FOOTER ===== */
+
+    footer {
+      background: #111827;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 30px 20px;
+    }
+
+    footer .logo {
+      display: inline-block;
+
+      margin-bottom: 7px;
+    }
+
+    footer p {
+      color: #98a2b3;
+
+      font-size: 13px;
+    }
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      nav a:not(.wallet-btn) {
+        display: none;
+      }
+
+      main {
+        padding: 35px 15px 55px;
+      }
+
+      .ticket-top {
+        padding: 27px 18px;
+      }
+
+      .ticket-top h1 {
+        font-size: 24px;
+      }
+
+      .number-box {
+        padding: 27px 15px;
+      }
+
+      .number {
+        font-size: 32px;
+
+        letter-spacing: 3px;
+      }
+
+      .details {
+        padding: 25px 18px;
+      }
+
+      .result {
+        margin: 0 18px 22px;
+      }
+
+      .actions {
+        padding: 0 18px 25px;
+
+        flex-direction: column;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <nav>
+
+      <a href="draws.html">
+        السحوبات
+      </a>
+
+      <a href="account.html">
+        حسابي
+      </a>
+
+      <a href="wallet.html" class="wallet-btn">
+        المحفظة
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <a href="tickets.html" class="back">
+      → العودة إلى تذاكري
+    </a>
+
+
+    <div class="ticket-card">
+
+
+      <!-- TOP -->
+
+      <div class="ticket-top">
+
+        <span class="status">
+          سحب جاري
+        </span>
+
+        <h1>
+          Samsung Galaxy
+        </h1>
+
+        <div class="ticket-number">
+
+          رقم العملية:
+          <strong>
+            #SHB-001245
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- TICKET NUMBER -->
+
+      <div class="number-box">
+
+        <div class="number-label">
+          رقم تذكرتك
+        </div>
+
+        <div class="number">
+          001245
+        </div>
+
+        <div class="number-note">
+          احتفظ برقم التذكرة لمتابعة السحب
+        </div>
+
+      </div>
+
+
+      <!-- DETAILS -->
+
+      <div class="details">
+
+        <h2>
+          تفاصيل التذكرة
+        </h2>
+
+
+        <div class="detail-list">
+
+
+          <div class="detail">
+
+            <span>
+              المنتج
+            </span>
+
+            <strong>
+              Samsung Galaxy
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <span>
+              سعر التذكرة
+            </span>
+
+            <strong>
+              30 جنيه
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <span>
+              تاريخ الشراء
+            </span>
+
+            <strong>
+              18 أغسطس 2026
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <span>
+              موعد السحب
+            </span>
+
+            <strong>
+              الجمعة
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <span>
+              حالة التذكرة
+            </span>
+
+            <strong>
+              مشاركة في السحب
+            </strong>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- RESULT -->
+
+      <div class="result">
+
+        <div class="result-title">
+          نتيجة السحب
+        </div>
+
+        <div class="result-text">
+          لم يتم السحب بعد
+        </div>
+
+        <div class="result-date">
+          سيتم إعلان النتيجة بعد انتهاء السحب
+        </div>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+
+      <div class="actions">
+
+        <a
+          href="draw.html"
+          class="btn primary"
+        >
+          تفاصيل السحب
+        </a>
+
+        <a
+          href="tickets.html"
+          class="btn secondary"
+        >
+          تذاكري
+        </a>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="notice">
+      التذكرة محفوظة على حسابك، ويمكنك متابعة حالة السحب
+      ونتيجته من صفحة تذاكرك.
+    </div>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba — جميع الحقوق محفوظة © 2026
+    </p>
+
+  </footer>
+
+
+</body>
+
+</html>
