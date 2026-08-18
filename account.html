@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>حسابي | Sahba</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+
+    /* ===== HEADER ===== */
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 16px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .logo {
+      color: #f59e0b;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    nav a {
+      color: white;
+      padding: 8px 10px;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+    .home-btn {
+      border: 1px solid #f59e0b;
+      border-radius: 9px;
+      color: #f59e0b !important;
+      padding: 8px 17px !important;
+    }
+
+    .home-btn:hover {
+      background: #f59e0b;
+      color: #111827 !important;
+    }
+
+
+    /* ===== PAGE HEADER ===== */
+
+    .page-header {
+      padding: 60px 7% 45px;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(245,158,11,.16),
+          transparent 35%
+        ),
+        linear-gradient(135deg, #fff7df, #ffffff);
+    }
+
+    .badge {
+      display: inline-block;
+
+      background: white;
+      color: #9a6700;
+
+      border: 1px solid #f2d58a;
+
+      padding: 6px 15px;
+
+      border-radius: 30px;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      margin-bottom: 15px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 45px);
+
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: #667085;
+
+      font-size: 16px;
+    }
+
+
+    /* ===== MAIN ===== */
+
+    main {
+      max-width: 1050px;
+
+      margin: auto;
+
+      padding: 45px 20px 70px;
+    }
+
+
+    /* ===== ACCOUNT CARD ===== */
+
+    .account-card {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 20px;
+
+      padding: 30px;
+
+      box-shadow: 0 7px 30px rgba(0,0,0,.06);
+
+      margin-bottom: 35px;
+    }
+
+    .account-top {
+      display: flex;
+
+      align-items: center;
+
+      gap: 18px;
+
+      padding-bottom: 25px;
+
+      margin-bottom: 25px;
+
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+
+      border-radius: 50%;
+
+      background: #fff7df;
+
+      border: 1px solid #f2d58a;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 32px;
+
+      flex-shrink: 0;
+    }
+
+    .user-info h2 {
+      font-size: 22px;
+
+      margin-bottom: 3px;
+    }
+
+    .user-info p {
+      color: #667085;
+
+      font-size: 13px;
+    }
+
+
+    /* ===== INFO ===== */
+
+    .section-title {
+      font-size: 24px;
+
+      margin-bottom: 18px;
+    }
+
+    .info-grid {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 15px;
+    }
+
+    .info-item {
+      background: #fafafa;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 12px;
+
+      padding: 16px;
+    }
+
+    .info-label {
+      display: block;
+
+      color: #667085;
+
+      font-size: 13px;
+
+      margin-bottom: 5px;
+    }
+
+    .info-value {
+      display: block;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      word-break: break-word;
+    }
+
+    .phone-value {
+      direction: ltr;
+
+      text-align: right;
+    }
+
+
+    /* ===== EDIT BUTTON ===== */
+
+    .edit-btn {
+      display: block;
+
+      width: 100%;
+
+      margin-top: 18px;
+
+      background: #fff7df;
+
+      color: #9a6700;
+
+      border: 1px solid #f2d58a;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      font-weight: bold;
+
+      transition: .2s;
+    }
+
+    .edit-btn:hover {
+      background: #f59e0b;
+
+      color: #111827;
+    }
+
+
+    /* ===== SERVICES ===== */
+
+    .services-title {
+      text-align: center;
+
+      font-size: 30px;
+
+      margin-bottom: 8px;
+    }
+
+    .services-subtitle {
+      text-align: center;
+
+      color: #667085;
+
+      margin-bottom: 30px;
+    }
+
+    .services {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .service {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 18px;
+
+      padding: 23px;
+
+      box-shadow: 0 6px 25px rgba(0,0,0,.06);
+
+      transition: .2s;
+
+      color: #111827;
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+
+      box-shadow: 0 13px 30px rgba(0,0,0,.09);
+
+      border-color: #f2d58a;
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #fff7df;
+
+      border-radius: 13px;
+
+      font-size: 25px;
+
+      margin-bottom: 14px;
+    }
+
+    .service h3 {
+      font-size: 18px;
+
+      margin-bottom: 5px;
+    }
+
+    .service p {
+      color: #667085;
+
+      font-size: 13px;
+    }
+
+
+    /* ===== LOGOUT ===== */
+
+    .logout {
+      display: block;
+
+      max-width: 300px;
+
+      margin: 30px auto 0;
+
+      text-align: center;
+
+      padding: 13px;
+
+      border-radius: 10px;
+
+      border: 1px solid #fecaca;
+
+      background: #fef2f2;
+
+      color: #dc2626;
+
+      font-weight: bold;
+
+      transition: .2s;
+    }
+
+    .logout:hover {
+      background: #fee2e2;
+    }
+
+
+    /* ===== FOOTER ===== */
+
+    footer {
+      background: #111827;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 35px 20px;
+    }
+
+    footer .logo {
+      display: inline-block;
+
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      color: #98a2b3;
+
+      font-size: 14px;
+    }
+
+    .footer-links {
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: #d0d5dd;
+
+      font-size: 13px;
+
+      margin: 0 8px;
+    }
+
+    .footer-links a:hover {
+      color: #f59e0b;
+    }
+
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      nav a:not(.home-btn) {
+        display: none;
+      }
+
+      .page-header {
+        padding: 50px 5% 35px;
+      }
+
+      main {
+        padding: 35px 15px 55px;
+      }
+
+      .account-card {
+        padding: 22px 18px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .services-title {
+        font-size: 28px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="logo">
+      Sahba
+    </a>
+
+    <nav>
+
+      <a href="index.html">
+        الرئيسية
+      </a>
+
+      <a href="notifications.html">
+        الإشعارات
+      </a>
+
+      <a href="index.html" class="home-btn">
+        ← الرئيسية
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- PAGE HEADER -->
+
+  <section class="page-header">
+
+    <div class="badge">
+      👤 حساب Sahba
+    </div>
+
+    <h1>
+      حسابي
+    </h1>
+
+    <p>
+      إدارة بياناتك والوصول إلى خدماتك بسهولة.
+    </p>
+
+  </section>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="account-card">
+
+
+      <div class="account-top">
+
+        <div class="avatar">
+          👤
+        </div>
+
+        <div class="user-info">
+
+          <h2 id="userName">
+            مستخدم Sahba
+          </h2>
+
+          <p>
+            حسابك الشخصي على Sahba
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <h2 class="section-title">
+        بيانات الحساب
+      </h2>
+
+
+      <div class="info-grid">
+
+
+        <div class="info-item">
+
+          <span class="info-label">
+            الاسم
+          </span>
+
+          <span
+            class="info-value"
+            id="nameDisplay"
+          >
+            مستخدم Sahba
+          </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <span class="info-label">
+            رقم الهاتف
+          </span>
+
+          <span
+            class="info-value phone-value"
+            id="phoneDisplay"
+          >
+            جاري التحميل...
+          </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <span class="info-label">
+            البريد الإلكتروني
+          </span>
+
+          <span
+            class="info-value"
+            id="emailDisplay"
+          >
+            غير مضاف
+          </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <span class="info-label">
+            العنوان
+          </span>
+
+          <span
+            class="info-value"
+            id="addressDisplay"
+          >
+            غير مضاف
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <a
+        href="register.html"
+        class="edit-btn"
+      >
+        ✏️ تعديل بيانات الحساب
+      </a>
+
+
+    </div>
+
+
+    <!-- SERVICES -->
+
+    <h2 class="services-title">
+      الخدمات الرئيسية
+    </h2>
+
+    <p class="services-subtitle">
+      اختر الخدمة التي تريد الوصول إليها
+    </p>
+
+
+    <div class="services">
+
+
+      <a href="wallet.html" class="service">
+
+        <div class="service-icon">
+          💰
+        </div>
+
+        <h3>
+          المحفظة
+        </h3>
+
+        <p>
+          إدارة رصيدك وعمليات الإيداع والسحب.
+        </p>
+
+      </a>
+
+
+      <a href="draws.html" class="service">
+
+        <div class="service-icon">
+          🎟️
+        </div>
+
+        <h3>
+          السحوبات
+        </h3>
+
+        <p>
+          تصفح السحوبات والعروض المتاحة.
+        </p>
+
+      </a>
+
+
+      <a href="tickets.html" class="service">
+
+        <div class="service-icon">
+          🎫
+        </div>
+
+        <h3>
+          تذاكري
+        </h3>
+
+        <p>
+          مشاهدة ومتابعة التذاكر الخاصة بك.
+        </p>
+
+      </a>
+
+
+      <a href="my-products.html" class="service">
+
+        <div class="service-icon">
+          📦
+        </div>
+
+        <h3>
+          منتجاتي
+        </h3>
+
+        <p>
+          إدارة المنتجات التي قمت بعرضها.
+        </p>
+
+      </a>
+
+
+      <a href="notifications.html" class="service">
+
+        <div class="service-icon">
+          🔔
+        </div>
+
+        <h3>
+          الإشعارات
+        </h3>
+
+        <p>
+          متابعة التنبيهات والتحديثات الخاصة بحسابك.
+        </p>
+
+      </a>
+
+
+      <a href="results.html" class="service">
+
+        <div class="service-icon">
+          🏆
+        </div>
+
+        <h3>
+          النتائج
+        </h3>
+
+        <p>
+          مشاهدة نتائج السحوبات السابقة.
+        </p>
+
+      </a>
+
+
+    </div>
+
+
+    <!-- LOGOUT -->
+
+    <a
+      href="index.html"
+      class="logout"
+      onclick="logout()"
+    >
+      🚪 تسجيل الخروج
+    </a>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="logo">
+      Sahba
+    </div>
+
+    <p>
+      منصة Sahba
+    </p>
+
+    <div class="footer-links">
+
+      <a href="#">
+        الشروط والأحكام
+      </a>
+
+      <a href="#">
+        سياسة الخصوصية
+      </a>
+
+      <a href="#">
+        تواصل معنا
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    /* ===== USER DATA ===== */
+
+    const phone =
+      sessionStorage.getItem("sahba_phone");
+
+    const userName =
+      sessionStorage.getItem("sahba_name");
+
+    const userEmail =
+      sessionStorage.getItem("sahba_email");
+
+    const userAddress =
+      sessionStorage.getItem("sahba_address");
+
+
+    /* ===== PHONE ===== */
+
+    if (phone) {
+
+      document.getElementById(
+        "phoneDisplay"
+      ).textContent = phone;
+
+    } else {
+
+      document.getElementById(
+        "phoneDisplay"
+      ).textContent = "غير مضاف";
+
+    }
+
+
+    /* ===== NAME ===== */
+
+    if (userName) {
+
+      document.getElementById(
+        "userName"
+      ).textContent = userName;
+
+      document.getElementById(
+        "nameDisplay"
+      ).textContent = userName;
+
+    }
+
+
+    /* ===== EMAIL ===== */
+
+    if (userEmail) {
+
+      document.getElementById(
+        "emailDisplay"
+      ).textContent = userEmail;
+
+    }
+
+
+    /* ===== ADDRESS ===== */
+
+    if (userAddress) {
+
+      document.getElementById(
+        "addressDisplay"
+      ).textContent = userAddress;
+
+    }
+
+
+    /* ===== LOGOUT ===== */
+
+    function logout() {
+
+      sessionStorage.clear();
+
+    }
+
+  </script>
+
+
+</body>
+</html>
