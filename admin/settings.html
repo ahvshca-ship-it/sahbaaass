@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الإعدادات | Sahba Admin</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark: #111827;
+  --gold: #f59e0b;
+  --gold-light: #fff7df;
+  --gray: #f7f8fa;
+  --text: #111827;
+  --muted: #667085;
+  --border: #e5e7eb;
+  --green: #15803d;
+  --red: #dc2626;
+}
+
+body {
+  font-family: Arial, Tahoma, sans-serif;
+  background: var(--gray);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  height: 70px;
+  padding: 0 5%;
+
+  background: var(--dark);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
+
+.logo {
+  color: var(--gold);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-name {
+  color: #d0d5dd;
+  font-size: 13px;
+}
+
+.logout-btn {
+  background: transparent;
+  color: white;
+
+  border: 1px solid #4b5563;
+
+  padding: 8px 13px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.logout-btn:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+aside {
+  width: 240px;
+  flex-shrink: 0;
+
+  background: white;
+
+  border-left: 1px solid var(--border);
+
+  padding: 25px 15px;
+}
+
+.sidebar-title {
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: bold;
+
+  margin: 0 10px 10px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  color: #344054;
+
+  padding: 11px 12px;
+  margin-bottom: 5px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+
+  transition: .2s;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: var(--gold-light);
+  color: #9a6700;
+}
+
+.sidebar-link.active {
+  font-weight: bold;
+}
+
+.icon {
+  width: 22px;
+  text-align: center;
+  font-size: 17px;
+}
+
+main {
+  flex: 1;
+  min-width: 0;
+
+  padding: 35px;
+}
+
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.settings-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+}
+
+.card {
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 17px;
+
+  padding: 22px;
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,.05);
+}
+
+.card.full {
+  grid-column: 1 / -1;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+
+  margin-bottom: 5px;
+}
+
+.card-description {
+  color: var(--muted);
+
+  font-size: 12px;
+
+  margin-bottom: 22px;
+}
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  padding: 11px 12px;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.save-btn {
+  border: none;
+
+  background: var(--gold);
+
+  color: var(--dark);
+
+  padding: 11px 20px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #fbbf24;
+}
+
+.danger-btn {
+  border: 1px solid #fecaca;
+
+  background: #fef2f2;
+
+  color: var(--red);
+
+  padding: 11px 20px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.danger-btn:hover {
+  background: #fee2e2;
+}
+
+.actions {
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.setting-row {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-info strong {
+  display: block;
+
+  font-size: 14px;
+
+  margin-bottom: 4px;
+}
+
+.setting-info span {
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+.switch {
+  position: relative;
+
+  width: 48px;
+  height: 26px;
+
+  flex-shrink: 0;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+
+  inset: 0;
+
+  background: #d0d5dd;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.slider:before {
+  content: "";
+
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+
+  right: 3px;
+  top: 3px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  transition: .2s;
+
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+.switch input:checked + .slider {
+  background: var(--gold);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(-22px);
+}
+
+.admin-box {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+.info-box {
+  background: var(--gold-light);
+
+  border: 1px solid #f2d58a;
+
+  border-radius: 12px;
+
+  padding: 15px;
+
+  color: #9a6700;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  margin-bottom: 20px;
+}
+
+.success {
+  display: none;
+
+  background: #ecfdf3;
+
+  border: 1px solid #bbf7d0;
+
+  color: var(--green);
+
+  border-radius: 9px;
+
+  padding: 10px 12px;
+
+  font-size: 12px;
+
+  margin-bottom: 15px;
+}
+
+@media(max-width: 900px) {
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card.full {
+    grid-column: auto;
+  }
+
+}
+
+@media(max-width: 750px) {
+
+  .layout {
+    display: block;
+  }
+
+  aside {
+    width: 100%;
+
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+
+    padding: 10px;
+
+    display: flex;
+    overflow-x: auto;
+
+    gap: 5px;
+  }
+
+  .sidebar-title {
+    display: none;
+  }
+
+  .sidebar-link {
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  main {
+    padding: 25px 15px;
+  }
+
+  .admin-box {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+  <a href="admin.html" class="logo">
+    Sahba
+  </a>
+
+  <div class="header-right">
+
+    <span class="admin-name">
+      مدير النظام
+    </span>
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      تسجيل الخروج
+    </button>
+
+  </div>
+
+</header>
+
+
+<div class="layout">
+
+
+<aside>
+
+  <div class="sidebar-title">
+    الإدارة
+  </div>
+
+  <a href="admin.html" class="sidebar-link">
+    <span class="icon">▦</span>
+    الرئيسية
+  </a>
+
+  <a href="users.html" class="sidebar-link">
+    <span class="icon">♟</span>
+    المستخدمون
+  </a>
+
+  <a href="products.html" class="sidebar-link">
+    <span class="icon">▣</span>
+    المنتجات
+  </a>
+
+  <a href="draws.html" class="sidebar-link">
+    <span class="icon">↻</span>
+    السحوبات
+  </a>
+
+  <a href="tickets.html" class="sidebar-link">
+    <span class="icon">▤</span>
+    التذاكر
+  </a>
+
+  <a href="deposits.html" class="sidebar-link">
+    <span class="icon">＋</span>
+    الإيداعات
+  </a>
+
+  <a href="withdrawals.html" class="sidebar-link">
+    <span class="icon">−</span>
+    السحب المالي
+  </a>
+
+  <a href="results.html" class="sidebar-link">
+    <span class="icon">✓</span>
+    النتائج
+  </a>
+
+  <a href="notifications.html" class="sidebar-link">
+    <span class="icon">●</span>
+    الإشعارات
+  </a>
+
+  <a href="settings.html" class="sidebar-link active">
+    <span class="icon">⚙</span>
+    الإعدادات
+  </a>
+
+</aside>
+
+
+<main>
+
+
+<div class="page-header">
+
+  <h1>
+    الإعدادات
+  </h1>
+
+  <p>
+    إدارة إعدادات المنصة ولوحة التحكم.
+  </p>
+
+</div>
+
+
+<div class="settings-grid">
+
+
+<div class="card">
+
+  <div class="card-title">
+    إعدادات المنصة
+  </div>
+
+  <div class="card-description">
+    المعلومات الأساسية الخاصة بموقع Sahba.
+  </div>
+
+
+  <div
+    id="siteSuccess"
+    class="success"
+  >
+    تم حفظ إعدادات المنصة بنجاح.
+  </div>
+
+
+  <form onsubmit="saveSiteSettings(event)">
+
+
+    <div class="form-group">
+
+      <label>
+        اسم المنصة
+      </label>
+
+      <input
+        id="siteName"
+        type="text"
+        value="Sahba"
+        required
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        وصف المنصة
+      </label>
+
+      <textarea id="siteDescription">منصة Sahba للسحوبات والجوائز</textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        البريد الإلكتروني للدعم
+      </label>
+
+      <input
+        id="supportEmail"
+        type="email"
+        value="support@sahba.com"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        العملة
+      </label>
+
+      <select id="currency">
+
+        <option value="EGP">
+          جنيه مصري (ج.م)
+        </option>
+
+        <option value="USD">
+          دولار أمريكي ($)
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="save-btn"
+    >
+      حفظ الإعدادات
+    </button>
+
+  </form>
+
+</div>
+
+
+<div class="card">
+
+  <div class="card-title">
+    إعدادات السحوبات
+  </div>
+
+  <div class="card-description">
+    التحكم في حالة السحوبات والتنبيهات المتعلقة بها.
+  </div>
+
+
+  <div class="setting-row">
+
+    <div class="setting-info">
+
+      <strong>
+        تفعيل السحوبات
+      </strong>
+
+      <span>
+        السماح للمستخدمين بالمشاركة في السحوبات.
+      </span>
+
+    </div>
+
+
+    <label class="switch">
+
+      <input
+        id="drawsEnabled"
+        type="checkbox"
+        checked
+      >
+
+      <span class="slider"></span>
+
+    </label>
+
+  </div>
+
+
+  <div class="setting-row">
+
+    <div class="setting-info">
+
+      <strong>
+        إشعار نتيجة السحب
+      </strong>
+
+      <span>
+        إرسال إشعار للمستخدمين بعد إعلان النتيجة.
+      </span>
+
+    </div>
+
+
+    <label class="switch">
+
+      <input
+        id="resultNotifications"
+        type="checkbox"
+        checked
+      >
+
+      <span class="slider"></span>
+
+    </label>
+
+  </div>
+
+
+  <div class="setting-row">
+
+    <div class="setting-info">
+
+      <strong>
+        إشعار السحب الجديد
+      </strong>
+
+      <span>
+        إعلام المستخدمين عند إضافة سحب جديد.
+      </span>
+
+    </div>
+
+
+    <label class="switch">
+
+      <input
+        id="newDrawNotifications"
+        type="checkbox"
+        checked
+      >
+
+      <span class="slider"></span>
+
+    </label>
+
+  </div>
+
+
+</div>
+
+
+<div class="card">
+
+  <div class="card-title">
+    حساب الأدمن
+  </div>
+
+  <div class="card-description">
+    تحديث بيانات الدخول الخاصة بحساب الإدارة.
+  </div>
+
+
+  <div
+    id="adminSuccess"
+    class="success"
+  >
+    تم حفظ بيانات الأدمن بنجاح.
+  </div>
+
+
+  <form onsubmit="saveAdminSettings(event)">
+
+
+    <div class="admin-box">
+
+
+      <div class="form-group">
+
+        <label>
+          اسم المستخدم
+        </label>
+
+        <input
+          id="adminUsername"
+          type="text"
+          value="admin"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          البريد الإلكتروني
+        </label>
+
+        <input
+          id="adminEmail"
+          type="email"
+          value="admin@sahba.com"
+          required
+        >
+
+      </div>
+
+
+    </div>
+
+
+    <div class="admin-box">
+
+
+      <div class="form-group">
+
+        <label>
+          كلمة المرور الجديدة
+        </label>
+
+        <input
+          id="newPassword"
+          type="password"
+          placeholder="اتركها فارغة إذا لم ترد تغييرها"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          تأكيد كلمة المرور
+        </label>
+
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="أعد كتابة كلمة المرور"
+        >
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="save-btn"
+    >
+      حفظ بيانات الأدمن
+    </button>
+
+  </form>
+
+</div>
+
+
+<div class="card">
+
+  <div class="card-title">
+    حالة المنصة
+  </div>
+
+  <div class="card-description">
+    التحكم في إمكانية وصول المستخدمين إلى الموقع.
+  </div>
+
+
+  <div class="info-box">
+    تفعيل وضع الصيانة يمنع المستخدمين من استخدام الموقع بشكل طبيعي.
+    سيتم استخدام هذا الخيار لاحقًا مع نظام الباك إند.
+  </div>
+
+
+  <div class="setting-row">
+
+    <div class="setting-info">
+
+      <strong>
+        وضع الصيانة
+      </strong>
+
+      <span>
+        إيقاف الموقع مؤقتًا أثناء التحديثات.
+      </span>
+
+    </div>
+
+
+    <label class="switch">
+
+      <input
+        id="maintenance"
+        type="checkbox"
+      >
+
+      <span class="slider"></span>
+
+    </label>
+
+  </div>
+
+
+  <div class="setting-row">
+
+    <div class="setting-info">
+
+      <strong>
+        السماح بالتسجيل
+      </strong>
+
+      <span>
+        السماح للمستخدمين الجدد بإنشاء حسابات.
+      </span>
+
+    </div>
+
+
+    <label class="switch">
+
+      <input
+        id="registration"
+        type="checkbox"
+        checked
+      >
+
+      <span class="slider"></span>
+
+    </label>
+
+  </div>
+
+</div>
+
+
+<div class="card full">
+
+  <div class="card-title">
+    إجراءات النظام
+  </div>
+
+  <div class="card-description">
+    إجراءات إدارية مهمة. استخدمها بحذر.
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      class="save-btn"
+      onclick="saveAllSettings()"
+    >
+      حفظ جميع الإعدادات
+    </button>
+
+
+    <button
+      class="danger-btn"
+      onclick="logoutAll()"
+    >
+      تسجيل خروج جميع الأجهزة
+    </button>
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+function saveSiteSettings(event) {
+
+  event.preventDefault();
+
+  document
+    .getElementById("siteSuccess")
+    .style.display = "block";
+
+  setTimeout(() => {
+
+    document
+      .getElementById("siteSuccess")
+      .style.display = "none";
+
+  }, 3000);
+
+}
+
+
+function saveAdminSettings(event) {
+
+  event.preventDefault();
+
+  const password =
+    document.getElementById("newPassword").value;
+
+  const confirm =
+    document.getElementById("confirmPassword").value;
+
+  if (password || confirm) {
+
+    if (password !== confirm) {
+
+      alert(
+        "كلمتا المرور غير متطابقتين."
+      );
+
+      return;
+
+    }
+
+    if (password.length < 6) {
+
+      alert(
+        "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
+      );
+
+      return;
+
+    }
+
+  }
+
+  document
+    .getElementById("adminSuccess")
+    .style.display = "block";
+
+  document.getElementById("newPassword").value = "";
+  document.getElementById("confirmPassword").value = "";
+
+  setTimeout(() => {
+
+    document
+      .getElementById("adminSuccess")
+      .style.display = "none";
+
+  }, 3000);
+
+}
+
+
+function saveAllSettings() {
+
+  alert(
+    "تم حفظ الإعدادات بشكل تجريبي. سيتم حفظها فعليًا بعد ربط قاعدة البيانات."
+  );
+
+}
+
+
+function logoutAll() {
+
+  const confirmed =
+    confirm(
+      "هل تريد تسجيل خروج جميع الأجهزة؟"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  alert(
+    "تم تنفيذ العملية بشكل تجريبي. سيتم ربطها بنظام الجلسات لاحقًا."
+  );
+
+}
+
+
+function logout() {
+
+  const confirmed =
+    confirm(
+      "هل تريد تسجيل الخروج من لوحة الإدارة؟"
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  window.location.href =
+    "login.html";
+
+}
+
+</script>
+
+
+</body>
+</html>
